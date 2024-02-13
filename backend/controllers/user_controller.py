@@ -4,8 +4,8 @@ from flask import request
 from jwt import encode, ExpiredSignatureError
 from sqlalchemy.exc import IntegrityError
 
-from config.env_config import JWT_SECRET, TOKEN_TIME_TO_LIVE
-from models.user_model import signup, login, update, init_table, find_user_by_id, delete
+from backend.config.env_config import JWT_SECRET, TOKEN_TIME_TO_LIVE
+from backend.models.user_model import signup, login, update, init_table, find_user_by_id, delete
 
 
 def create_token(_id):

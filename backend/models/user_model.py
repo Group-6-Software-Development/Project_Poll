@@ -5,8 +5,8 @@ from sqlalchemy import Column, String
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.ext.declarative import declarative_base
 
-from config.database import Session, engine
-from config.env_config import SALT_ROUNDS
+from backend.config.database import Session, engine
+from backend.config.env_config import SALT_ROUNDS
 
 Base = declarative_base()
 
