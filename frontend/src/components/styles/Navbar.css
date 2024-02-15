@@ -23,6 +23,9 @@ body {
 
 .logo {
   margin: 1.5rem;
+  height: 45px;
+  width: 45px;
+  border-radius: 10px;
 }
 
 .right-corner {

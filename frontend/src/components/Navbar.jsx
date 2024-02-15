@@ -2,7 +2,7 @@
 
 import React from "react";
 import "./styles/Navbar.css";
-import logo from "./images/logo.png";
+import logo from "../images/logo.png";
 
 const Navbar = ({ isLoggedIn }) => {
   return (
