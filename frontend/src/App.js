@@ -1,19 +1,10 @@
+import "./styles/app.css";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p>hei sinä, tämä sivu on vielä kesken :/</p>
       </header>
     </div>
   );
