@@ -5,7 +5,7 @@ from jwt import encode, ExpiredSignatureError
 from sqlalchemy.exc import IntegrityError
 
 from backend.config.env_config import JWT_SECRET, TOKEN_TIME_TO_LIVE
-from backend.models.user_model import signup, login, update, init_table, find_user_by_id, delete
+from backend.models.user_model import signup, login, update, find_user_by_id, delete
 
 
 def create_token(_id):
@@ -92,11 +92,7 @@ def delete_user():
     else:
         try:
             delete(user_id)
-            return "User deleted", 200
+            return {"message": "User deleted"}, 200
         except Exception as e:
             print(f"Unexpected error during user deletion: {str(e)}")
             return {'error': 'An error occurred during user deletion'}, 400
-
-
-def create_table():
-    init_table()
