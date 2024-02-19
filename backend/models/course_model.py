@@ -16,6 +16,7 @@ class CourseModel(Base):
     name = Column(String(50), unique=True, nullable=False)
     teacher_id = Column(UUID(as_uuid=True), ForeignKey('users.id'), nullable=False)
     teacher = relationship('UserModel', back_populates='courses')
+    reviews = relationship('ReviewModel', back_populates='course')
 
 
 def create(name, teacher_id):
