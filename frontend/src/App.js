@@ -1,12 +1,13 @@
 import "./styles/app.css";
 import Navbar from "./components/Navbar";
+import UserPage from "./pages/UserPage"
 
 function App() {
   return (
     <div className="App">
       <Navbar isLoggedIn={false} />
       <header className="App-header">
-        <p>hei sinä, tämä sivu on vielä kesken :/</p>
+        <UserPage/>
       </header>
     </div>
   );
