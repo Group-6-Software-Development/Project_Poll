@@ -3,7 +3,7 @@ from functools import wraps
 from flask import request
 from jwt import decode
 
-from backend.config.env_config import JWT_SECRET
+from config.env_config import JWT_SECRET
 
 
 def protected(route_function):

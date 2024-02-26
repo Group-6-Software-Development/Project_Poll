@@ -3,12 +3,11 @@ import uuid
 import bcrypt
 from sqlalchemy import Column, String
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship
 
-from backend.config.database import Session, engine
-from backend.config.env_config import SALT_ROUNDS
-
-Base = declarative_base()
+from config.base import Base
+from config.database import Session
+from config.env_config import SALT_ROUNDS
 
 
 class UserModel(Base):
@@ -17,6 +16,8 @@ class UserModel(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
     email = Column(String(50), unique=True, nullable=False)
     password = Column(String(255), nullable=False)
+
+    courses = relationship('CourseModel', back_populates='teacher')
 
 
 def signup(email, password):
@@ -68,7 +69,3 @@ def delete(user_id):
     session.delete(user)
     session.commit()
     session.close()
-
-
-def init_table():
-    Base.metadata.create_all(engine)
