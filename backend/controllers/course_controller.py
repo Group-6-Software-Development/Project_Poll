@@ -3,7 +3,7 @@ import uuid
 from flask import request
 from sqlalchemy.exc import IntegrityError
 
-from backend.models.course_model import create, update, find_course_by_id, find_courses_by_teacher_id, delete
+from models.course_model import create, update, find_course_by_id, find_courses_by_teacher_id, delete
 
 
 def create_course():

@@ -1,7 +1,7 @@
 from flask import Blueprint
 
-from backend.controllers.course_controller import create_course, get_courses, get_course, update_course, delete_course
-from backend.middleware.auth_middleware import protected
+from controllers.course_controller import create_course, get_courses, get_course, update_course, delete_course
+from middleware.auth_middleware import protected
 
 course_create = Blueprint('course_create', __name__)
 courses_get = Blueprint('courses_get', __name__)

@@ -4,8 +4,8 @@ from sqlalchemy import Column, String, ForeignKey, Integer
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 
-from backend.config.base import Base
-from backend.config.database import Session
+from config.base import Base
+from config.database import Session
 
 
 class ReviewModel(Base):

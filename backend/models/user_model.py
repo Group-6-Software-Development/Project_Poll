@@ -5,9 +5,9 @@ from sqlalchemy import Column, String
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 
-from backend.config.base import Base
-from backend.config.database import Session
-from backend.config.env_config import SALT_ROUNDS
+from config.base import Base
+from config.database import Session
+from config.env_config import SALT_ROUNDS
 
 
 class UserModel(Base):

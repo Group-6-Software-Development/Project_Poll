@@ -1,7 +1,7 @@
 from flask import Blueprint
 
-from backend.controllers.user_controller import register_user, login_user, update_user, get_user, delete_user
-from backend.middleware.auth_middleware import protected
+from controllers.user_controller import register_user, login_user, update_user, get_user, delete_user
+from middleware.auth_middleware import protected
 
 user_register = Blueprint('user_register', __name__)
 user_login = Blueprint('user_login', __name__)

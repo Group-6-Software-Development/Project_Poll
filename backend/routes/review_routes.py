@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-from backend.controllers.review_controller import create_review, get_reviews
+from controllers.review_controller import create_review, get_reviews
 
 review_create = Blueprint('review_create', __name__)
 reviews_get = Blueprint('reviews_get', __name__)

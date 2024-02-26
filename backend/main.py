@@ -1,7 +1,7 @@
 from flask import Flask
 
-from backend.config.base import Base
-from backend.config.database import engine
+from config.base import Base
+from config.database import engine
 from config.env_config import PORT
 from routes.course_routes import course_create, courses_get, course_get, course_update, course_delete
 from routes.review_routes import review_create, reviews_get

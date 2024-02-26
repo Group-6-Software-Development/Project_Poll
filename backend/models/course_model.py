@@ -4,9 +4,9 @@ from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 
-from backend.config.base import Base
-from backend.config.database import Session
-from backend.models.user_model import UserModel
+from config.base import Base
+from config.database import Session
+from models.user_model import UserModel
 
 
 class CourseModel(Base):

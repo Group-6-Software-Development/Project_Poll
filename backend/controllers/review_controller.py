@@ -3,7 +3,7 @@ import uuid
 from flask import request
 from sqlalchemy.exc import IntegrityError
 
-from backend.models.review_model import create, find_all_reviews_by_course_id
+from models.review_model import create, find_all_reviews_by_course_id
 
 
 def create_review():
