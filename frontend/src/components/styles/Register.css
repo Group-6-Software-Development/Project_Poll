@@ -1,0 +1,64 @@
+/* Register.css */
+.register-page {
+	padding: 20px;
+	background-image: url("../../pictures/FlowerPicture.jpg");
+	background-size: cover;
+	background-position: center;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+  }
+  
+  .register-form {
+	width: 300px;
+	padding: 20px;
+	background-color: rgba(83, 86, 90, 0.85);
+	border-radius: 10px;
+	margin: auto;
+	margin-top: 50px;
+	
+  }
+  
+  .first-name-message, .last-name-message, .email-message, .password-message, .password-again-message {
+	color: #fff;
+	font-size: 20px;
+	margin-bottom: 0px;
+	text-align: center;
+	margin-top: 0px;
+	font-family: Arial, sans-serif;
+  }
+  
+  .first-name-input, .last-name-input, .email-input, .password-input, .password-again-input {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 16px;
+	margin-top: 8px;
+	box-sizing: border-box;
+	border-radius: 6px;
+	font-family: Arial, sans-serif;
+	border: none;
+  }
+  
+  input:focus {
+	outline: none;
+  }
+  
+  .register-button {
+	position: relative;
+  	margin-top: auto;
+  	left: 50%;
+  	transform: translateX(-50%);
+	padding: 10px;
+	background-color: #FF5000;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	font-family: Arial, sans-serif;
+  }
+  
+  .register-button:hover {
+	background-color: rgba(0, 128, 0, 0.9);
+  	color: rgb(255, 255, 255);
+  	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+  }
