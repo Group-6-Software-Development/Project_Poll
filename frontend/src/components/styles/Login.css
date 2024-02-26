@@ -1,0 +1,58 @@
+/* Login.css */
+ 
+  .login-page {
+    padding: 20px;
+    background-image: url("../../pictures/FlowerPicture.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh; /* Ensure the background covers the entire viewport height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   }
+  .login-form {
+    width: 300px;
+    padding: 20px;
+    background-color: rgba(83, 86, 90, 0.85);
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 50px;
+  }
+  .email-message, .password-message {
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 0px;
+    text-align: center;
+    margin-top: 0px;
+    margin-right: 195px;
+    font-family: Arial, sans-serif;
+
+  }
+  
+  .email-input, .password-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    margin-top: 8px;
+    box-sizing: border-box;
+    border-radius:  6px;
+    font-family: Arial, sans-serif;
+    border: none;
+  }
+  input:focus {
+    outline: none;
+  }
+  
+  .login-button {
+    padding: 10px;
+    background-color: rgba(255, 80, 0, 0.7);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+  }
+  
+  .login-button:hover {
+    color: rgb(255, 80, 0);
+  }
+  
