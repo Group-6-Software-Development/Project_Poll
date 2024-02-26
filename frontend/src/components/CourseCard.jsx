@@ -13,7 +13,7 @@ const CourseCard = () => {
           <h4>Course Name</h4>
         </div>
         <div className="course-date">
-          <p>Course date</p>
+          <p>15.2.2024-7.3.2024</p>
         </div>
       </div>
     </div>
