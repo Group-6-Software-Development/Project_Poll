@@ -1,0 +1,37 @@
+.course-card {
+  position: relative;
+  text-align: center;
+  border-radius: 20px;
+  width: 260px;
+  height: 370px;
+  background-color: var(--clean-bg-color);
+  margin: 0.8em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+img {
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  width: 100%;
+  height: 50%;
+  object-fit: cover;
+}
+
+.course-id {
+  color: var(--secondary-text-color);
+  font-weight: 500;
+}
+
+.course-name {
+  color: var(--main-text-color);
+  margin-bottom: 4em;
+}
+
+.course-card button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  margin-top: 0.5em;
+  margin-right: 0.5em;
+}

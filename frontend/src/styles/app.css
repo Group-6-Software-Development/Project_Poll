@@ -1,0 +1,37 @@
+/*
+==========
+variables
+==========
+
+*/
+
+:root {
+  --main-bg-color: #f5f2f0;
+  --main-btn-bg-color: #ff5000;
+  --main-text-color: #212427;
+  --secondary-text-color: #ff5000;
+  --clean-bg-color: #fff;
+  --secondary-bg-color: #F6E2D8;
+}
+
+html {
+  background-color: var(--main-bg-color);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+/*
+=========
+userPage
+=========
+*/
+.user-page-container {
+  text-align: center;
+  color: var(--main-text-color);
+  padding: 1em;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
