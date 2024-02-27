@@ -4,7 +4,7 @@ import React from "react";
 import "./styles/Navbar.css";
 import logo from "../images/logo.png";
 
-const Navbar = ({ isLoggedIn }) => {
+const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
   return (
     <div className="navbar">
       <div className="logo-container">
@@ -14,7 +14,7 @@ const Navbar = ({ isLoggedIn }) => {
       </div>
 
       <div className="right-corner">
-        {isLoggedIn ? (
+        {isAuthenticated ? (
           <button className="profile-button">Profile</button>
         ) : (
           <button className="login-button">Login</button>
