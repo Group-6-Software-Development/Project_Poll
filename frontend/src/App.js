@@ -16,7 +16,7 @@ const App = () => {
     <div className="App">
       <BrowserRouter>
         <Navbar
-          isAuthenticated={true}
+          isAuthenticated={isAuthenticated}
           setIsAuthenticated={setIsAuthenticated}
         />
         <Routes>
