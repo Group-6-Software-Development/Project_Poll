@@ -47,7 +47,8 @@ def login_user():
             user = login(email, password)
             if user:
                 token = create_token(user.get('id'))
-                return token, 200
+                data = {'token': token}
+                return jsonify(data), 200
             else:
                 return {'error': 'Invalid credentials'}, 401
         except ExpiredSignatureError:
