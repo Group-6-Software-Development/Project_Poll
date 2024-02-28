@@ -3,31 +3,26 @@ import { render, fireEvent } from "@testing-library/react";
 import Login from "../Login";
 
 describe("Login component", () => {
-  const setIsAuthenticated = jest.fn();
-
-  it("renders email and password input fields, and a login button", () => {
-    const { getByLabelText, getByText } = render(<Login setIsAuthenticated={setIsAuthenticated} />);
-
-    // Tarkista, että sähköposti- ja salasanakentät ovat renderöity
-    expect(getByLabelText("Email:")).toBeInTheDocument();
-    expect(getByLabelText("Password:")).toBeInTheDocument();
-
-    // Tarkista, että kirjautumisnappi on renderöity
-    expect(getByText("Login")).toBeInTheDocument();
+  it("renders all input fields and a submit button", () => {
+    const { getByTestId } = render(<Login />);
+    expect(getByTestId("email-input")).toBeInTheDocument();
+    expect(getByTestId("password-input")).toBeInTheDocument();
+    expect(getByTestId("login-button")).toBeInTheDocument();
   });
 
-  it("logs in with email and password when form is submitted", () => {
-    const { getByLabelText, getByText } = render(<Login setIsAuthenticated={setIsAuthenticated} />);
+  it("calls console.log with correct parameters when form is submitted", () => {
+    const logMock = jest.spyOn(console, "log");
+    const { getByTestId } = render(<Login />);
+    const emailInput = getByTestId("email-input");
+    const passwordInput = getByTestId("password-input");
 
-    // Syötä sähköpostiosoite ja salasana kenttiin
-    fireEvent.change(getByLabelText("Email:"), { target: { value: "test@example.com" } });
-    fireEvent.change(getByLabelText("Password:"), { target: { value: "password123" } });
+    fireEvent.change(emailInput, { target: { value: "test@example.com" } });
+    fireEvent.change(passwordInput, { target: { value: "password123" } });
+    fireEvent.submit(getByTestId("login-form"));
 
-    // Lähetä lomake
-    fireEvent.submit(getByText("Login"));
-
-    // Tarkista, että setIsAuthenticated on kutsuttu oikein
-    expect(setIsAuthenticated).toHaveBeenCalled();
+    expect(logMock).toHaveBeenCalledWith("Logging in with:", {
+      email: "test@example.com",
+      password: "password123",
+    });
   });
 });
-
