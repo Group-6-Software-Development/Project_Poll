@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import "./styles/app.css";
 import Navbar from "./components/Navbar";
 import UserPage from "./pages/UserPage";
+import LandingPage from "./pages/LandingPage";
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -16,9 +17,10 @@ const App = () => {
     <div className="App">
       <BrowserRouter>
         <Navbar
-          isAuthenticated={true}
+          isAuthenticated={false}
           setIsAuthenticated={setIsAuthenticated}
         />
+        <LandingPage />
         <Routes>
           <Route path="/profile" element={<UserPage />} />
           <Route

@@ -11,7 +11,7 @@ variables
   --main-text-color: #212427;
   --secondary-text-color: #ff5000;
   --clean-bg-color: #fff;
-  --secondary-bg-color: #F6E2D8;
+  --secondary-bg-color: #f6e2d8;
 }
 
 html {
@@ -34,4 +34,97 @@ userPage
 .card-container {
   display: flex;
   flex-wrap: wrap;
+}
+
+/*
+===========
+LandingPage
+===========
+*/
+.landing-page {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1em;
+}
+
+.signup-prompt {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: space-between;
+  color: var(--main-text-color);
+  width: 1080px;
+  height: 200px;
+  border-radius: 15px;
+  background-color: var(--secondary-bg-color);
+  padding: 2em;
+}
+
+.signup-prompt img {
+  width: 20%;
+}
+
+.prompt-button button {
+  font-weight: bolder;
+  width: 7em;
+  height: 2.5em;
+  color: var(--clean-bg-color);
+  background-color: var(--main-btn-bg-color);
+  border-radius: 20px;
+  padding: 0.5em;
+}
+
+.prompt-text {
+  font-weight: 400;
+  margin-right: 4em;
+  font-size: larger;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.grading-prompt {
+  margin-top: 2em;
+  align-items: center;
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  color: var(--main-text-color);
+  width: 1080px;
+  height: 200px;
+  border-radius: 15px;
+  background-color: var(--secondary-bg-color);
+  padding: 2em;
+}
+
+.grading-text label {
+  font-weight: 400;
+  font-size: larger;
+}
+
+.grading-text input {
+  border-radius: 30px;
+  width: 25em;
+  height: 2.5em;
+  margin-top: 1em;
+  padding-left: 1em;
+  font-weight: 400;
+  font-size: large;
+  border: none;
+}
+
+.grading-text button {
+  z-index: 1;
+  color: var(--clean-bg-color);
+  font-weight: bolder;
+  background-color: var(--main-btn-bg-color);
+  height: 3em;
+  width: 7em;
+  border-radius: 25px;
+  position: relative;
+  right: 40px;
+  border: #ff5000;
+  margin-top: 0;
 }
