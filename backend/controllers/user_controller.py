@@ -26,10 +26,10 @@ def register_user():
             token = create_token(user.get('id'))
             return token, 200
         except IntegrityError:
-            return {'error': 'Email address already in use'}, 400
+            return {'error': 'Email address already in use'}, 401
         except Exception as e:
             print(f"Unexpected error during registration: {str(e)}")
-            return {'error': 'An error occurred during registration'}, 400
+            return {'error': 'An error occurred during registration'}, 402
 
 
 def login_user():
@@ -48,10 +48,10 @@ def login_user():
             else:
                 return {'error': 'Invalid credentials'}, 401
         except ExpiredSignatureError:
-            return {'error': 'Token has expired'}, 401
+            return {'error': 'Token has expired'}, 402
         except Exception as e:
             print(f"Unexpected error during login: {str(e)}")
-            return {'error': 'An error occurred during login'}, 400
+            return {'error': 'An error occurred during login'}, 403
 
 
 def update_user():
