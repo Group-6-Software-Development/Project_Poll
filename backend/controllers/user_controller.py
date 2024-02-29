@@ -69,7 +69,7 @@ def update_user():
             return user, 200
         except Exception as e:
             print(f"Unexpected error during user update: {str(e)}")
-            return {'error': 'An error occurred during user update'}, 400
+            return {'error': 'An error occurred during user update'}, 402
 
 
 def get_user():
