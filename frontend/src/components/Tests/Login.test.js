@@ -1,28 +1,28 @@
-import React from "react";
+// Import the fireEvent and render functions from @testing-library/react
 import { render, fireEvent } from "@testing-library/react";
+import React from "react";
 import Login from "../Login";
 
-describe("Login component", () => {
-  it("renders all input fields and a submit button", () => {
-    const { getByTestId } = render(<Login />);
-    expect(getByTestId("email-input")).toBeInTheDocument();
-    expect(getByTestId("password-input")).toBeInTheDocument();
-    expect(getByTestId("login-button")).toBeInTheDocument();
-  });
+// Mock the console.log function
+console.log = jest.fn();
 
-  it("calls console.log with correct parameters when form is submitted", () => {
-    const logMock = jest.spyOn(console, "log");
+describe("Login component", () => {
+  it("calls console.log when form is submitted", () => {
     const { getByTestId } = render(<Login />);
+
+    // Get the email and password input fields and change their values
     const emailInput = getByTestId("email-input");
     const passwordInput = getByTestId("password-input");
-
     fireEvent.change(emailInput, { target: { value: "test@example.com" } });
-    fireEvent.change(passwordInput, { target: { value: "password123" } });
+    fireEvent.change(passwordInput, { target: { value: "password" } });
+
+    // Submit the form
     fireEvent.submit(getByTestId("login-form"));
 
-    expect(logMock).toHaveBeenCalledWith("Logging in with:", {
+    // Check if console.log is called with correct data
+    expect(console.log).toHaveBeenCalledWith("Logging in with:", {
       email: "test@example.com",
-      password: "password123",
+      password: "password",
     });
   });
 });

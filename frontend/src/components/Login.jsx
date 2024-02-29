@@ -17,19 +17,13 @@ const Login = ({ setIsAuthenticated }) => {
   return (
     <div className="login-page">
       <form className="login-form" onSubmit={handleSubmit}>
-        <label className="email-message" htmlFor="email">
-          Email:
-        </label>
+        <label className="email-message" htmlFor="email">Email:</label>
         <input {...email} className="email-input" data-testid="email-input" required />
 
-        <label className="password-message" htmlFor="password">
-          Password:
-        </label>
+        <label className="password-message" htmlFor="password">Password:</label>
         <input {...password} className="password-input" data-testid="password-input" required />
 
-        <button className="login-button" type="submit" data-testiid="login-form">
-          Login
-        </button>
+        <button className="login-button" type="submit" data-testid="login-form">Login</button>
       </form>
     </div>
   );
