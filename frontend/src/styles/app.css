@@ -170,6 +170,6 @@ LandingPage
 
   .grading-prompt button {
     margin-top: 0.5em;
-    
+    right: 0;
   }
 }
