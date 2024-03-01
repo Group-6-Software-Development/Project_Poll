@@ -20,7 +20,7 @@ const App = () => {
           isAuthenticated={false}
           setIsAuthenticated={setIsAuthenticated}
         />
-        <LandingPage />
+        <UserPage />
         <Routes>
           <Route path="/profile" element={<UserPage />} />
           <Route

@@ -25,7 +25,8 @@ const CourseCard = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [courseId, setCourseId] = useState("CourseID");
   const [courseName, setCourseName] = useState("Course Name");
-  const [courseDate, setCourseDate] = useState("Date");
+  const [startDate, setStartDate] = useState("StartDate");
+  const [endDate, setEndDate] = useState("EndDate");
 
   return (
     <div className="course-card">
@@ -61,13 +62,22 @@ const CourseCard = () => {
         </div>
         <div className="course-date">
           {isEditing ? (
+            <div>
             <input
               type="text"
-              value={courseDate}
-              onChange={(e) => setCourseDate(e.target.value)}
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
             />
+            <input
+            type="text"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            ></input>
+            </div>
           ) : (
-            <p>{courseDate}</p>
+            <p>
+              {startDate} - {endDate}
+            </p>
           )}
         </div>
       </div>
