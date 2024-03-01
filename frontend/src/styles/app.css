@@ -54,7 +54,7 @@ LandingPage
   text-align: center;
   justify-content: space-between;
   color: var(--main-text-color);
-  width: 1080px;
+  width: 75%;
   height: 200px;
   border-radius: 15px;
   background-color: var(--secondary-bg-color);
@@ -62,7 +62,10 @@ LandingPage
 }
 
 .signup-prompt img {
-  width: 20%;
+  max-width: 100%;
+  height: auto;
+  size-adjust: 25%;
+  width: 250px;
 }
 
 .prompt-button button {
@@ -92,7 +95,7 @@ LandingPage
   text-align: center;
   justify-content: space-around;
   color: var(--main-text-color);
-  width: 1080px;
+  width: 75%;
   height: 200px;
   border-radius: 15px;
   background-color: var(--secondary-bg-color);
@@ -127,4 +130,46 @@ LandingPage
   right: 40px;
   border: #ff5000;
   margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  .signup-prompt,
+  .grading-prompt {
+    width: 90%; /* Adjust as needed */
+    padding: 1em; /* Adjust as needed */
+  }
+}
+
+@media (max-width: 1015px) {
+  .signup-prompt img {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .signup-prompt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%; /* Adjust as needed */
+    padding: 1em; /* Adjust as needed */
+    flex-wrap: nowrap;
+    padding-bottom: 2em;
+  }
+  .prompt-text {
+    margin-right: 0;
+  }
+
+  .grading-prompt {
+    width: 90%;
+  }
+
+  .grading-prompt input {
+    width: 90%;
+  }
+
+  .grading-prompt button {
+    margin-top: 0.5em;
+    
+  }
 }
