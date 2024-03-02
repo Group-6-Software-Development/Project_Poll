@@ -5,12 +5,12 @@ from jwt import encode, ExpiredSignatureError
 from sqlalchemy.exc import IntegrityError
 
 from config.env_config import JWT_SECRET, JWT_TOKEN_TIME_TO_LIVE
-from models.user_model import signup, login, update, find_user_by_id, delete
+from models.user_model import signup, login, update, find_user_by_uuid, delete
 
 
-def generate_token(user_id):
+def generate_token(user_uuid):
     expiration_time = datetime.now(timezone.utc) + timedelta(seconds=int(JWT_TOKEN_TIME_TO_LIVE))
-    token = encode({'id': user_id, 'exp': expiration_time}, JWT_SECRET, algorithm='HS256')
+    token = encode({'id': user_uuid, 'exp': expiration_time}, JWT_SECRET, algorithm='HS256')
     return token
 
 
@@ -26,7 +26,7 @@ def register_user():
         password = data['password']
         try:
             user = signup(first_name, last_name, email, password)
-            token = generate_token(user.get('id'))
+            token = generate_token(user.get('uuid'))
             data = {'token': token}
             return jsonify(data), 201
         except IntegrityError:
@@ -47,7 +47,7 @@ def login_user():
         try:
             user = login(email, password)
             if user:
-                token = generate_token(user.get('id'))
+                token = generate_token(user.get('uuid'))
                 data = {'token': token}
                 return jsonify(data), 200
             else:
@@ -61,18 +61,18 @@ def login_user():
 
 def update_user():
     data = request.get_json()
-    user_id = request.decoded_token
-    if not user_id:
+    user_uuid = request.decoded_token
+    if not user_uuid:
         return {'error': 'Unauthorized - Invalid token'}, 401
-    if not data or 'email' not in data or 'password' not in data or 'firstName' not in data or 'lastName' not in data:
+    if not data or 'email' not in data or 'password' not in data or 'first_name' not in data or 'last_name' not in data:
         return {'error': 'Bad Request'}, 400
     else:
-        first_name = data['firstName']
-        last_name = data['lastName']
+        first_name = data['first_name']
+        last_name = data['last_name']
         email = data['email']
         password = data['password']
         try:
-            user = update(user_id, first_name, last_name, email, password)
+            user = update(user_uuid, first_name, last_name, email, password)
             return user, 200
         except Exception as e:
             print(f"Unexpected error during user update: {str(e)}")
@@ -80,12 +80,12 @@ def update_user():
 
 
 def get_user():
-    user_id = request.decoded_token
-    if not user_id:
+    user_uuid = request.decoded_token
+    if not user_uuid:
         return {'error': 'Unauthorized - Invalid token'}, 401
     else:
         try:
-            user = find_user_by_id(user_id)
+            user = find_user_by_uuid(user_uuid)
             return user, 200
         except Exception as e:
             print(f"Unexpected error during user lookup: {str(e)}")
@@ -93,12 +93,12 @@ def get_user():
 
 
 def delete_user():
-    user_id = request.decoded_token
-    if not user_id:
+    user_uuid = request.decoded_token
+    if not user_uuid:
         return {'error': 'Unauthorized - Invalid token'}, 401
     else:
         try:
-            delete(user_id)
+            delete(user_uuid)
             return {"message": "No Content"}, 204
         except Exception as e:
             print(f"Unexpected error during user deletion: {str(e)}")

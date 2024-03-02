@@ -3,19 +3,19 @@ import uuid
 from flask import request
 from sqlalchemy.exc import IntegrityError
 
-from models.review_model import create, find_all_reviews_by_course_id
+from models.review_model import create, find_all_reviews_by_course_uuid
 
 
 def create_review():
     data = request.get_json()
-    if not data or 'course_id' not in data or 'rating' not in data:
+    if not data or 'courseUUID' not in data or 'rating' not in data:
         return {'error': 'Bad Request'}, 400
     else:
-        course_id = uuid.UUID(data['course_id'])
+        course_uuid = uuid.UUID(data['courseUUID'])
         rating = data['rating']
         comment = data.get('comment', None)
         try:
-            review = create(course_id, rating, comment)
+            review = create(course_uuid, rating, comment)
             return review, 201
         except IntegrityError as e:
             print(f"Unexpected error during review creation: {str(e)}")
@@ -25,14 +25,17 @@ def create_review():
             return {'error': 'Internal Server Error'}, 500
 
 
-def get_reviews(course_id):
-    course_id = uuid.UUID(course_id)
-    if not course_id:
+def get_reviews(course_uuid):
+    course_uuid = uuid.UUID(course_uuid)
+    if not course_uuid:
         return {'error': 'Bad Request'}, 400
     else:
         try:
-            reviews = find_all_reviews_by_course_id(course_id)
-            return reviews, 200
+            reviews = find_all_reviews_by_course_uuid(course_uuid)
+            if not reviews:
+                return {'error': 'No reviews found'}, 404
+            else:
+                return reviews, 200
         except Exception as e:
             print(f"Unexpected error during review lookup: {str(e)}")
             return {'error': 'Internal Server Error'}, 500
