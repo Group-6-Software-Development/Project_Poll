@@ -4,13 +4,14 @@ from flask import request, jsonify
 from jwt import encode, ExpiredSignatureError
 from sqlalchemy.exc import IntegrityError
 
-from config.env_config import JWT_SECRET, TOKEN_TIME_TO_LIVE
+from config.env_config import JWT_SECRET, JWT_TOKEN_TIME_TO_LIVE
 from models.user_model import signup, login, update, find_user_by_id, delete
 
 
-def create_token(_id):
-    expiration_time = datetime.now(timezone.utc) + timedelta(seconds=int(TOKEN_TIME_TO_LIVE))
-    return encode({'id': _id, 'exp': expiration_time}, JWT_SECRET, algorithm='HS256')
+def generate_token(user_id):
+    expiration_time = datetime.now(timezone.utc) + timedelta(seconds=int(JWT_TOKEN_TIME_TO_LIVE))
+    token = encode({'id': user_id, 'exp': expiration_time}, JWT_SECRET, algorithm='HS256')
+    return token
 
 
 def register_user():
@@ -19,13 +20,13 @@ def register_user():
     if not data or 'email' not in data or 'password' not in data or 'firstName' not in data or 'lastName' not in data:
         return {'error': 'Bad Request'}, 400
     else:
-        firstName = data['firstName']
-        lastName = data['lastName']
+        first_name = data['firstName']
+        last_name = data['lastName']
         email = data['email']
         password = data['password']
         try:
-            user = signup(firstName, lastName, email, password)
-            token = create_token(user.get('id'))
+            user = signup(first_name, last_name, email, password)
+            token = generate_token(user.get('id'))
             data = {'token': token}
             return jsonify(data), 201
         except IntegrityError:
@@ -46,7 +47,7 @@ def login_user():
         try:
             user = login(email, password)
             if user:
-                token = create_token(user.get('id'))
+                token = generate_token(user.get('id'))
                 data = {'token': token}
                 return jsonify(data), 200
             else:
@@ -66,12 +67,12 @@ def update_user():
     if not data or 'email' not in data or 'password' not in data or 'firstName' not in data or 'lastName' not in data:
         return {'error': 'Bad Request'}, 400
     else:
-        firstName = data['firstName']
-        lastName = data['lastName']
+        first_name = data['firstName']
+        last_name = data['lastName']
         email = data['email']
         password = data['password']
         try:
-            user = update(user_id, firstName, lastName, email, password)
+            user = update(user_id, first_name, last_name, email, password)
             return user, 200
         except Exception as e:
             print(f"Unexpected error during user update: {str(e)}")

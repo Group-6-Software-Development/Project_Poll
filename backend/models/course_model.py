@@ -44,7 +44,6 @@ def find_course_by_id(course_id):
     session = Session()
     course = session.query(CourseModel).filter_by(id=uuid.UUID(course_id)).first()
 
-    # Check if the course exists
     if course:
         teacher_email = session.query(UserModel.email).filter_by(id=course.teacher_id).scalar()
         course_data = {'name': course.name, 'teacher_id': course.teacher_id, 'teacher_email': teacher_email}
@@ -59,7 +58,6 @@ def find_courses_by_teacher_id(teacher_id):
     session = Session()
     courses = session.query(CourseModel).filter_by(teacher_id=teacher_id).all()
 
-    # Retrieve teacher's email for each course
     courses_data = []
     for course in courses:
         teacher_email = session.query(UserModel.email).filter_by(id=course.teacher_id).scalar()

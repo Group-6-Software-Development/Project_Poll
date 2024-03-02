@@ -22,8 +22,8 @@ class UserModel(Base):
     courses = relationship('CourseModel', back_populates='teacher')
 
 
-def signup(firstName, lastName, email, password):
-    user = UserModel(firstName=firstName, lastName=lastName, email=email,
+def signup(first_name, last_name, email, password):
+    user = UserModel(firstName=first_name, lastName=last_name, email=email,
                      password=bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt(rounds=int(SALT_ROUNDS))).decode(
                          'utf-8'))
     session = Session()
@@ -37,7 +37,8 @@ def signup(firstName, lastName, email, password):
 def login(email, password):
     session = Session()
     user = session.query(UserModel).filter_by(email=email).first()
-    user_data = {'id': str(user.id), 'firstName': user.firstName, 'lastName': user.lastName, 'email': user.email} if user else None
+    user_data = {'id': str(user.id), 'firstName': user.firstName, 'lastName': user.lastName,
+                 'email': user.email} if user else None
     session.close()
     if user and bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
         return user_data
@@ -45,12 +46,12 @@ def login(email, password):
         return None
 
 
-def update(user_id, firstName, lastName, email, password):
+def update(user_id, first_name, last_name, email, password):
     session = Session()
     user = session.query(UserModel).filter_by(id=uuid.UUID(user_id)).first()
     user.email = email
-    user.firstName = firstName
-    user.lastName = lastName
+    user.firstName = first_name
+    user.lastName = last_name
     user.password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt(rounds=int(SALT_ROUNDS))).decode('utf-8')
     session.commit()
     user_data = {'_id': str(user.id), 'firstName': user.firstName, 'lastName': user.lastName, 'email': user.email}
