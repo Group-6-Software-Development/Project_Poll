@@ -13,13 +13,31 @@ class TestReviewRoutes(unittest.TestCase):
         app.testing = True
         self.app = app.test_client()
 
-    def test_create_route(self):
-        response = self.app.post('/api/review/create', json={'course_id': 'COURSE_ID', 'review_text': 'This is a review.'})
+    def test_create_review_route(self):
+        response = self.app.post('/api/user/login', json={'email': 'mikko.mattila@testi.fi', 'password': 'abc123!'})
+        decoded_token = response.data.decode('utf-8')
+
+        response_get_courses = self.app.get('/api/course/courses', headers={'Authorization': f'Bearer {decoded_token}'})
+        course_id = response_get_courses.json[0]['id']
+        course_id_str = str(course_id)
+        
+        review_response = self.app.post(f'/api/review/create', json={'course_id': course_id_str, 'rating': 5, 'comment': 'Great course!'})
+        self.assertEqual(review_response.status_code, 200)
+
+    def test_get_reviews_route(self):
+        response = self.app.post('/api/user/login', json={'email': 'mikko.mattila@testi.fi', 'password': 'abc123!'})
+        decoded_token = response.data.decode('utf-8')
+        
+        response_get_courses = self.app.get('/api/course/courses', headers={'Authorization': f'Bearer {decoded_token}'})
+        course_id = response_get_courses.json[0]['id']
+        course_id_str = str(course_id)
+
+        response = self.app.get(f'/api/review/reviews/{course_id}', headers={'Authorization': f'Bearer {decoded_token}'})
+        
         self.assertEqual(response.status_code, 200)
 
-    def test_reviews_route(self):
-        response = self.app.get('/api/review/reviews/COURSE_ID')
-        self.assertEqual(response.status_code, 200)
+    
 
 if __name__ == '__main__':
     unittest.main()
+
