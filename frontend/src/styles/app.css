@@ -234,3 +234,57 @@ LecturePreview
   font-weight: bolder;
   color: var(--clean-bg-color);
 }
+
+/*
+======
+lectureReview
+======
+*/
+
+.lecture-review {
+  text-align: center;
+  color: var(--main-text-color);
+  padding: 1em;
+}
+
+.feedback-container {
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.rating-container {
+  background-color: var(--clean-bg-color);
+  width: 45%;
+  height: 370px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.rating-container p {
+  color: var(--main-text-color);
+}
+
+@media only screen and (max-width: 768px) {
+  .rating-container {
+    width: 95%;
+  }
+
+  .comment-container {
+    width: 95%;
+  }
+
+  .feedback-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.comment-container {
+  margin-left: 1em;
+  background-color: var(--clean-bg-color);
+  height: 370px;
+  border-radius: 15px;
+  overflow-y: scroll;
+}
