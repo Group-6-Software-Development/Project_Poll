@@ -1,6 +1,6 @@
 import sys
 import os
-# Lisää backend-kansio Pythonin moduulihakemistoon
+# add the backend path to the sys.path
 backend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(backend_path)
 
@@ -34,11 +34,10 @@ class TestUserRoutes(unittest.TestCase):
 
     def test_update_route(self):
         response = self.app.post('/api/user/login', json={'email': 'mikko.mattila@testi.fi', 'password': 'abc123!'})
-        # Tallenna dekoodattu tokeni
+        
         decoded_token = response.data.decode('utf-8')
         
 
-        # Käytä tallennettua dekoodattua tokenia muissa testeissä
         response_update = self.app.put('/api/user/update', json={'email': 'mikko.mattila@testi.fi', 'password': 'abc123!'}, headers={'Authorization': f'Bearer {decoded_token}'})
         if response_update.status_code == 402:
             self.assertTrue(True)
