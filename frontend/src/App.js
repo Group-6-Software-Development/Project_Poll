@@ -8,6 +8,7 @@ import LandingPage from "./pages/LandingPage";
 import Footer from './components/Footer'
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ErrorPage from "./pages/ErrorPage";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -21,7 +22,7 @@ const App = () => {
           isAuthenticated={false}
           setIsAuthenticated={setIsAuthenticated}
         />
-        <LandingPage />
+        <ErrorPage />
         <Routes>
           <Route path="/profile" element={<UserPage />} />
           <Route

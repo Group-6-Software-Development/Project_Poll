@@ -1,8 +1,12 @@
 footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   text-align: center;
   color: var(--main-text-color);
   opacity: 75%;
   margin: 0;
+  margin-bottom: 0.25em;
 }
 
 footer p {
