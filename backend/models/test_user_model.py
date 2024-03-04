@@ -38,16 +38,16 @@ class TestUserModel(unittest.TestCase):
         password = 'password123'
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
-        # Create a mock user object with the expected email
+        # Create a mock user object with the expected email and password
         mock_user = MagicMock()
         mock_user.email = email
-        mock_user.password = hashed_password
+        mock_user.password = hashed_password.decode('utf-8')  # Decode hashed password to string
 
         # Mock the query method of the session to return the mock user object
         mock_session.return_value.query.return_value.filter_by.return_value.first.return_value = mock_user
 
-        # Call the login function
-        user_data = login(email, password, hashed_password)
+        # Call the login function with the plain text password
+        user_data = login(email, password)
 
         # Assert that the returned user data has the expected email
         self.assertEqual(user_data['email'], email)

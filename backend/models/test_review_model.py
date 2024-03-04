@@ -1,56 +1,67 @@
 import sys
 import os
-import bcrypt
+import unittest
+from unittest.mock import patch, MagicMock
 
 # Add the backend directory to the Python module search path
 backend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(backend_path)
 
-# Import necessary modules from user_model.py
-from user_model import signup, login
-import unittest
-from unittest.mock import patch, MagicMock
+# Import the ReviewModel class and related functions from review_model.py
+from review_model import ReviewModel, create, find_all_reviews_by_course_id
 
+# Mock CourseModel class and related functions
+from models.course_model import CourseModel
 
-class TestUserModel(unittest.TestCase):
-    @patch('user_model.Session')
-    def test_signup(self, mock_session):
-        mock_add = MagicMock()
-        mock_session.return_value.add = mock_add
-        mock_commit = MagicMock()
-        mock_session.return_value.commit = mock_commit
+class TestReviewModel(unittest.TestCase):
+    @patch('review_model.Session')
+    @patch('models.course_model.Session')
+    def test_create_review(self, mock_review_session, mock_course_session):
+        # Mock session and its methods for ReviewModel and CourseModel
+        mock_review_add = MagicMock()
+        mock_review_session.return_value.add = mock_review_add
+        mock_review_commit = MagicMock()
+        mock_review_session.return_value.commit = mock_review_commit
+        
+        mock_course_add = MagicMock()
+        mock_course_session.return_value.add = mock_course_add
+        mock_course_commit = MagicMock()
+        mock_course_session.return_value.commit = mock_course_commit
 
-        email = 'test@example.com'
-        password = 'password123'
-        with patch('user_model.UserModel') as mock_user_model:
-            user_instance = mock_user_model.return_value
-            user_instance.email = email
-            user_instance.password = 'hashed_password'
+        # Mock data
+        course_id = '123e4567-e89b-12d3-a456-426614174000'  # Mock course_id as string for testing purposes
+        rating = 5
+        comment = 'Great course!'
 
-            user_data = signup(email, password)
+        # Call the create function
+        review_data = create(course_id, rating, comment)
 
-            self.assertIsNotNone(user_data)
-            self.assertEqual(user_data['email'], email)
+        # Assertions
+        self.assertIsNotNone(review_data)
+        self.assertEqual(review_data['course_id'], course_id)
+        self.assertEqual(review_data['rating'], rating)
+        self.assertEqual(review_data['comment'], comment)
 
-    @patch('user_model.Session')
-    def test_login(self, mock_session):
-        email = 'test@example.com'
-        password = 'password123'
-        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+    @patch('review_model.Session')
+    def test_find_all_reviews_by_course_id(self, mock_session):
+        # Mock session and its methods for ReviewModel
+        mock_query = MagicMock()
+        mock_session.return_value.query.return_value.filter_by.return_value.all.return_value = [
+            ReviewModel(course_id='123e4567-e89b-12d3-a456-426614174000', rating=5, comment='Great course!')
+        ]
 
-        # Create a mock user object with the expected email
-        mock_user = MagicMock()
-        mock_user.email = email
-        mock_user.password = hashed_password
+        # Mock data
+        course_id = '123e4567-e89b-12d3-a456-426614174000'  # Mock course_id as string for testing purposes
 
-        # Mock the query method of the session to return the mock user object
-        mock_session.return_value.query.return_value.filter_by.return_value.first.return_value = mock_user
+        # Call the find_all_reviews_by_course_id function
+        reviews_data = find_all_reviews_by_course_id(course_id)
 
-        # Call the login function
-        user_data = login(email, password, hashed_password)
-
-        # Assert that the returned user data has the expected email
-        self.assertEqual(user_data['email'], email)
+        # Assertions
+        self.assertIsNotNone(reviews_data)
+        self.assertEqual(len(reviews_data), 1)
+        self.assertEqual(reviews_data[0]['course_id'], course_id)
+        self.assertEqual(reviews_data[0]['rating'], 5)
+        self.assertEqual(reviews_data[0]['comment'], 'Great course!')
 
 
 if __name__ == '__main__':

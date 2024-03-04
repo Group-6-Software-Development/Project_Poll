@@ -1,4 +1,6 @@
 from datetime import datetime, timedelta, timezone
+
+from flask import request
 from jwt import encode, ExpiredSignatureError
 from sqlalchemy.exc import IntegrityError
 
@@ -11,7 +13,9 @@ def create_token(_id):
     return encode({'id': _id, 'exp': expiration_time}, JWT_SECRET, algorithm='HS256')
 
 
-def register_user(data):
+def register_user():
+    data = request.get_json()
+
     if not data or 'email' not in data or 'password' not in data:
         return {'error': 'Invalid request'}, 400
     else:
@@ -28,7 +32,9 @@ def register_user(data):
             return {'error': 'An error occurred during registration'}, 400
 
 
-def login_user(data):
+def login_user():
+    data = request.get_json()
+
     if not data or 'email' not in data or 'password' not in data:
         return {'error': 'Invalid request'}, 400
     else:
@@ -48,12 +54,16 @@ def login_user(data):
             return {'error': 'An error occurred during login'}, 400
 
 
-def update_user(user_id, data):
-    email = data.get('email')
-    password = data.get('password')
-    if not email or not password:
+def update_user():
+    data = request.get_json()
+    user_id = request.decoded_token
+    if not user_id:
+        return {'error': 'Invalid token'}, 401
+    elif not data or 'email' not in data or 'password' not in data:
         return {'error': 'Invalid request'}, 400
     else:
+        email = data['email']
+        password = data['password']
         try:
             user = update(user_id, email, password)
             return user, 200
@@ -62,19 +72,27 @@ def update_user(user_id, data):
             return {'error': 'An error occurred during user update'}, 400
 
 
-def get_user(user_id):
-    try:
-        user = find_user_by_id(user_id)
-        return user, 200
-    except Exception as e:
-        print(f"Unexpected error during user lookup: {str(e)}")
-        return {'error': 'An error occurred during user lookup'}, 400
+def get_user():
+    user_id = request.decoded_token
+    if not user_id:
+        return {'error': 'Invalid token'}, 401
+    else:
+        try:
+            user = find_user_by_id(user_id)
+            return user, 200
+        except Exception as e:
+            print(f"Unexpected error during user lookup: {str(e)}")
+            return {'error': 'An error occurred during user lookup'}, 400
 
 
-def delete_user(user_id):
-    try:
-        delete(user_id)
-        return {"message": "User deleted"}, 200
-    except Exception as e:
-        print(f"Unexpected error during user deletion: {str(e)}")
-        return {'error': 'An error occurred during user deletion'}, 400
+def delete_user():
+    user_id = request.decoded_token
+    if not user_id:
+        return {'error': 'Invalid token'}, 401
+    else:
+        try:
+            delete(user_id)
+            return {"message": "User deleted"}, 200
+        except Exception as e:
+            print(f"Unexpected error during user deletion: {str(e)}")
+            return {'error': 'An error occurred during user deletion'}, 400

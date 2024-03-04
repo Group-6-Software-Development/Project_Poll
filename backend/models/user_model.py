@@ -1,11 +1,14 @@
 import uuid
+
 import bcrypt
 from sqlalchemy import Column, String
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
+
 from config.base import Base
 from config.database import Session
 from config.env_config import SALT_ROUNDS
+
 
 class UserModel(Base):
     __tablename__ = 'users'
@@ -15,6 +18,7 @@ class UserModel(Base):
     password = Column(String(255), nullable=False)
 
     courses = relationship('CourseModel', back_populates='teacher')
+
 
 def signup(email, password):
     user = UserModel(email=email,
@@ -27,16 +31,18 @@ def signup(email, password):
     session.close()
     return user_data
 
-def login(email, password, hashed_password):
+
+def login(email, password):
     session = Session()
     user = session.query(UserModel).filter_by(email=email).first()
     user_data = {'id': str(user.id),
                  'email': user.email} if user else None
     session.close()
-    if user and bcrypt.checkpw(password.encode('utf-8'), hashed_password):
+    if user and bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
         return user_data
     else:
         return None
+
 
 def update(user_id, email, password):
     session = Session()
