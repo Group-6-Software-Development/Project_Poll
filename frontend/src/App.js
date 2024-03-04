@@ -9,6 +9,7 @@ import Footer from './components/Footer'
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
+import LecturePreview from "./pages/LecturePreview";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -22,7 +23,7 @@ const App = () => {
           isAuthenticated={false}
           setIsAuthenticated={setIsAuthenticated}
         />
-        <ErrorPage />
+        <LecturePreview />
         <Routes>
           <Route path="/profile" element={<UserPage />} />
           <Route

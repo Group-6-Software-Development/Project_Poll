@@ -204,3 +204,33 @@ ErrorPage
     width: 250px;
   }
 }
+
+/*
+======
+LecturePreview
+======
+*/
+.lecture-preview {
+  text-align: center;
+  color: var(--main-text-color);
+  padding: 1em;
+}
+
+.lecture-code {
+  color: var(--secondary-text-color);
+}
+
+.lecture-card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.new-lecture button {
+  height: 2.5em;
+  width: 15em;
+  background-color: var(--main-btn-bg-color);
+  margin-top: 1em;
+  border-radius: 20px;
+  font-weight: bolder;
+  color: var(--clean-bg-color);
+}
