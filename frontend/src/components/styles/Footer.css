@@ -1,0 +1,10 @@
+footer {
+  text-align: center;
+  color: var(--main-text-color);
+  opacity: 75%;
+  margin: 0;
+}
+
+footer p {
+  margin: 0;
+}

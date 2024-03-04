@@ -5,6 +5,7 @@ import "./styles/app.css";
 import Navbar from "./components/Navbar";
 import UserPage from "./pages/UserPage";
 import LandingPage from "./pages/LandingPage";
+import Footer from './components/Footer'
 import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -32,6 +33,7 @@ const App = () => {
             element={<Login setIsAuthenticated={setIsAuthenticated} />}
           />
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </div>
   );
