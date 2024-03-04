@@ -1,0 +1,49 @@
+.lecture-card {
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--clean-bg-color);
+  width: 260px;
+  height: 370px;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  color: var(--main-text-color);
+  margin: 0.8em;
+}
+
+.lecture-card a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.lecture-card:hover {
+  cursor: pointer;
+}
+
+.lecture-card h5 {
+  color: var(--main-text-color);
+}
+
+.lecture-rating {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 4em;
+  margin-bottom: 7em;
+}
+
+.good-rating {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+}
+
+.neutral-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.weak-rating {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
