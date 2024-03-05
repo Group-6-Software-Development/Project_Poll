@@ -1,7 +1,7 @@
+import { faCheck, faPen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classPhoto from "../images/classroomPhoto.png";
 import "./styles/CourseCard.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 import { useState } from "react";
 
@@ -30,7 +30,7 @@ const CourseCard = () => {
 
   return (
     <div className="course-card">
-      <img src={classPhoto} alt="classroom"></img>
+      <img src={classPhoto} alt="classroom" />
       {isEditing ? (
         <button onClick={handleSaveClick}>{saveButton}</button>
       ) : (
@@ -39,8 +39,10 @@ const CourseCard = () => {
 
       <div className="course-info">
         <div className="course-id">
+          <label htmlFor="courseId">Course ID</label>
           {isEditing ? (
             <input
+              id="courseId"
               type="text"
               value={courseId}
               onChange={(e) => setCourseId(e.target.value)}
@@ -50,8 +52,10 @@ const CourseCard = () => {
           )}
         </div>
         <div className="course-name">
+          <label htmlFor="courseName">Course Name</label>
           {isEditing ? (
             <input
+              id="courseName"
               type="text"
               value={courseName}
               onChange={(e) => setCourseName(e.target.value)}
@@ -61,9 +65,11 @@ const CourseCard = () => {
           )}
         </div>
         <div className="course-date">
+          <label htmlFor="courseDate">Date</label>
           {isEditing ? (
             <div>
             <input
+              id="courseDate"
               type="text"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
