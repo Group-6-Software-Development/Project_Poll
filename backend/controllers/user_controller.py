@@ -52,8 +52,6 @@ def login_user():
                 return jsonify(data), 200
             else:
                 return {'error': 'Unauthorized - Invalid credentials'}, 401
-        except ExpiredSignatureError:
-            return {'error': 'Unauthorized - Token has expired'}, 401
         except Exception as e:
             print(f"Unexpected error during login: {str(e)}")
             return {'error': 'Internal Server Error'}, 500
@@ -64,11 +62,11 @@ def update_user():
     user_uuid = request.decoded_token
     if not user_uuid:
         return {'error': 'Unauthorized - Invalid token'}, 401
-    if not data or 'email' not in data or 'password' not in data or 'first_name' not in data or 'last_name' not in data:
+    if not data or 'email' not in data or 'password' not in data or 'firstName' not in data or 'lastName' not in data:
         return {'error': 'Bad Request'}, 400
     else:
-        first_name = data['first_name']
-        last_name = data['last_name']
+        first_name = data['firstName']
+        last_name = data['lastName']
         email = data['email']
         password = data['password']
         try:

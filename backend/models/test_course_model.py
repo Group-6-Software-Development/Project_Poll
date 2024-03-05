@@ -9,7 +9,7 @@ backend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(backend_path)
 
 # Import necessary modules from course_model.py
-from course_model import CourseModel, update, find_course_by_id, find_courses_by_teacher_id, delete
+from models.course_model import CourseModel, update, find_course_by_uuid, find_courses_by_teacher_uuid, delete
 
 class TestCourseModel(unittest.TestCase):
     @patch('course_model.UserModel')
@@ -45,7 +45,7 @@ class TestCourseModel(unittest.TestCase):
         course_id = str(uuid.uuid4())  # Generate a random UUID string
 
         # Call the find_course_by_id function
-        course_data = find_course_by_id(course_id)
+        course_data = find_course_by_uuid(course_id)
 
         # Assertions
         self.assertIsNotNone(course_data)
@@ -55,7 +55,7 @@ class TestCourseModel(unittest.TestCase):
 
     @patch('course_model.UserModel')
     @patch('course_model.Session')
-    def test_find_courses_by_teacher_id(self, mock_session, mock_user_model):
+    def test_find_courses_by_teacher_uuid(self, mock_session, mock_user_model):
         # Mock session and its methods
         mock_query = MagicMock()
         mock_session.return_value.query.return_value.filter_by.return_value.all.return_value = [MagicMock()]
@@ -65,7 +65,7 @@ class TestCourseModel(unittest.TestCase):
         teacher_id = '1'  # Assuming teacher_id is a string for testing purposes
 
         # Call the find_courses_by_teacher_id function
-        courses_data = find_courses_by_teacher_id(teacher_id)
+        courses_data = find_courses_by_teacher_uuid(teacher_id)
 
         # Assertions
         self.assertIsNotNone(courses_data)
