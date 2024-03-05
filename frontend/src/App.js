@@ -11,6 +11,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ErrorPage from "./pages/ErrorPage";
 import LecturePreview from "./pages/LecturePreview";
 import LectureReview from "./pages/LectureReview";
+import LinkPage from "./pages/LinkPage";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(

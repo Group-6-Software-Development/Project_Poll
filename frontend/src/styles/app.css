@@ -288,3 +288,23 @@ lectureReview
   border-radius: 15px;
   overflow-y: scroll;
 }
+
+
+/*
+=====
+QR link page
+=====
+*/
+
+.link-page {
+  background-color: var(--clean-bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr-link {
+  margin-top: 5em;
+  margin-right: 8em;
+}
