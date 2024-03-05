@@ -43,7 +43,7 @@ const LectureReview = () => {
             <div className="rating-icons">
               {goodIcon} {neutralIcon} {weakIcon}
             </div>
-            <p>{`Lecture content understanding: ${materialGood} ${materialMid} ${materialWeak}  `}</p>
+            <p>{`Lecture material understanding: ${materialGood} ${materialMid} ${materialWeak}  `}</p>
           </div>
         </div>
         <div className="comment-container">

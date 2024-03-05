@@ -289,7 +289,6 @@ lectureReview
   overflow-y: scroll;
 }
 
-
 /*
 =====
 QR link page
@@ -307,4 +306,46 @@ QR link page
 .qr-link {
   margin-top: 5em;
   margin-right: 8em;
+}
+
+/*
+======
+review-page
+======
+*/
+
+.review-page-container {
+  text-align: center;
+}
+
+.content-card {
+  color: var(--main-text-color);
+  font-weight: 600;
+}
+
+.content-card button {
+  margin: 2em 0.5em;
+}
+
+.material-card {
+  color: var(--main-text-color);
+  font-weight: 600;
+}
+
+.material-card button {
+  margin: 2em 0.5em;
+}
+
+label {
+  color: var(--main-text-color);
+  font-weight: 600;
+}
+
+.submit-button {
+  height: 2.5em;
+  width: 6em;
+  border-radius: 25px;
+  background-color: var(--main-btn-bg-color);
+  font-weight: bolder;
+  color: var(--clean-bg-color);
 }

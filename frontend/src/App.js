@@ -12,6 +12,7 @@ import ErrorPage from "./pages/ErrorPage";
 import LecturePreview from "./pages/LecturePreview";
 import LectureReview from "./pages/LectureReview";
 import LinkPage from "./pages/LinkPage";
+import ReviewPage from "./pages/ReviewPage";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -25,7 +26,7 @@ const App = () => {
           isAuthenticated={false}
           setIsAuthenticated={setIsAuthenticated}
         />
-        <LectureReview />
+        <ReviewPage />
         <Routes>
           <Route path="/profile" element={<UserPage />} />
           <Route
