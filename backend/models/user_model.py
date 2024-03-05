@@ -13,21 +13,24 @@ from config.env_config import SALT_ROUNDS
 class UserModel(Base):
     __tablename__ = 'users'
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
+    uuid = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
     email = Column(String(50), unique=True, nullable=False)
+    first_name = Column(String(50), nullable=False)
+    last_name = Column(String(50), nullable=False)
     password = Column(String(255), nullable=False)
 
     courses = relationship('CourseModel', back_populates='teacher')
 
 
-def signup(email, password):
-    user = UserModel(email=email,
+def signup(first_name, last_name, email, password):
+    user = UserModel(first_name=first_name, last_name=last_name, email=email,
                      password=bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt(rounds=int(SALT_ROUNDS))).decode(
                          'utf-8'))
     session = Session()
     session.add(user)
     session.commit()
-    user_data = {'id': str(user.id), 'email': user.email}
+    user_data = {'uuid': str(user.uuid), 'first_name': user.first_name, 'last_name': user.last_name,
+                 'email': user.email}
     session.close()
     return user_data
 
@@ -35,7 +38,7 @@ def signup(email, password):
 def login(email, password):
     session = Session()
     user = session.query(UserModel).filter_by(email=email).first()
-    user_data = {'id': str(user.id),
+    user_data = {'uuid': str(user.uuid), 'first_name': user.first_name, 'last_name': user.last_name,
                  'email': user.email} if user else None
     session.close()
     if user and bcrypt.checkpw(password.encode('utf-8'), user.password.encode('utf-8')):
@@ -44,28 +47,32 @@ def login(email, password):
         return None
 
 
-def update(user_id, email, password):
+def update(user_uuid, first_name, last_name, email, password):
     session = Session()
-    user = session.query(UserModel).filter_by(id=uuid.UUID(user_id)).first()
+    user = session.query(UserModel).filter_by(uuid=uuid.UUID(user_uuid)).first()
     user.email = email
+    user.first_name = first_name
+    user.last_name = last_name
     user.password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt(rounds=int(SALT_ROUNDS))).decode('utf-8')
     session.commit()
-    user_data = {'id': str(user.id), 'email': user.email}
+    user_data = {'uuid': str(user.uuid), 'first_name': user.first_name, 'last_name': user.last_name,
+                 'email': user.email}
     session.close()
     return user_data
 
 
-def find_user_by_id(user_id):
+def find_user_by_uuid(user_uuid):
     session = Session()
-    user = session.query(UserModel).filter_by(id=uuid.UUID(user_id)).first()
-    user_data = {'email': user.email}
+    user = session.query(UserModel).filter_by(uuid=uuid.UUID(user_uuid)).first()
+    user_data = {'uuid': str(user.uuid), 'first_name': user.first_name, 'last_name': user.last_name,
+                 'email': user.email}
     session.close()
     return user_data
 
 
-def delete(user_id):
+def delete(user_uuid):
     session = Session()
-    user = session.query(UserModel).filter_by(id=uuid.UUID(user_id)).first()
+    user = session.query(UserModel).filter_by(uuid=uuid.UUID(user_uuid)).first()
     session.delete(user)
     session.commit()
     session.close()

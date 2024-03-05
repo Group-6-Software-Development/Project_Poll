@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 
 from config.base import Base
 from config.database import engine
@@ -8,6 +9,7 @@ from routes.review_routes import review_create, reviews_get
 from routes.user_routes import user_register, user_login, user_update, user_delete, user_get
 
 app = Flask(__name__)
+CORS(app)
 
 user_routes = [user_register, user_login, user_get, user_update, user_delete]
 course_routes = [course_create, courses_get, course_get, course_update, course_delete]

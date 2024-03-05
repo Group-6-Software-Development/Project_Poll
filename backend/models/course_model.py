@@ -12,42 +12,58 @@ from models.user_model import UserModel
 class CourseModel(Base):
     __tablename__ = 'courses'
 
-    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
-    name = Column(String(50), unique=True, nullable=False)
-    teacher_id = Column(UUID(as_uuid=True), ForeignKey('users.id'), nullable=False)
+    uuid = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
+
+    course_id = Column(String(50), unique=True, nullable=False)
+    course_name = Column(String(50), unique=True, nullable=False)
+    start_date = Column(String(50), nullable=False)
+    end_date = Column(String(50), nullable=False)
+
+    teacher_uuid = Column(UUID(as_uuid=True), ForeignKey('users.uuid'), nullable=False)
+
     teacher = relationship('UserModel', back_populates='courses')
     reviews = relationship('ReviewModel', back_populates='course')
 
 
-def create(name, teacher_id):
-    course = CourseModel(name=name, teacher_id=teacher_id)
+def create(course_id, course_name, start_date, end_date, teacher_uuid):
+    course = CourseModel(course_id=course_id, course_name=course_name, start_date=start_date, end_date=end_date,
+                         teacher_uuid=teacher_uuid)
     session = Session()
     session.add(course)
     session.commit()
-    course_data = {'id': str(course.id), 'name': course.name, 'teacher_id': course.teacher_id}
+    course_data = {'uuid': str(course.uuid), 'course_id': course.course_id, 'course_name': course.course_name,
+                   'start_date': course.start_date,
+                   'end_date': course.end_date, 'teacher_uuid': course.teacher_uuid}
     session.close()
     return course_data
 
 
-def update(course_id, name, teacher_id):
+def update(course_uuid, course_id, course_name, start_date, end_date, teacher_id):
     session = Session()
-    course = session.query(CourseModel).filter_by(id=uuid.UUID(course_id)).first()
-    course.name = name
-    course.teacher_id = teacher_id
+    course = session.query(CourseModel).filter_by(uuid=uuid.UUID(course_uuid)).first()
+    course.course_id = course_id
+    course.course_name = course_name
+    course.start_date = start_date
+    course.end_date = end_date
+    course.teacher_uuid = teacher_id
     session.commit()
-    course_data = {'id': str(course.id), 'name': course.name, 'teacher_id': course.teacher_id}
+    course_data = {'uuid': str(course.uuid), 'course_id': course.course_id, 'course_name': course.course_name,
+                   'start_date': course.start_date,
+                   'end_date': course.end_date, 'teacher_uuid': course.teacher_uuid}
     session.close()
     return course_data
 
 
-def find_course_by_id(course_id):
+def find_course_by_uuid(course_uuid):
     session = Session()
-    course = session.query(CourseModel).filter_by(id=uuid.UUID(course_id)).first()
+    course = session.query(CourseModel).filter_by(uuid=uuid.UUID(course_uuid)).first()
 
-    # Check if the course exists
     if course:
-        teacher_email = session.query(UserModel.email).filter_by(id=course.teacher_id).scalar()
-        course_data = {'name': course.name, 'teacher_id': course.teacher_id, 'teacher_email': teacher_email}
+        teacher_email = session.query(UserModel.email).filter_by(uuid=course.teacher_uuid).scalar()
+
+        course_data = {'uuid': str(course.uuid), 'course_id': course.course_id, 'course_name': course.course_name,
+                       'start_date': course.start_date,
+                       'end_date': course.end_date, 'teacher_email': teacher_email, 'teacher_uuid': course.teacher_uuid}
     else:
         course_data = None
 
@@ -55,16 +71,16 @@ def find_course_by_id(course_id):
     return course_data
 
 
-def find_courses_by_teacher_id(teacher_id):
+def find_courses_by_teacher_uuid(teacher_uuid):
     session = Session()
-    courses = session.query(CourseModel).filter_by(teacher_id=teacher_id).all()
+    courses = session.query(CourseModel).filter_by(teacher_uuid=teacher_uuid).all()
 
-    # Retrieve teacher's email for each course
     courses_data = []
     for course in courses:
-        teacher_email = session.query(UserModel.email).filter_by(id=course.teacher_id).scalar()
-        course_data = {'id': str(course.id), 'name': course.name, 'teacher_id': course.teacher_id,
-                       'teacher_email': teacher_email}
+        teacher_email = session.query(UserModel.email).filter_by(uuid=course.teacher_uuid).scalar()
+        course_data = {'uuid': str(course.uuid), 'course_id': course.course_id, 'course_name': course.course_name,
+                       'start_date': course.start_date,
+                       'end_date': course.end_date, 'teacher_email': teacher_email, 'teacher_uuid': course.teacher_uuid}
         courses_data.append(course_data)
 
     session.close()
@@ -73,7 +89,7 @@ def find_courses_by_teacher_id(teacher_id):
 
 def delete(course_id):
     session = Session()
-    course = session.query(CourseModel).filter_by(id=uuid.UUID(course_id)).first()
+    course = session.query(CourseModel).filter_by(uuid=uuid.UUID(course_id)).first()
     session.delete(course)
     session.commit()
     session.close()

@@ -1,17 +1,18 @@
 import React from "react";
 import useField from "../hooks/useField";
+import useLogin from "../hooks/useLogin";
 import "./styles/Login.css";
 
 const Login = ({ setIsAuthenticated }) => {
+  const login = useLogin({ setIsAuthenticated });
+
   const email = useField("email");
   const password = useField("password");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Logging in with:", {
-      email: email.value,
-      password: password.value,
-    });
+
+    login(email.value, password.value);
   };
 
   return (

@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import useField from "../hooks/useField";
+import useRegister from "../hooks/useRegister";
 import "./styles/Register.css";
 
-const Register = () => {
+const Register = ({ setIsAuthenticated }) => {
+  const register = useRegister({ setIsAuthenticated });
+
   const firstName = useField("firstName");
   const lastName = useField("lastName");
   const email = useField("email");
@@ -20,13 +23,7 @@ const Register = () => {
     } else {
       setError("");
 
-      console.log("Registering with:", {
-        firstName: firstName.value,
-        lastName: lastName.value,
-        email: email.value,
-        password: password.value,
-        passwordAgain: passwordAgain.value,
-      });
+      register(firstName.value, lastName.value, email.value, password.value);
     }
   };
 
@@ -58,7 +55,14 @@ const Register = () => {
         </label>
         <input {...passwordAgain} className="password-again-input" required />
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && (
+          <p
+            style={{ color: "red", textAlign: "center", margin: "0 0 10px 0" }}
+          >
+            {error}
+          </p>
+        )}
+
         <button className="register-button" type="submit">
           Register
         </button>
