@@ -11,7 +11,7 @@ variables
   --main-text-color: #212427;
   --secondary-text-color: #ff5000;
   --clean-bg-color: #fff;
-  --secondary-bg-color: #F6E2D8;
+  --secondary-bg-color: #f6e2d8;
 }
 
 html {
@@ -34,4 +34,318 @@ userPage
 .card-container {
   display: flex;
   flex-wrap: wrap;
+}
+
+/*
+===========
+LandingPage
+===========
+*/
+.landing-page {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1em;
+}
+
+.signup-prompt {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  justify-content: space-between;
+  color: var(--main-text-color);
+  width: 75%;
+  height: 200px;
+  border-radius: 15px;
+  background-color: var(--secondary-bg-color);
+  padding: 2em;
+}
+
+.signup-prompt img {
+  max-width: 100%;
+  height: auto;
+  size-adjust: 25%;
+  width: 250px;
+}
+
+.prompt-button button {
+  font-weight: bolder;
+  width: 7em;
+  height: 2.5em;
+  color: var(--clean-bg-color);
+  background-color: var(--main-btn-bg-color);
+  border-radius: 20px;
+  padding: 0.5em;
+}
+
+.prompt-text {
+  font-weight: 400;
+  margin-right: 4em;
+  font-size: larger;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.grading-prompt {
+  margin-top: 2em;
+  align-items: center;
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  color: var(--main-text-color);
+  width: 75%;
+  height: 200px;
+  border-radius: 15px;
+  background-color: var(--secondary-bg-color);
+  padding: 2em;
+}
+
+.grading-text label {
+  font-weight: 400;
+  font-size: larger;
+}
+
+.grading-text input {
+  border-radius: 30px;
+  width: 25em;
+  height: 2.5em;
+  margin-top: 1em;
+  padding-left: 1em;
+  font-weight: 400;
+  font-size: large;
+  border: none;
+}
+
+.grading-text button {
+  z-index: 1;
+  color: var(--clean-bg-color);
+  font-weight: bolder;
+  background-color: var(--main-btn-bg-color);
+  height: 3em;
+  width: 7em;
+  border-radius: 25px;
+  position: relative;
+  right: 40px;
+  border: #ff5000;
+  margin-top: 0;
+}
+
+@media (max-width: 768px) {
+  .signup-prompt,
+  .grading-prompt {
+    width: 90%; /* Adjust as needed */
+    padding: 1em; /* Adjust as needed */
+  }
+}
+
+@media (max-width: 1015px) {
+  .signup-prompt img {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .signup-prompt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%; /* Adjust as needed */
+    padding: 1em; /* Adjust as needed */
+    flex-wrap: nowrap;
+    padding-bottom: 2em;
+  }
+  .prompt-text {
+    margin-right: 0;
+  }
+
+  .grading-prompt {
+    width: 90%;
+  }
+
+  .grading-prompt input {
+    width: 90%;
+  }
+
+  .grading-prompt button {
+    margin-top: 0.5em;
+    right: 0;
+  }
+}
+
+/*
+=========
+ErrorPage
+=========
+*/
+
+.error-page {
+  text-align: center;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.error-page strong {
+  color: var(--main-text-color);
+}
+
+.error-page img {
+  width: 500px;
+  border-radius: 5px;
+  margin: 1em 1em;
+}
+
+@media only screen and (max-width: 768px) {
+  .error-page img {
+    width: 250px;
+  }
+}
+
+/*
+======
+LecturePreview
+======
+*/
+.lecture-preview {
+  text-align: center;
+  color: var(--main-text-color);
+  padding: 1em;
+}
+
+.lecture-code {
+  color: var(--secondary-text-color);
+}
+
+.lecture-card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.new-lecture button {
+  height: 2.5em;
+  width: 15em;
+  background-color: var(--main-btn-bg-color);
+  margin-top: 1em;
+  border-radius: 20px;
+  font-weight: bolder;
+  color: var(--clean-bg-color);
+}
+
+/*
+======
+lectureReview
+======
+*/
+
+.lecture-review {
+  text-align: center;
+  color: var(--main-text-color);
+  padding: 1em;
+}
+
+.feedback-container {
+  padding: 1em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.rating-container {
+  background-color: var(--clean-bg-color);
+  width: 45%;
+  height: 370px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.rating-container p {
+  color: var(--main-text-color);
+}
+
+@media only screen and (max-width: 768px) {
+  .rating-container {
+    width: 95%;
+  }
+
+  .comment-container {
+    width: 95%;
+  }
+
+  .feedback-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.comment-container {
+  margin-left: 1em;
+  background-color: var(--clean-bg-color);
+  height: 370px;
+  border-radius: 15px;
+  overflow-y: scroll;
+}
+
+/*
+=====
+QR link page
+=====
+*/
+
+.link-page {
+  background-color: var(--clean-bg-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.qr-link {
+  margin-top: 5em;
+  margin-right: 8em;
+}
+
+/*
+======
+review-page
+======
+*/
+
+.review-page-container {
+  text-align: center;
+}
+
+.content-card {
+  color: var(--main-text-color);
+  font-weight: 600;
+}
+
+.content-card button {
+  margin: 2em 0.5em;
+}
+
+.material-card {
+  color: var(--main-text-color);
+  font-weight: 600;
+}
+
+.material-card button {
+  margin: 2em 0.5em;
+}
+
+label {
+  color: var(--main-text-color);
+  font-weight: 600;
+}
+
+.submit-button {
+  height: 2.5em;
+  width: 6em;
+  border-radius: 25px;
+  background-color: var(--main-btn-bg-color);
+  font-weight: bolder;
+  color: var(--clean-bg-color);
 }

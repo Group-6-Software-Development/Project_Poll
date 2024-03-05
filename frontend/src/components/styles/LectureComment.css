@@ -1,0 +1,23 @@
+.comment-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  border: 2px solid var(--main-btn-bg-color);
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 95%;
+}
+
+.comment-number {
+  margin-right: 10px;
+  font-weight: bold;
+  color: var(--main-btn-bg-color);
+}
+
+.comment-text {
+  font-weight: 400;
+  flex-grow: 1;
+  color: var(--main-text-color);
+}

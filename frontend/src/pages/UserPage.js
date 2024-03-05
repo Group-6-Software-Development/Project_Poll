@@ -8,8 +8,6 @@ function UserPage() {
       <div className="card-container">
         <AddCourseCard />
         <CourseCard />
-        <CourseCard />
-        <CourseCard />
       </div>
     </div>
   );
