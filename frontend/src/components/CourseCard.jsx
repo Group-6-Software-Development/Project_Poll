@@ -3,7 +3,7 @@ import "./styles/CourseCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const editButton = (
   <FontAwesomeIcon icon={faPen} style={{ color: "#ff5000" }} size="xl" />
@@ -13,20 +13,53 @@ const saveButton = (
   <FontAwesomeIcon icon={faCheck} style={{ color: "#5cb85c" }} size="xl" />
 );
 
-const CourseCard = () => {
+const CourseCard = ({
+  course_uuid,
+  course_id,
+  course_name,
+  start_date,
+  end_date,
+}) => {
   const handleEditClick = () => {
     setIsEditing(!isEditing);
   };
+
   const handleSaveClick = () => {
-    // #TODO: validate changes and save to db
     setIsEditing(!isEditing);
+    console.log("Saving changes");
+    saveChanges();
+  };
+
+  const saveChanges = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/course/update/${course_uuid}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            courseID: courseId,
+            courseName: courseName,
+            startDate: startDate,
+            endDate: endDate,
+          }),
+        }
+      );
+      const data = await response.json();
+      console.log("Changes saved");
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   const [isEditing, setIsEditing] = useState(false);
-  const [courseId, setCourseId] = useState("CourseID");
-  const [courseName, setCourseName] = useState("Course Name");
-  const [startDate, setStartDate] = useState("StartDate");
-  const [endDate, setEndDate] = useState("EndDate");
+  const [courseId, setCourseId] = useState(course_id || "Course ID");
+  const [courseName, setCourseName] = useState(course_name || "Course Name");
+  const [startDate, setStartDate] = useState(start_date || "Start Date");
+  const [endDate, setEndDate] = useState(end_date || "End Date");
 
   return (
     <div className="course-card">
@@ -63,16 +96,16 @@ const CourseCard = () => {
         <div className="course-date">
           {isEditing ? (
             <div>
-            <input
-              type="text"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-            />
-            <input
-            type="text"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-            ></input>
+              <input
+                type="text"
+                value={startDate}
+                onChange={(e) => setStartDate(e.target.value)}
+              />
+              <input
+                type="text"
+                value={endDate}
+                onChange={(e) => setEndDate(e.target.value)}
+              ></input>
             </div>
           ) : (
             <p>

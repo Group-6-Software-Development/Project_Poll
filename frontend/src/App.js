@@ -26,17 +26,18 @@ const App = () => {
           isAuthenticated={isAuthenticated}
           setIsAuthenticated={setIsAuthenticated}
         />
-        <ReviewPage />
         <Routes>
-          <Route path="/profile" element={<UserPage />} />
+          <Route path="/" element={<LandingPage />} />
+          {isAuthenticated && <Route path="/profile" element={<UserPage />} />}
           <Route
-            path="/register"
+            path="/signup"
             element={<Register setIsAuthenticated={setIsAuthenticated} />}
           />
           <Route
             path="/login"
             element={<Login setIsAuthenticated={setIsAuthenticated} />}
           />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>
