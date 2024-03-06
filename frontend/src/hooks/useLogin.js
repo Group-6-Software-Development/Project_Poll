@@ -6,7 +6,6 @@ export default function useLogin({ setIsAuthenticated }) {
   const API_URL = "http://localhost:5000/api/user/login";
 
   const login = async (email, password) => {
-    console.log("Logging in with:", email, password);
     try {
       const response = await fetch(API_URL, {
         method: "POST",
@@ -24,7 +23,7 @@ export default function useLogin({ setIsAuthenticated }) {
         navigate("/profile");
       } else {
         const error = await response.json();
-        alert(error.message);
+        alert(error.error);
       }
     } catch (error) {
       console.error("Error:", error);

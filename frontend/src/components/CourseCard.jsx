@@ -2,6 +2,7 @@ import classPhoto from "../images/classroomPhoto.png";
 import "./styles/CourseCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 
@@ -20,6 +21,8 @@ const CourseCard = ({
   start_date,
   end_date,
 }) => {
+  const navigate = useNavigate();
+
   const handleEditClick = () => {
     setIsEditing(!isEditing);
   };
@@ -27,7 +30,22 @@ const CourseCard = ({
   const handleSaveClick = () => {
     setIsEditing(!isEditing);
     console.log("Saving changes");
-    saveChanges();
+
+    const dateRegex1 = /^\d{2}.\d{2}.\d{4}$/; // DD.MM.YYYY
+    const dateRegex2 = /^\d{1,2}.\d{1,2}.\d{4}$/; // D.M.YYYY
+
+    if (
+      !(dateRegex1.test(startDate) || dateRegex2.test(startDate)) ||
+      !(dateRegex1.test(endDate) || dateRegex2.test(endDate))
+    ) {
+      alert("Invalid date format. Please use either DD.MM.YYYY or D.M.YYYY");
+      console.log("Invalid date format");
+    } else if (courseId === "Course ID" || courseName === "Course Name") {
+      alert("Please fill in all fields");
+      console.log("Please fill in all fields");
+    } else {
+      saveChanges();
+    }
   };
 
   const saveChanges = async () => {
@@ -49,7 +67,17 @@ const CourseCard = ({
         }
       );
       const data = await response.json();
-      console.log("Changes saved");
+      if (response.ok) {
+        console.log("Changes saved");
+      } else {
+        alert(data.error);
+
+        if (response.status === 401) {
+          localStorage.removeItem("token");
+          alert("Login expired. Please login again.");
+          navigate("/login");
+        }
+      }
     } catch (error) {
       console.error("Error:", error);
     }

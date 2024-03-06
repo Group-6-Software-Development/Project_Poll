@@ -6,7 +6,6 @@ export default function useRegister({ setIsAuthenticated }) {
   const API_URL = "http://localhost:5000/api/user/register";
 
   const register = async (firstName, lastName, email, password) => {
-    console.log("Registering with:", firstName, lastName, email, password);
     try {
       const response = await fetch(API_URL, {
         method: "POST",

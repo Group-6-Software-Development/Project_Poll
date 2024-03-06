@@ -2,8 +2,10 @@
 import React, { useState, useEffect } from "react";
 import AddCourseCard from "../components/AddCourseCard";
 import CourseCard from "../components/CourseCard";
+import { useNavigate } from "react-router-dom";
 
 function UserPage() {
+  const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
@@ -22,7 +24,19 @@ function UserPage() {
         },
       });
       const data = await response.json();
-      setCourses(data);
+
+      if (response.ok) {
+        setCourses(data);
+      } else {
+        const error = await response.json();
+        alert(error.error);
+
+        if (response.status === 401) {
+          localStorage.removeItem("token");
+          alert("Login expired. Please login again.");
+          navigate("/login");
+        }
+      }
       console.log("Courses fetched");
     } catch (error) {
       console.error("Error:", error);
@@ -46,6 +60,12 @@ function UserPage() {
       } else {
         const error = await response.json();
         alert(error.error);
+
+        if (response.status === 401) {
+          localStorage.removeItem("token");
+          alert("Login expired. Please login again.");
+          navigate("/login");
+        }
       }
     } catch (error) {
       console.error("Error:", error);
