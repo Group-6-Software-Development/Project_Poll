@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFaceSmile,
@@ -7,11 +7,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const ReviewPage = () => {
-    function handleSubmit(e) {
-        e.preventDefault();
-        //TODO Submit to BE
-        alert("Submit button Clicked");
+  const textareaRef = useRef(null);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    // TODO: Submit to BE
+    console.log(selectedContentIcon);
+    console.log(selectedMaterialIcon);
+    console.log(textareaRef.current.value);
   }
+
   function handleForm(e) {
     e.preventDefault();
   }
@@ -77,6 +82,7 @@ const ReviewPage = () => {
           Free word:
           <br />
           <textarea
+            ref={textareaRef}
             name="lecture-review"
             id=""
             cols="40"

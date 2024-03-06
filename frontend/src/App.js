@@ -37,6 +37,8 @@ const App = () => {
             path="/login"
             element={<Login setIsAuthenticated={setIsAuthenticated} />}
           />
+          <Route path="/lecture/:id" element={<LecturePreview />} />
+          <Route path="/review/:id" element={<ReviewPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />
