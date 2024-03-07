@@ -7,6 +7,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const ReviewPage = () => {
+  const courseUUID = window.location.pathname.split("/")[2];
+
   const textareaRef = useRef(null);
 
   function handleSubmit(e) {
@@ -15,6 +17,7 @@ const ReviewPage = () => {
     console.log(selectedContentIcon);
     console.log(selectedMaterialIcon);
     console.log(textareaRef.current.value);
+    console.log(courseUUID);
   }
 
   function handleForm(e) {

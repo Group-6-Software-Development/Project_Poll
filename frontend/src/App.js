@@ -38,7 +38,13 @@ const App = () => {
             element={<Login setIsAuthenticated={setIsAuthenticated} />}
           />
           <Route path="/lecture/:id" element={<LecturePreview />} />
+          
+          <Route path="/review" element={<LectureReview />} />
+
           <Route path="/review/:id" element={<ReviewPage />} />
+
+          <Route path="/link" element={<LinkPage />} />
+
           <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />

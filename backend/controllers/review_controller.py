@@ -8,14 +8,14 @@ from models.review_model import create, find_all_reviews_by_course_uuid
 
 def create_review():
     data = request.get_json()
-    if not data or 'courseUUID' not in data or 'rating' not in data:
+    if not data or 'courseUUID' not in data or 'materialRating' not in data:
         return {'error': 'Bad Request'}, 400
     else:
         course_uuid = uuid.UUID(data['courseUUID'])
-        rating = data['rating']
+        material_rating = data['materialRating']
         comment = data.get('comment', None)
         try:
-            review = create(course_uuid, rating, comment)
+            review = create(course_uuid, material_rating, comment)
             return review, 201
         except IntegrityError as e:
             print(f"Unexpected error during review creation: {str(e)}")
