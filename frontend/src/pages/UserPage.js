@@ -1,5 +1,5 @@
 // UserPage.js
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import AddCourseCard from "../components/AddCourseCard";
 import CourseCard from "../components/CourseCard";
 import { useNavigate } from "react-router-dom";
@@ -7,12 +7,7 @@ import { useNavigate } from "react-router-dom";
 function UserPage() {
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
-
-  useEffect(() => {
-    console.log("Fetching courses");
-
-    fetchCourses();
-  }, []);
+  const [loading, setLoading] = useState(false);
 
   const fetchCourses = async () => {
     try {
@@ -23,18 +18,19 @@ function UserPage() {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      const data = await response.json();
 
       if (response.ok) {
+        const data = await response.json();
         setCourses(data);
       } else {
         const error = await response.json();
-        alert(error.error);
 
         if (response.status === 401) {
           localStorage.removeItem("token");
           alert("Login expired. Please login again.");
           navigate("/login");
+        } else {
+          alert(error.error);
         }
       }
       console.log("Courses fetched");
@@ -43,36 +39,51 @@ function UserPage() {
     }
   };
 
-  const createCourse = async (courseID, courseName, startDate, endDate) => {
-    try {
-      const response = await fetch("http://localhost:5000/api/course/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify({ courseID, courseName, startDate, endDate }),
-      });
+  const createCourse = useCallback(
+    async (courseID, courseName, startDate, endDate) => {
+      try {
+        const response = await fetch(
+          "http://localhost:5000/api/course/create",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({ courseID, courseName, startDate, endDate }),
+          }
+        );
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-      } else {
-        const error = await response.json();
-        alert(error.error);
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
 
-        if (response.status === 401) {
-          localStorage.removeItem("token");
-          alert("Login expired. Please login again.");
-          navigate("/login");
+          fetchCourses();
+        } else {
+          const error = await response.json();
+          alert(error.error);
+
+          if (response.status === 401) {
+            localStorage.removeItem("token");
+            alert("Login expired. Please login again.");
+            navigate("/login");
+          }
         }
+      } catch (error) {
+        console.error("Error:", error);
       }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+    },
+    [navigate]
+  );
 
-  const addCourse = () => {
+  useEffect(() => {
+    console.log("Page reloaded; Fetching courses");
+    fetchCourses();
+  }, []);
+
+  const addCourse = async () => {
+    console.log("Adding new course");
+
     const newCourse = {
       courseID: "Course ID",
       courseName: "Course Name",
@@ -80,15 +91,16 @@ function UserPage() {
       endDate: "End Date",
     };
 
-    createCourse(
+    setLoading(true);
+
+    await createCourse(
       newCourse.courseID,
       newCourse.courseName,
       newCourse.startDate,
       newCourse.endDate
     );
 
-    fetchCourses();
-    setCourses(courses);
+    setLoading(false);
   };
 
   return (
@@ -97,16 +109,20 @@ function UserPage() {
       <div className="card-container">
         <AddCourseCard onAddCourse={addCourse} />
 
-        {courses.map((course) => (
-          <CourseCard
-            key={course.uuid}
-            course_uuid={course.uuid}
-            course_id={course.course_id}
-            course_name={course.course_name}
-            start_date={course.start_date}
-            end_date={course.end_date}
-          />
-        ))}
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          courses.map((course) => (
+            <CourseCard
+              key={course.uuid}
+              course_uuid={course.uuid}
+              course_id={course.course_id}
+              course_name={course.course_name}
+              start_date={course.start_date}
+              end_date={course.end_date}
+            />
+          ))
+        )}
       </div>
     </div>
   );

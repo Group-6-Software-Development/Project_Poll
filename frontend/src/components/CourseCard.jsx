@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const editButton = (
   <FontAwesomeIcon icon={faPen} style={{ color: "#ff5000" }} size="xl" />
@@ -99,48 +99,52 @@ const CourseCard = ({
       )}
 
       <div className="course-info">
-        <div className="course-id">
-          {isEditing ? (
-            <input
-              type="text"
-              value={courseId}
-              onChange={(e) => setCourseId(e.target.value)}
-            />
-          ) : (
-            <p>{courseId}</p>
-          )}
-        </div>
-        <div className="course-name">
-          {isEditing ? (
-            <input
-              type="text"
-              value={courseName}
-              onChange={(e) => setCourseName(e.target.value)}
-            />
-          ) : (
-            <h4>{courseName}</h4>
-          )}
-        </div>
-        <div className="course-date">
-          {isEditing ? (
-            <div>
+        {isEditing ? (
+          <>
+            <div className="course-id">
               <input
                 type="text"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
+                value={courseId}
+                onChange={(e) => setCourseId(e.target.value)}
               />
+            </div>
+            <div className="course-name">
               <input
                 type="text"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-              ></input>
+                value={courseName}
+                onChange={(e) => setCourseName(e.target.value)}
+              />
             </div>
-          ) : (
-            <p>
-              {startDate} - {endDate}
-            </p>
-          )}
-        </div>
+            <div className="course-date">
+              <div>
+                <input
+                  type="text"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                />
+                <input
+                  type="text"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                ></input>
+              </div>
+            </div>
+          </>
+        ) : (
+          <a href={`http://localhost:3000/lecture/${course_uuid}`}>
+            <div className="course-id">
+              <p>{courseId}</p>
+            </div>
+            <div className="course-name">
+              <h4>{courseName}</h4>
+            </div>
+            <div className="course-date">
+              <p>
+                {startDate} - {endDate}
+              </p>
+            </div>
+          </a>
+        )}
       </div>
     </div>
   );

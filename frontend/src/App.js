@@ -28,23 +28,36 @@ const App = () => {
         />
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          {isAuthenticated && <Route path="/profile" element={<UserPage />} />}
-          <Route
-            path="/signup"
-            element={<Register setIsAuthenticated={setIsAuthenticated} />}
-          />
-          <Route
-            path="/login"
-            element={<Login setIsAuthenticated={setIsAuthenticated} />}
-          />
+
+          {isAuthenticated ? (
+            <Route path="/profile" element={<UserPage />} />
+          ) : (
+            <>
+              <Route
+                path="/signup"
+                element={<Register setIsAuthenticated={setIsAuthenticated} />}
+              />
+
+              <Route
+                path="/login"
+                element={<Login setIsAuthenticated={setIsAuthenticated} />}
+              />
+            </>
+          )}
+
+          {/* Sivu jossa näkyy kurssin kaikki tunnit */}
           <Route path="/lecture/:id" element={<LecturePreview />} />
-          
-          <Route path="/review" element={<LectureReview />} />
 
-          <Route path="/review/:id" element={<ReviewPage />} />
+          {/* Sivu jossa näkyy yhden tunnin kaikki arvostelut */}
+          <Route path="/reviews/:id" element={<LectureReview />} />
 
+          {/* Tunnin arvostelu sivu */}
+          <Route path="/review" element={<ReviewPage />} />
+
+          {/* Sivu jossa näkyy QR-koodi */}
           <Route path="/link" element={<LinkPage />} />
 
+          {/* Sivu jossa näkyy virheviesti */}
           <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />

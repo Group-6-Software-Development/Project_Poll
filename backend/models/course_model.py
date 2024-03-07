@@ -21,9 +21,6 @@ class CourseModel(Base):
 
     teacher_uuid = Column(UUID(as_uuid=True), ForeignKey('users.uuid'), nullable=False)
 
-    teacher = relationship('UserModel', back_populates='courses')
-    reviews = relationship('ReviewModel', back_populates='course')
-
 
 def create(course_id, course_name, start_date, end_date, teacher_uuid):
     course = CourseModel(course_id=course_id, course_name=course_name, start_date=start_date, end_date=end_date,

@@ -35,3 +35,8 @@
   margin-top: 0.5em;
   margin-right: 0.5em;
 }
+
+.course-card a {
+  text-decoration: none;
+  color: var(--main-text-color);
+}

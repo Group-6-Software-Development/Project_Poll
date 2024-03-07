@@ -19,8 +19,6 @@ class UserModel(Base):
     last_name = Column(String(50), nullable=False)
     password = Column(String(255), nullable=False)
 
-    courses = relationship('CourseModel', back_populates='teacher')
-
 
 def signup(first_name, last_name, email, password):
     user = UserModel(first_name=first_name, last_name=last_name, email=email,

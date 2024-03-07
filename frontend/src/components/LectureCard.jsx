@@ -18,19 +18,25 @@ const weakIcon = (
   <FontAwesomeIcon icon={faFaceFrown} style={{ color: "#d0342c" }} size="3x" />
 );
 
-const lectureCode = "TX00EY27-3004";
+const lectureCode = "TX00EY39-3004";
+const courseName = "OTP 1";
+const lectureDate = "31.2.2024";
+
 const goodRatings = 15; // TODO GET TOTAL good ratings
 const neutralRatings = 2; // --||--
 const weakRatings = 1;
-const courseName = "CourseName"; // Get from BE
-const lectureDate = "31.2.2024";
 
-const LectureCard = () => {
+const LectureCard = ({
+  lectureCode,
+  courseName,
+  lectureDate,
+  lecture_uuid,
+}) => {
   return (
     // TODO get lecture infos
 
     <div className="lecture-card">
-      <a href={`mp.com/lectures/${lectureCode}`}>
+      <a href={`http://localhost:3000/reviews/${lecture_uuid}`}>
         <div className="lecture-code">
           <p>{lectureCode}</p>
           <h5> {courseName} </h5>
