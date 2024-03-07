@@ -12,18 +12,22 @@ def create_review():
         return {'error': 'Bad Request'}, 400
     else:
         lecture_uuid = uuid.UUID(data['lectureUUID'])
-        material_rating = data['materialRating']
-        understanding_rating = data['understandingRating']
-        comment = data.get('comment', None)
-        try:
-            review = create(lecture_uuid, understanding_rating, material_rating, comment)
-            return review, 201
-        except IntegrityError as e:
-            print(f"Unexpected error during review creation: {str(e)}")
-            return {'error': 'Conflict - Review already exists'}, 409
-        except Exception as e:
-            print(f"Unexpected error during review creation: {str(e)}")
-            return {'error': 'Internal Server Error'}, 500
+        material_rating = int(data['materialRating'])
+        understanding_rating = int(data['understandingRating'])
+
+        if material_rating < 1 or material_rating > 3 or understanding_rating < 1 or understanding_rating > 3:
+            return {'error': 'Bad Request'}, 400
+        else:
+            comment = data.get('comment', None)
+            try:
+                review = create(lecture_uuid, understanding_rating, material_rating, comment)
+                return review, 201
+            except IntegrityError as e:
+                print(f"Unexpected error during review creation: {str(e)}")
+                return {'error': 'Error - No course with that UUID exists'}, 409
+            except Exception as e:
+                print(f"Unexpected error during review creation: {str(e)}")
+                return {'error': 'Internal Server Error'}, 500
 
 
 def get_reviews(lecture_uuid):

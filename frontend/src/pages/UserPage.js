@@ -56,7 +56,6 @@ function UserPage() {
 
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
 
           fetchCourses();
         } else {

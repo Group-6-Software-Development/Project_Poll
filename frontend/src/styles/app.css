@@ -282,6 +282,7 @@ lectureReview
 }
 
 .comment-container {
+  width: 35%;
   margin-left: 1em;
   background-color: var(--clean-bg-color);
   height: 370px;

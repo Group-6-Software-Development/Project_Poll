@@ -1,28 +1,97 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFaceSmile,
   faFaceMeh,
   faFaceFrown,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const ReviewPage = () => {
-  const courseUUID = window.location.pathname.split("/")[2];
+  const navigate = useNavigate();
+
+  const lectureUUID = window.location.pathname.split("/")[2];
+  useEffect(() => {
+    const course = localStorage.getItem("coursesReviewed");
+    if (course === lectureUUID) {
+      navigate("/thank-you");
+    }
+  }, []);
 
   const textareaRef = useRef(null);
 
   function handleSubmit(e) {
     e.preventDefault();
-    // TODO: Submit to BE
-    console.log(selectedContentIcon);
-    console.log(selectedMaterialIcon);
+    console.log(convertRating(selectedContentIcon));
+    console.log(convertRating(selectedMaterialIcon));
     console.log(textareaRef.current.value);
-    console.log(courseUUID);
+    console.log(lectureUUID);
+
+    const reviewed = localStorage.getItem("coursesReviewed");
+
+    if (reviewed === lectureUUID) {
+      navigate("/thank-you");
+      return;
+    } else {
+      submitReview(
+        lectureUUID,
+        convertRating(selectedContentIcon),
+        convertRating(selectedMaterialIcon),
+        textareaRef.current.value
+      );
+    }
   }
+
+  const submitReview = async (
+    lectureUUID,
+    contentRating,
+    materialRating,
+    review
+  ) => {
+    try {
+      const response = await fetch(
+        `http://192.168.50.232:5000/api/review/create`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            lectureUUID: lectureUUID,
+            understandingRating: contentRating,
+            materialRating: materialRating,
+            comment: review,
+          }),
+        }
+      );
+
+      if (response.status === 201) {
+        // localStorage.setItem("coursesReviewed", lectureUUID);
+        navigate("/thank-you");
+      } else {
+        alert("Failed to submit review");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   function handleForm(e) {
     e.preventDefault();
   }
+
+  const convertRating = (rating) => {
+    switch (rating) {
+      case "good":
+        return 3;
+      case "neutral":
+        return 2;
+      case "weak":
+        return 1;
+      default:
+        return null;
+    }
+  };
 
   const [selectedContentIcon, setSelectedContentIcon] = useState(null);
   const [selectedMaterialIcon, setSelectedMaterialIcon] = useState(null);

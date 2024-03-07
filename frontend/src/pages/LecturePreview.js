@@ -12,7 +12,7 @@ const LecturePreview = () => {
   const fetchLectures = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/lecture/${course_uuid}`,
+        `http://localhost:5000/api/lectures/${course_uuid}`,
         {
           method: "GET",
           headers: {
@@ -25,10 +25,6 @@ const LecturePreview = () => {
       if (response.ok) {
         const data = await response.json();
 
-        for (let i = 0; i < data.length; i++) {
-          console.log(data[i]);
-        }
-
         setLectures(data);
       } else {
         const error = await response.json();
@@ -38,6 +34,7 @@ const LecturePreview = () => {
           alert("Login expired. Please login again.");
           navigate("/login");
         } else {
+          console.log(error.error);
           alert(error.error);
         }
       }
@@ -67,9 +64,10 @@ const LecturePreview = () => {
 
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
 
           fetchLectures();
+
+          navigate(`/link/${data.uuid}`);
         } else {
           const error = await response.json();
 
@@ -79,6 +77,7 @@ const LecturePreview = () => {
             navigate("/login");
           } else {
             alert(error.error);
+            console.log(error.error);
           }
         }
         console.log("Lecture created");
@@ -86,7 +85,7 @@ const LecturePreview = () => {
         console.error("Error:", error);
       }
     },
-    [course_uuid, navigate]
+    [course_uuid, fetchLectures, navigate]
   );
 
   useEffect(() => {
@@ -104,20 +103,18 @@ const LecturePreview = () => {
       date.getMonth() + 1
     }.${date.getFullYear()}`;
 
-    console.log(lectureDate);
-
     await createLecture(lectureDate);
 
     setLoading(false);
   };
 
   const lectureCode =
-    lectures.length > 0 ? lectures[0].course_id : "getLecCode"; // Use the course_id from the first lecture if available
+    lectures.length > 0 ? lectures[0].course_id : "getLecCode";
 
   return (
     <div className="lecture-preview">
       <h2>
-        Lecture Preview / <span className="lecture-code">{lectureCode}</span>{" "}
+        Lecture Statistics / <span className="lecture-code">{lectureCode}</span>{" "}
       </h2>
       <div className="lecture-card-container">
         {loading ? (
@@ -136,7 +133,13 @@ const LecturePreview = () => {
         )}
       </div>
       <div className="new-lecture">
-        <button onClick={(e) => addLecture()}>New Lecture</button>
+        <button
+          onClick={(e) => {
+            addLecture();
+          }}
+        >
+          New Lecture
+        </button>
       </div>
     </div>
   );

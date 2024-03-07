@@ -7,14 +7,14 @@ from config.env_config import PORT
 from routes.course_routes import course_create, courses_get, course_get, course_update, course_delete
 from routes.review_routes import review_create, reviews_get
 from routes.user_routes import user_register, user_login, user_update, user_delete, user_get
-from routes.lecture_routes import lecture_create, lectures_get
+from routes.lecture_routes import lecture_create, lectures_get, lecture_get
 
 app = Flask(__name__)
 CORS(app)
 
 user_routes = [user_register, user_login, user_get, user_update, user_delete]
 course_routes = [course_create, courses_get, course_get, course_update, course_delete]
-lecture_routes = [lecture_create, lectures_get]
+lecture_routes = [lecture_create, lectures_get, lecture_get]
 review_routes = [review_create, reviews_get]
 
 # Register user routes
@@ -36,4 +36,4 @@ for route in review_routes:
 
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
-    app.run(debug=True, port=PORT)
+    app.run(debug=True, host='0.0.0.0', port=PORT)

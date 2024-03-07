@@ -3,7 +3,7 @@ import uuid
 from flask import request
 from sqlalchemy.exc import IntegrityError
 
-from models.lecture_model import create, get_all_lectures
+from models.lecture_model import create, get_all_lectures, get_lecture_by_uuid
 
 def create_lecture():
     try:
@@ -30,7 +30,26 @@ def create_lecture():
         return {'error': 'Internal Server Error'}, 500
 
 
+def get_lecture(lecture_uuid):
+    lecture_uuid = uuid.UUID(lecture_uuid)
+    user_uuid = uuid.UUID(request.decoded_token)
+
+    if not user_uuid:
+        return {'error': 'Unauthorized'}, 401
+    try:
+        lecture = get_lecture_by_uuid(lecture_uuid)
+        return lecture, 200
+    except Exception as e:
+        print(f"Unexpected error during lecture retrieval: {str(e)}")
+        return {'error': 'Internal Server Error'}, 500
+    
+
 def get_lectures(course_uuid):
+    user_uuid = uuid.UUID(request.decoded_token)
+
+    if not user_uuid:
+        return {'error': 'Unauthorized'}, 401
+    
     course_uuid = uuid.UUID(course_uuid)
     try:
         lectures = get_all_lectures(course_uuid)

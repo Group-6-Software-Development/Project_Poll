@@ -26,11 +26,22 @@ def create(lecture_date, course_uuid):
     lecture_data = {'uuid': str(lecture.uuid), 'lecture_date': lecture.lecture_date, 'course_id': course_id}
     session.close()
     return lecture_data
+
+
+def get_lecture_by_uuid(lecture_uuid):
+    session = Session()
+    lecture = session.query(LectureModel).filter_by(uuid=lecture_uuid).first()
+
+    course_id = session.query(CourseModel).filter_by(uuid=lecture.course_uuid).first().course_id
+    lecture_data = {'uuid': str(lecture.uuid), 'lecture_date': lecture.lecture_date, 'course_id': course_id}
+    
+    session.close()
+    return lecture_data
     
 
 def get_all_lectures(course_uuid):
     session = Session()
-    lectures = session.query(LectureModel).all()
+    lectures = session.query(LectureModel).filter_by(course_uuid=course_uuid).all()
     lectures_data = []
     for lecture in lectures:
         course_id = session.query(CourseModel).filter_by(uuid=course_uuid).first().course_id

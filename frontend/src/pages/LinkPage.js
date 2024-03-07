@@ -1,11 +1,10 @@
 import QRcode from "react-qr-code";
 
-//TODO: generate lecture code function.
-
-const value =
-  "https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley";
-
 const LinkPage = () => {
+  const lectureUUID = window.location.pathname.split("/")[2];
+
+  const value = `http://192.168.50.232:3000/review/${lectureUUID}`;
+
   return (
     <div className="link-page">
       <div className="qr-link">
