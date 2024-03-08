@@ -2,7 +2,6 @@ import uuid
 
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import relationship
 
 from config.base import Base
 from config.database import Session

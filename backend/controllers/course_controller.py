@@ -53,7 +53,7 @@ def update_course(course_uuid):
     except IntegrityError as e:
         print(f"Unexpected error during course update: {str(e)}")
         return {'error': 'Conflict - Course already exists'}, 409
-    
+
     except Exception as e:
         print(f"Unexpected error during course update: {str(e)}")
         return {'error': 'Internal Server Error'}, 500

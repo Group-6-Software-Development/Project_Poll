@@ -2,11 +2,11 @@ import uuid
 
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import relationship
 
 from config.base import Base
 from config.database import Session
 from models.course_model import CourseModel
+
 
 class LectureModel(Base):
     __tablename__ = 'lectures'
@@ -34,10 +34,10 @@ def get_lecture_by_uuid(lecture_uuid):
 
     course_id = session.query(CourseModel).filter_by(uuid=lecture.course_uuid).first().course_id
     lecture_data = {'uuid': str(lecture.uuid), 'lecture_date': lecture.lecture_date, 'course_id': course_id}
-    
+
     session.close()
     return lecture_data
-    
+
 
 def get_all_lectures(course_uuid):
     session = Session()
@@ -47,7 +47,8 @@ def get_all_lectures(course_uuid):
         course_id = session.query(CourseModel).filter_by(uuid=course_uuid).first().course_id
         course_name = session.query(CourseModel).filter_by(uuid=course_uuid).first().course_name
 
-        lecture_data = {'uuid': str(lecture.uuid), 'lecture_date': lecture.lecture_date, 'course_id': course_id, 'course_name': course_name}
+        lecture_data = {'uuid': str(lecture.uuid), 'lecture_date': lecture.lecture_date, 'course_id': course_id,
+                        'course_name': course_name}
         lectures_data.append(lecture_data)
     session.close()
     return lectures_data

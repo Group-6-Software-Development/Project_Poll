@@ -5,9 +5,9 @@ from config.base import Base
 from config.database import engine
 from config.env_config import PORT
 from routes.course_routes import course_create, courses_get, course_get, course_update, course_delete
+from routes.lecture_routes import lecture_create, lectures_get, lecture_get
 from routes.review_routes import review_create, reviews_get
 from routes.user_routes import user_register, user_login, user_update, user_delete, user_get
-from routes.lecture_routes import lecture_create, lectures_get, lecture_get
 
 app = Flask(__name__)
 CORS(app)
@@ -32,7 +32,6 @@ for route in lecture_routes:
 # Register review routes
 for route in review_routes:
     app.register_blueprint(route)
-
 
 if __name__ == '__main__':
     Base.metadata.create_all(engine)
