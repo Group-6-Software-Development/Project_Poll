@@ -8,7 +8,7 @@ const ErrorPage = () => {
         on our end. <br /> Please try another classroom code or make your way to
         the homepage.
       </strong>
-      <img src={errorPhoto} />
+      <img src={errorPhoto} alt="error" />
     </div>
   );
 };

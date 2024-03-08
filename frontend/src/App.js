@@ -13,6 +13,7 @@ import LecturePreview from "./pages/LecturePreview";
 import LectureReview from "./pages/LectureReview";
 import LinkPage from "./pages/LinkPage";
 import ReviewPage from "./pages/ReviewPage";
+import ThankYouPage from "./pages/ThankYouPage";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(
@@ -26,17 +27,51 @@ const App = () => {
           isAuthenticated={isAuthenticated}
           setIsAuthenticated={setIsAuthenticated}
         />
-        <ReviewPage />
         <Routes>
-          <Route path="/profile" element={<UserPage />} />
-          <Route
-            path="/register"
-            element={<Register setIsAuthenticated={setIsAuthenticated} />}
-          />
-          <Route
-            path="/login"
-            element={<Login setIsAuthenticated={setIsAuthenticated} />}
-          />
+          {/* Landing page */}
+          <Route path="/" element={<LandingPage />} />
+
+          {isAuthenticated ? (
+            <>
+              {/* Page for displaying the user's profile */}
+              <Route path="/profile" element={<UserPage />} />
+
+              {/* Page that displays all of the Lectures of a course */}
+              <Route path="/lecture/:id" element={<LecturePreview />} />
+
+              {/* Page that displays all of the reviews of a Lecture */}
+              <Route path="/reviews/:id" element={<LectureReview />} />
+
+              {/* Page for displaying the QR-code for reviewing a Lecture */}
+              <Route path="/link/:id" element={<LinkPage />} />
+
+              {/* Page for displaying the QR-code for reviewing a Lecture */}
+              <Route path="/link/:id" element={<LinkPage />} />
+            </>
+          ) : (
+            <>
+              {/* Page for registering a new user */}
+              <Route
+                path="/signup"
+                element={<Register setIsAuthenticated={setIsAuthenticated} />}
+              />
+
+              {/* Page for logging in a user */}
+              <Route
+                path="/login"
+                element={<Login setIsAuthenticated={setIsAuthenticated} />}
+              />
+            </>
+          )}
+
+          {/* Lecture reviewing page for Students */}
+          <Route path="/review/:id" element={<ReviewPage />} />
+
+          {/* Thank you page */}
+          <Route path="/thank-you" element={<ThankYouPage />} />
+
+          {/* Error page */}
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
         <Footer />
       </BrowserRouter>

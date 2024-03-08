@@ -22,19 +22,19 @@ def courses_route():
     return get_courses()
 
 
-@course_get.route('/api/course/<course_id>', methods=['GET'])
+@course_get.route('/api/course/<course_uuid>', methods=['GET'])
 @protected
-def course_route(course_id):
-    return get_course(course_id)
+def course_route(course_uuid):
+    return get_course(course_uuid)
 
 
-@course_update.route('/api/course/update/<course_id>', methods=['PUT'])
+@course_update.route('/api/course/update/<course_uuid>', methods=['PUT'])
 @protected
-def update_route(course_id):
-    return update_course(course_id)
+def update_route(course_uuid):
+    return update_course(course_uuid)
 
 
-@course_delete.route('/api/course/delete/<course_id>', methods=['DELETE'])
+@course_delete.route('/api/course/delete/<course_uuid>', methods=['DELETE'])
 @protected
-def delete_route(course_id):
-    return delete_course(course_id)
+def delete_route(course_uuid):
+    return delete_course(course_uuid)

@@ -2,7 +2,6 @@ import uuid
 
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import relationship
 
 from config.base import Base
 from config.database import Session
@@ -20,9 +19,6 @@ class CourseModel(Base):
     end_date = Column(String(50), nullable=False)
 
     teacher_uuid = Column(UUID(as_uuid=True), ForeignKey('users.uuid'), nullable=False)
-
-    teacher = relationship('UserModel', back_populates='courses')
-    reviews = relationship('ReviewModel', back_populates='course')
 
 
 def create(course_id, course_name, start_date, end_date, teacher_uuid):

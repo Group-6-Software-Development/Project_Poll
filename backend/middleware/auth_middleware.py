@@ -17,7 +17,7 @@ def protected(route_function):
                 request.decoded_token = decoded
             except Exception as e:
                 print(f"Error decoding token: {e}")
-                return {'error': 'Error'}, 401
+                return {'error': 'Token expired'}, 401
         else:
             return {'error': 'Invalid token'}, 401
 
