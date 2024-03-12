@@ -8,6 +8,6 @@ RUN yum install mariadb-server
 COPY requirements.txt /../backend/requirements.txt
 RUN pip3 install -r /../backend/requirements.txt
 COPY main.py /../backend/main.py
-WORKDIR main.py
+WORKDIR /../backend
 ENTRYPOINT ["python3", "main.py"]
 EXPOSE 3000 5050
