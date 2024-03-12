@@ -38,3 +38,5 @@ if __name__ == '__main__':
     create_db()
     Base.metadata.create_all(engine)
     app.run(debug=False, host='0.0.0.0', port=FLASK_PORT)
+
+#TESTING
