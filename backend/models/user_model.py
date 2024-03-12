@@ -2,8 +2,8 @@ import uuid
 
 import bcrypt
 from sqlalchemy import Column, String
-from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
+from sqlalchemy.dialects.postgresql import UUID
 
 from config.base import Base
 from config.database import Session

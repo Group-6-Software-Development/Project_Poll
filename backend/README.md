@@ -7,3 +7,4 @@ How to start the backend:
 3. Create a `.env` file using the `.env.example` file as a template.
 4. Run the command `python main.py` to start the backend.
 5. The backend will be running on `http://localhost:5000/`.
+
