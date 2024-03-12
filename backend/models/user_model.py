@@ -2,7 +2,6 @@ import uuid
 
 import bcrypt
 from sqlalchemy import Column, String
-from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import UUID
 
 from config.base import Base
@@ -18,8 +17,6 @@ class UserModel(Base):
     first_name = Column(String(50), nullable=False)
     last_name = Column(String(50), nullable=False)
     password = Column(String(255), nullable=False)
-
-    courses = relationship('CourseModel', back_populates='teacher')
 
 
 def signup(first_name, last_name, email, password):

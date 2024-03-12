@@ -11,6 +11,6 @@ def create_route():
     return create_review()
 
 
-@reviews_get.route('/api/review/reviews/<course_id>', methods=['GET'])
-def reviews_route(course_id):
-    return get_reviews(course_id)
+@reviews_get.route('/api/review/reviews/<course_uuid>', methods=['GET'])
+def reviews_route(course_uuid):
+    return get_reviews(course_uuid)
