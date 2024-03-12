@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta, timezone
 
 from flask import request, jsonify
-from jwt import encode, ExpiredSignatureError
+from jwt import encode
 from sqlalchemy.exc import IntegrityError
 
 from config.env_config import JWT_SECRET, JWT_TOKEN_TIME_TO_LIVE
