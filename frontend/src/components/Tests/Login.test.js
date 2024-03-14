@@ -2,13 +2,23 @@
 import { render, fireEvent } from "@testing-library/react";
 import React from "react";
 import Login from "../Login";
+import useLogin from "../../hooks/useLogin";
 
-// Mock the console.log function
-console.log = jest.fn();
+// Mock the useLogin hook
+jest.mock("../../hooks/useLogin", () => ({
+  __esModule: true,
+  default: jest.fn(() => ({
+    login: jest.fn(), // Mock the login function
+  })),
+}));
 
 describe("Login component", () => {
-  it("calls console.log when form is submitted", () => {
-    const { getByTestId } = render(<Login />);
+  test("calls useLogin hook when form is submitted", () => {
+    // Mock setIsAuthenticated function
+    const setIsAuthenticated = jest.fn();
+
+    // Render the Login component
+    const { getByTestId } = render(<Login setIsAuthenticated={setIsAuthenticated} />);
 
     // Get the email and password input fields and change their values
     const emailInput = getByTestId("email-input");
@@ -19,10 +29,16 @@ describe("Login component", () => {
     // Submit the form
     fireEvent.submit(getByTestId("login-form"));
 
-    // Check if console.log is called with correct data
-    expect(console.log).toHaveBeenCalledWith("Logging in with:", {
-      email: "test@example.com",
-      password: "password",
-    });
+    // Check how many times useLogin hook is called
+    console.log("useLogin calls:", useLogin.mock.calls.length);
+
+    // Check if useLogin hook is called with correct arguments
+    expect(useLogin).toHaveBeenCalled();
+    expect(useLogin.mock.calls.length).toBe(1);
+    expect(useLogin.mock.calls[0][0]).toEqual(
+      expect.objectContaining({ setIsAuthenticated })
+    );
+    expect(useLogin.mock.calls[0][1]).toBe("test@example.com");
+    expect(useLogin.mock.calls[0][2]).toBe("password");
   });
 });
