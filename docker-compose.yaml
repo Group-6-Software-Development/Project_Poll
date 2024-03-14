@@ -1,0 +1,33 @@
+version: 'version 1.0.0'
+services:
+  backend:
+    build: backend/
+    command: sh -c "sleep 10s ; python3 ./main.py"
+    depends_on:
+      - mysql
+    networks:
+      - mynetwork
+  mysql:
+    image: mysql:latest
+    container_name: mysql-newcontainer
+    environment:
+      MYSQL_ROOT_PASSWORD: Testi123!?
+      MYSQL_DATABASE: mysql-container
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - mynetwork
+  frontend:
+    build: frontend/
+    ports:
+      - "3000:3000"
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
+    driver: bridge
+volumes:
+  mysql_data:
+    driver: local
