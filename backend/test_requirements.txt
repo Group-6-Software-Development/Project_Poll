@@ -1,1 +1,2 @@
 pip install Flask-Testing
+pip install coverage
