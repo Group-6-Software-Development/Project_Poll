@@ -23,6 +23,12 @@ const CourseCard = ({
 }) => {
   const navigate = useNavigate();
 
+  const [isEditing, setIsEditing] = useState(false);
+  const [courseId, setCourseId] = useState(course_id || "Course ID");
+  const [courseName, setCourseName] = useState(course_name || "Course Name");
+  const [startDate, setStartDate] = useState(start_date || "Start Date");
+  const [endDate, setEndDate] = useState(end_date || "End Date");
+
   const handleEditClick = () => {
     setIsEditing(!isEditing);
   };
@@ -82,12 +88,6 @@ const CourseCard = ({
       console.error("Error:", error);
     }
   };
-
-  const [isEditing, setIsEditing] = useState(false);
-  const [courseId, setCourseId] = useState(course_id || "Course ID");
-  const [courseName, setCourseName] = useState(course_name || "Course Name");
-  const [startDate, setStartDate] = useState(start_date || "Start Date");
-  const [endDate, setEndDate] = useState(end_date || "End Date");
 
   return (
     <div className="course-card">

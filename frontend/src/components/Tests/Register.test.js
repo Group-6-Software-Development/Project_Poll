@@ -18,8 +18,9 @@ describe('Register component', () => {
   });
 
   it('renders all input fields and a submit button', () => {
+    const setIsAuthenticated = jest.fn(); // Mocking setIsAuthenticated function
 
-    const { getByTestId, getByText } = render(<Register />);
+    const { getByTestId } = render(<Register setIsAuthenticated={setIsAuthenticated} />);
 
     // Check if all input fields are rendered
     expect(getByTestId('first-name-input')).toBeDefined();
@@ -33,10 +34,9 @@ describe('Register component', () => {
   });
 
   it('displays error message when passwords do not match', () => {
-    // Mock setError function
-    const setError = jest.fn();
+    const setIsAuthenticated = jest.fn(); // Mocking setIsAuthenticated function
 
-    const { getByTestId } = render(<Register setError={setError} />);
+    const { getByTestId } = render(<Register setIsAuthenticated={setIsAuthenticated} />);
 
     // Set different passwords
     fireEvent.change(getByTestId('password-input'), { target: { value: 'password123' } });
@@ -45,15 +45,14 @@ describe('Register component', () => {
     // Submit the form
     fireEvent.submit(getByTestId('register-form'));
 
-    // Check if setError is called with the correct error message
-    expect(setError).toHaveBeenCalledWith("Passwords do not match");
+    // Check if error message is displayed
+    expect(getByText("Passwords do not match")).toBeInTheDocument();
   });
 
   it('clears error and logs registration data when passwords match', () => {
-    // Mock setError function
-    const setError = jest.fn();
+    const setIsAuthenticated = jest.fn(); // Mocking setIsAuthenticated function
 
-    const { getByTestId } = render(<Register setError={setError} />);
+    const { getByTestId } = render(<Register setIsAuthenticated={setIsAuthenticated} />);
 
     // Set matching passwords
     fireEvent.change(getByTestId('password-input'), { target: { value: 'password123' } });
@@ -62,8 +61,8 @@ describe('Register component', () => {
     // Submit the form
     fireEvent.submit(getByTestId('register-form'));
 
-    // Check if setError is called with an empty string
-    expect(setError).toHaveBeenCalledWith("");
+    // Check if error message is cleared
+    expect(getByText("Passwords do not match")).not.toBeInTheDocument();
 
     // Check if registration data is logged
     expect(console.log).toHaveBeenCalledWith("Registering with:", {
@@ -75,6 +74,3 @@ describe('Register component', () => {
     });
   });
 });
-
-
-

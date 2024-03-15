@@ -14,7 +14,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-qr-code": "^2.0.12",
-    "react-router-dom": "^6.22.1",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
@@ -45,7 +44,8 @@
   },
   "devDependencies": {
     "@testing-library/react": "^14.2.1",
-    "jest": "^27.5.1"
+    "jest": "^27.5.1",
+    "react-router-dom": "^6.22.3"
   },
   "jest": {
     "collectCoverageFrom": [
