@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 export default function useRegister({ setIsAuthenticated }) {
   const navigate = useNavigate();
 
-  const API_URL = "http://localhost:5000/api/user/register";
+  const API_URL = `${process.env.REACT_APP_API_URL}/user/register`;
 
   const register = async (firstName, lastName, email, password) => {
     try {

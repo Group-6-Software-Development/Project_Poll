@@ -12,7 +12,7 @@ const LecturePreview = () => {
   const fetchLectures = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/lectures/${course_uuid}`,
+        `${process.env.REACT_APP_API_URL}/lectures/${course_uuid}`,
         {
           method: "GET",
           headers: {
@@ -48,7 +48,7 @@ const LecturePreview = () => {
     async (lectureDate) => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/lecture/create`,
+          `${process.env.REACT_APP_API_URL}/lecture/create`,
           {
             method: "POST",
             body: JSON.stringify({

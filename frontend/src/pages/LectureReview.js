@@ -43,7 +43,7 @@ const LectureReview = () => {
   const fetchLectureInfo = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/lecture/${lecture_uuid}`,
+        `${process.env.REACT_APP_API_URL}/lecture/${lecture_uuid}`,
         {
           method: "GET",
           headers: {
@@ -77,7 +77,7 @@ const LectureReview = () => {
   const fetchReviews = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/review/reviews/${lecture_uuid}`,
+        `${process.env.REACT_APP_API_URL}/review/reviews/${lecture_uuid}`,
         {
           method: "GET",
           headers: {

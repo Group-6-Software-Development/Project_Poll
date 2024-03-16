@@ -11,13 +11,16 @@ function UserPage() {
 
   const fetchCourses = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/course/courses", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/course/courses`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
@@ -43,7 +46,7 @@ function UserPage() {
     async (courseID, courseName, startDate, endDate) => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/course/create",
+          `${process.env.REACT_APP_API_URL}/course/create`,
           {
             method: "POST",
             headers: {

@@ -51,7 +51,7 @@ const CourseCard = ({
   const saveChanges = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/course/update/${course_uuid}`,
+        `${process.env.REACT_APP_API_URL}/course/update/${course_uuid}`,
         {
           method: "PUT",
           headers: {
@@ -131,7 +131,7 @@ const CourseCard = ({
             </div>
           </>
         ) : (
-          <a href={`http://localhost:3000/lecture/${course_uuid}`}>
+          <a href={`${process.env.REACT_APP_FE_URL}/lecture/${course_uuid}`}>
             <div className="course-id">
               <p>{courseId}</p>
             </div>

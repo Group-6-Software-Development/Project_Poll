@@ -3,7 +3,7 @@ import QRcode from "react-qr-code";
 const LinkPage = () => {
   const lectureUUID = window.location.pathname.split("/")[2];
 
-  const value = `http://192.168.50.232:3000/review/${lectureUUID}`;
+  const value = `${process.env.REACT_APP_FE_URL}/review/${lectureUUID}`;
 
   return (
     <div className="link-page">

@@ -50,7 +50,7 @@ const ReviewPage = () => {
   ) => {
     try {
       const response = await fetch(
-        `http://192.168.50.232:5000/api/review/create`,
+        `${process.env.REACT_APP_API_URL}/review/create`,
         {
           method: "POST",
           headers: {
