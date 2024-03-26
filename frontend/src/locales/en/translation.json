@@ -29,6 +29,13 @@
     "footer.contact": "Contact Us",
     "footer.privacyPolicy": "Privacy Policy",
     "footer.termsConditions": "Terms & Conditions",
-    "footer.language": "Language"
+    "footer.language": "Language",
+    "AddCourseCard.title": "Add Course",
+    "userPage.coursesHeading": "Courses",
+    "userPage.loadingText": "Loading...",
+    "userPage.courseIDPlaceholder": "Course ID",
+    "userPage.courseNamePlaceholder": "Course Name",
+    "userPage.startDatePlaceholder": "Start Date",
+    "userPage.endDatePlaceholder": "End Date"
   }
   

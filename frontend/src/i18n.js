@@ -1,27 +1,24 @@
-// i18n.js
-
-import i18n from 'i18next';
-import { initReactI18next } from 'react-i18next';
-
-// Translations
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
 import enTranslations from './locales/en/translation.json'; // English translations
 import svTranslations from './locales/sv/translation.json'; // Swedish translations
 
-// Configure i18next
+// Initialize i18next
 i18n
-  .use(initReactI18next) // bind react-i18next to i18next
+  .use(initReactI18next) // Initialize react-i18next
   .init({
     resources: {
       en: {
-        translation: enTranslations,
+        translation: enTranslations, // English translations
       },
       sv: {
         translation: svTranslations,
       },
     },
-    lng: 'en', // default language
+    lng: navigator.language || navigator.userLanguage, // Set initial language based on browser's language preference
+    fallbackLng: "en", // Fallback language if preferred language is not available
     interpolation: {
-      escapeValue: false, // react already safes from xss
+      escapeValue: false, // React already does escaping
     },
   });
 
