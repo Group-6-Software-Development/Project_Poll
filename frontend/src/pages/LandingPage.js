@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import classPhoto from "../images/classroom.png";
+import { useTranslation } from "react-i18next";
 
 function LandingPage() {
+  const { t } = useTranslation();
   const [lectureCode, setLectureCode] = useState("");
 
   const handleEvaluateClick = (e) => {
@@ -15,13 +17,14 @@ function LandingPage() {
         <img src={classPhoto} alt="classroom" />
         <div className="prompt-text">
           <p>
-            Enhance your lectures by gathering <br /> insightful student
-            feedback.
+            {t("landingPage.enchanceLectures")}
+            <br />
+            {t("landingPage.insighfulFeedback")}
           </p>
         </div>
         <div className="prompt-button">
           <a href="/signup">
-            <button>Signup</button>
+            <button>{t("landingPage.signupButton")}</button>
           </a>
         </div>
       </div>
@@ -29,15 +32,17 @@ function LandingPage() {
       <div className="grading-prompt">
         <div className="grading-text">
           <form>
-            <label>Looking to grade a lecture?</label>
+            <label>{t("landingPage.gradingLecture")}</label>
             <br />
             <input
               type="text"
-              placeholder="Type lecture code here..."
+              placeholder={t("landingPage.typeCode")}
               value={lectureCode}
               onChange={(e) => setLectureCode(e.target.value)}
             />
-            <button onClick={handleEvaluateClick}>Evaluate</button>
+            <button onClick={handleEvaluateClick}>
+              {t("landingPage.evaluateButton")}
+            </button>
           </form>
         </div>
       </div>

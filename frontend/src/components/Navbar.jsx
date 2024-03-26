@@ -1,11 +1,12 @@
-// Navbar.js
-
 import React from "react";
 import "./styles/Navbar.css";
 import logo from "../images/logo.png";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import LanguageChangerButton from "./LanguageChangerButton";
 
 const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   return (
@@ -17,6 +18,9 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
       </div>
 
       <div className="right-corner">
+        {/* Language switcher */}
+        <LanguageChangerButton />
+
         {isAuthenticated ? (
           <>
             <button
@@ -25,7 +29,7 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
                 navigate("/profile");
               }}
             >
-              Profile
+              {t("navbar.profileButton")}
             </button>
             <button
               className="profile-button"
@@ -35,7 +39,7 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
                 navigate("/");
               }}
             >
-              Logout
+              {t("navbar.logoutButton")}
             </button>
           </>
         ) : (
@@ -45,7 +49,7 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
               navigate("/login");
             }}
           >
-            Login
+            {t("navbar.loginButton")}
           </button>
         )}
       </div>
