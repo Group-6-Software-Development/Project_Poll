@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import "../styles/LanguageChangerButton.css";
 
 const LanguageChangerButton = () => {
   const { i18n } = useTranslation();

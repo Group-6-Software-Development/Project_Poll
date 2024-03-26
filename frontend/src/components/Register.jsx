@@ -1,5 +1,3 @@
-// Register.jsx
-
 import React, { useState } from "react";
 import useField from "../hooks/useField";
 import useRegister from "../hooks/useRegister";
@@ -40,7 +38,6 @@ const Register = ({ setIsAuthenticated }) => {
           className="first-name-input"
           required
           data-testid="first-name-input"
-          placeholder={t('First Name placeholder')}
         />
 
         <label className="last-name-message" htmlFor="lastName">
@@ -51,7 +48,6 @@ const Register = ({ setIsAuthenticated }) => {
           className="last-name-input"
           required
           data-testid="last-name-input"
-          placeholder={t('Last Name placeholder')}
         />
 
         <label className="email-message" htmlFor="email">
@@ -62,7 +58,6 @@ const Register = ({ setIsAuthenticated }) => {
           className="email-input"
           required
           data-testid="email-input"
-          placeholder={t('Email placeholder')}
         />
 
         <label className="password-message" htmlFor="password">
@@ -73,7 +68,6 @@ const Register = ({ setIsAuthenticated }) => {
           className="password-input"
           required
           data-testid="password-input"
-          placeholder={t('Password placeholder')}
         />
 
         <label className="password-again-message" htmlFor="passwordAgain">
@@ -84,7 +78,6 @@ const Register = ({ setIsAuthenticated }) => {
           className="password-again-input"
           required
           data-testid="password-again-input"
-          placeholder={t('Confirm password placeholder')}
         />
 
         {error && (
