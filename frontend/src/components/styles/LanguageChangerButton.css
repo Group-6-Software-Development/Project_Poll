@@ -1,11 +1,8 @@
-/* LanguageChangerButton.css */
-
 .language-changer {
   display: flex;
   align-items: center;
 }
 
-/* Style the dropdown button */
 .dropbtn {
   margin: 1rem;
   font-weight: bolder;
@@ -18,32 +15,28 @@
   text-decoration: none;
 }
 
-/* Dropdown container (hidden by default) */
 .dropdown {
   position: relative;
   display: inline-block;
 }
 
-/* Dropdown content (hidden by default) */
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
   min-width: fit-content;
   z-index: 1;
-  padding: 8px 0; /* Adjust padding */
-  margin-top: 0; /* Remove top margin */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box shadow for better visibility */
-  border-radius: 10px; /* Add rounded corners */
-  border: 1px solid orangered; /* Add border */
+  padding: 8px 0;
+  margin-top: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  border: 1px solid orangered;
 }
 
-/* Show the dropdown menu on click */
 .dropdown.active .dropdown-content {
   display: block;
 }
 
-/* Style the dropdown links/buttons */
 .dropdown-content button {
   display: block;
   text-align: left;
@@ -51,12 +44,10 @@
   margin: 0;
 }
 
-/* Style the flag icons */
 .fi {
   margin-right: 5px;
 }
 
-/* Hover effect */
 .dropdown-content button:hover {
   width: 100%;
   background-color: rgba(255, 160, 122, 0.2);

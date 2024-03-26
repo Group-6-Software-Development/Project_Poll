@@ -3,26 +3,24 @@ import { initReactI18next } from "react-i18next";
 import translationEN from "./locales/en/translation.json";
 import translationFI from "./locales/fi/translation.json";
 
-// Initialize i18next
-i18n
-  .use(initReactI18next) // Initialize react-i18next
-  .init({
-    resources: {
-      en: {
-        translation: translationEN, // English translations
-      },
-      fi: {
-        translation: translationFI, // Finnish translations
-      },
+i18n.use(initReactI18next).init({
+  resources: {
+    en: {
+      translation: translationEN, // English translations
     },
-    lng:
-      localStorage.getItem("language") ||
-      navigator.language ||
-      navigator.userLanguage, // Set initial language based on localStorage or browser's language preference
-    fallbackLng: "en", // Fallback language if preferred language is not available
-    interpolation: {
-      escapeValue: false, // React already does escaping
+    fi: {
+      translation: translationFI, // Finnish translations
     },
-  });
+  },
+  lng:
+    localStorage.getItem("LOCALE_SWITCHER_LANGUAGE") ||
+    localStorage.getItem("language") ||
+    navigator.language ||
+    navigator.userLanguage,
+  fallbackLng: "en",
+  interpolation: {
+    escapeValue: false,
+  },
+});
 
 export default i18n;
