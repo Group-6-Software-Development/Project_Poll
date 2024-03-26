@@ -1,12 +1,14 @@
 import errorPhoto from "../images/errorPage.png";
+import { useTranslation } from "react-i18next";
 
 const ThankYouPage = () => {
+  const { t } = useTranslation();
   return (
     <div className="error-page">
       <strong>
-        Thank you for taking the time to review. Your feedback is valuable to
-        us!
-        <br /> We appreciate your input and strive to improve.
+        {t("thankYouPage.reviewThankYouMessage")}
+        <br />
+        {t("thankYouPage.appreciateInputMessage")}
       </strong>
       <img src={errorPhoto} alt="thank-you" />
     </div>

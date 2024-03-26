@@ -1,0 +1,32 @@
+{
+  "login.email": "Sähköposti",
+  "login.password": "Salasana",
+  "login.loginButton": "Kirjaudu",
+
+  "navbar.profileButton": "Profiili",
+  "navbar.logoutButton": "Kirjaudu ulos",
+  "navbar.loginButton": "Kirjaudu sisään",
+
+  "languageSwitcher.englishButton": "Englanti",
+  "languageSwitcher.finnishButton": "Suomi",
+
+  "landingPage.enchanceLectures": "Paranna luentoja keräämällä",
+  "landingPage.insighfulFeedback": "täsmällistä palautetta opiskelijoilta",
+  "landingPage.signupButton": "Rekisteröidy",
+  "landingPage.gradingLecture": "Arvioimassa luentoa?",
+  "landingPage.evaluateButton": "Arvioi",
+  "landingPage.typeCode": "Kirjoita luentokoodi tähän...",
+
+  "errorPage.emptyClassroomError": "Voi ei! Näyttää siltä, että tämä luokka on tyhjä, tai jokin meni pieleen meillä.",
+  "errorPage.tryAnotherCodeMessage": "Yritä toista luokkakoodia tai siirry etusivulle.",
+
+  "thankYouPage.reviewThankYouMessage": "Kiitos arvostelun antamisesta. Palautteesi on meille arvokasta.",
+  "thankYouPage.appreciateInputMessage": "Arvostamme panostasi ja pyrimme parantamaan.",
+
+  "reviewPage.submitReviewFailedAlert": "Arvostelun lähettäminen epäonnistui",
+  "reviewPage.lectureUnderstandingQuestion": "Kuinka hyvin ymmärsit luennon sisällön?",
+  "reviewPage.lectureMaterialOpinionQuestion": "Mitä mieltä olit luennon materiaalista?",
+  "reviewPage.additionalComments": "Vapaamuotoinen palaute",
+  "reviewPage.submitReview": "Lähetä",
+  "reviewPage.charactersRemaining": "merkkiä jäljellä"
+}
