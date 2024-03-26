@@ -1,10 +1,14 @@
-import { useState } from "react";
+// Register.jsx
+
+import React, { useState } from "react";
 import useField from "../hooks/useField";
 import useRegister from "../hooks/useRegister";
 import "./styles/Register.css";
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 const Register = ({ setIsAuthenticated }) => {
   const register = useRegister({ setIsAuthenticated });
+  const { t } = useTranslation(); // Initialize useTranslation
 
   const [error, setError] = useState("");
   const firstName = useField("firstName");
@@ -29,53 +33,58 @@ const Register = ({ setIsAuthenticated }) => {
     <div className="register-page">
       <form className="register-form" onSubmit={handleSubmit}>
         <label className="first-name-message" htmlFor="firstName">
-          First Name:
+          {t('First Name')}:
         </label>
         <input
           {...firstName}
           className="first-name-input"
           required
           data-testid="first-name-input"
+          placeholder={t('First Name placeholder')}
         />
 
         <label className="last-name-message" htmlFor="lastName">
-          Last Name:
+          {t('Last Name')}:
         </label>
         <input
           {...lastName}
           className="last-name-input"
           required
           data-testid="last-name-input"
+          placeholder={t('Last Name placeholder')}
         />
 
         <label className="email-message" htmlFor="email">
-          Email:
+          {t('Email')}:
         </label>
         <input
           {...email}
           className="email-input"
           required
           data-testid="email-input"
+          placeholder={t('Email placeholder')}
         />
 
         <label className="password-message" htmlFor="password">
-          Password:
+          {t('Password')}:
         </label>
         <input
           {...password}
           className="password-input"
           required
           data-testid="password-input"
+          placeholder={t('Password placeholder')}
         />
 
         <label className="password-again-message" htmlFor="passwordAgain">
-          Confirm password:
+          {t('Confirm password')}:
         </label>
         <input
           {...passwordAgain}
           className="password-again-input"
           required
           data-testid="password-again-input"
+          placeholder={t('Confirm password placeholder')}
         />
 
         {error && (
@@ -91,7 +100,7 @@ const Register = ({ setIsAuthenticated }) => {
           type="submit"
           data-testid="register-form"
         >
-          Register
+          {t('Register')}
         </button>
       </form>
     </div>

@@ -1,9 +1,8 @@
-// Navbar.js
-
 import React from "react";
 import "./styles/Navbar.css";
 import logo from "../images/logo.png";
 import { useNavigate } from "react-router-dom";
+import LanguageChangerButton from "./LanguageChangerButton"; // Import the LanguageChangerButton component
 
 const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
   const navigate = useNavigate();
@@ -17,6 +16,9 @@ const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
       </div>
 
       <div className="right-corner">
+        {/* Add LanguageChangerButton component here */}
+        <LanguageChangerButton />
+
         {isAuthenticated ? (
           <>
             <button

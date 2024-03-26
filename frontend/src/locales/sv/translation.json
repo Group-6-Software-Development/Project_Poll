@@ -1,0 +1,9 @@
+{
+  "First Name": "Förnamn",
+  "Last Name": "Efternamn",
+  "Email": "E-post",
+  "Password": "Lösenord",
+  "Confirm password": "Bekräfta lösenord",
+  "Password mismatch": "Lösenorden matchar inte",
+  "Register": "Registrera"
+}
