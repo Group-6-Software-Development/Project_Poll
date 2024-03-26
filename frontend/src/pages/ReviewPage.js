@@ -129,25 +129,25 @@ const ReviewPage = () => {
         <div className="content-card">
           <p>How well did you understand the lectures content?</p>
           <button>
-            {goodIcon(selectedContentIcon, setSelectedContentIcon)}
+            {weakIcon(selectedContentIcon, setSelectedContentIcon)}
           </button>
           <button>
             {neutralIcon(selectedContentIcon, setSelectedContentIcon)}
           </button>
           <button>
-            {weakIcon(selectedContentIcon, setSelectedContentIcon)}
+            {goodIcon(selectedContentIcon, setSelectedContentIcon)}
           </button>
         </div>
         <div className="material-card">
           <p>What did you think of the lecture material?</p>
           <button>
-            {goodIcon(selectedMaterialIcon, setSelectedMaterialIcon)}
+            {weakIcon(selectedMaterialIcon, setSelectedMaterialIcon)}
           </button>
           <button>
             {neutralIcon(selectedMaterialIcon, setSelectedMaterialIcon)}
           </button>
           <button>
-            {weakIcon(selectedMaterialIcon, setSelectedMaterialIcon)}
+            {goodIcon(selectedMaterialIcon, setSelectedMaterialIcon)}
           </button>
         </div>
         <label>
