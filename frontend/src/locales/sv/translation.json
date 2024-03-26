@@ -1,18 +1,55 @@
 {
-  "First Name": "Förnamn",
-  "Last Name": "Efternamn",
-  "Email": "E-post",
-  "Password": "Lösenord",
-  "Confirm password": "Bekräfta lösenord",
-  "Password mismatch": "Lösenorden matchar inte",
-  "Register": "Registrera",
-  "Add Course": "Lägg till kurs",
+  "login.email": "Sähköposti",
+  "login.password": "Salasana",
+  "login.loginButton": "Kirjaudu",
+
+  "navbar.profileButton": "Profiili",
+  "navbar.logoutButton": "Kirjaudu ulos",
+  "navbar.loginButton": "Kirjaudu sisään",
+
+  "languageSwitcher.englishButton": "Engelsk",
+  "languageSwitcher.finnishButton": "Finska",
+  "languageSwitcher.swedishButton": "Svenska",
+
+  "register.firstName": "Förnamn",
+  "register.lastName": "Efternamn",
+  "register.email": "E-post",
+  "register.password": "Lösenord",
+  "register.confirmPassword": "Bekräfta lösenord",
+  "register.passwordMismatch": "Lösenorden matchar inte",
+  "register.registerButton": "Registrera",
+
+  "landingPage.enchanceLectures": "Paranna luentoja keräämällä",
+  "landingPage.insighfulFeedback": "täsmällistä palautetta opiskelijoilta",
+  "landingPage.signupButton": "Rekisteröidy",
+  "landingPage.gradingLecture": "Arvioimassa luentoa?",
+  "landingPage.evaluateButton": "Arvioi",
+  "landingPage.typeCode": "Kirjoita luentokoodi tähän...",
+
+  "errorPage.emptyClassroomError": "Voi ei! Näyttää siltä, että tämä luokka on tyhjä, tai jokin meni pieleen meillä.",
+  "errorPage.tryAnotherCodeMessage": "Yritä toista luokkakoodia tai siirry etusivulle.",
+
+  "thankYouPage.reviewThankYouMessage": "Kiitos arvostelun antamisesta. Palautteesi on meille arvokasta.",
+  "thankYouPage.appreciateInputMessage": "Arvostamme panostasi ja pyrimme parantamaan.",
+
+  "reviewPage.submitReviewFailedAlert": "Arvostelun lähettäminen epäonnistui",
+  "reviewPage.lectureUnderstandingQuestion": "Kuinka hyvin ymmärsit luennon sisällön?",
+  "reviewPage.lectureMaterialOpinionQuestion": "Mitä mieltä olit luennon materiaalista?",
+  "reviewPage.additionalComments": "Vapaamuotoinen palaute",
+  "reviewPage.submitReview": "Lähetä",
+  "reviewPage.charactersRemaining": "merkkiä jäljellä",
+
   "userPage.courseIDPlaceholder": "Kurs-ID",
   "userPage.courseNamePlaceholder": "Kursnamn",
   "userPage.startDatePlaceholder": "Startdatum",
   "userPage.endDatePlaceholder": "Slutdatum",
   "userPage.coursesHeading": "Kurser",
   "userPage.loadingText": "Laddar...",
+
+  "addCourseCard.addCourse": "Lägg till kurs",
+
   "courseCard.invalidDateFormat": "Ogiltigt datumformat. Använd antingen DD.MM.ÅÅÅÅ eller D.M.ÅÅÅÅ",
-  "courseCard.fillAllFields": "Fyll i alla fält"
+  "courseCard.fillAllFields": "Fyll i alla fält",
+  "courseCard.courseIDPlaceholder": "Kurssin ID",
+  "courseCard.courseNamePlaceholder": "Kurssin Nimi"
 }

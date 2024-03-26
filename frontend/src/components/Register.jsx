@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useField from "../hooks/useField";
 import useRegister from "../hooks/useRegister";
 import "./styles/Register.css";
-import { useTranslation } from 'react-i18next'; // Import useTranslation
+import { useTranslation } from "react-i18next"; // Import useTranslation
 
 const Register = ({ setIsAuthenticated }) => {
   const register = useRegister({ setIsAuthenticated });
@@ -19,7 +19,7 @@ const Register = ({ setIsAuthenticated }) => {
     e.preventDefault();
 
     if (password.value !== passwordAgain.value) {
-      setError("Passwords do not match");
+      setError(t("register.passwordMismatch"));
     } else {
       setError("");
 
@@ -31,7 +31,7 @@ const Register = ({ setIsAuthenticated }) => {
     <div className="register-page">
       <form className="register-form" onSubmit={handleSubmit}>
         <label className="first-name-message" htmlFor="firstName">
-          {t('First Name')}:
+          {t("register.firstName")}:
         </label>
         <input
           {...firstName}
@@ -41,7 +41,7 @@ const Register = ({ setIsAuthenticated }) => {
         />
 
         <label className="last-name-message" htmlFor="lastName">
-          {t('Last Name')}:
+          {t("register.lastName")}:
         </label>
         <input
           {...lastName}
@@ -51,7 +51,7 @@ const Register = ({ setIsAuthenticated }) => {
         />
 
         <label className="email-message" htmlFor="email">
-          {t('Email')}:
+          {t("register.email")}:
         </label>
         <input
           {...email}
@@ -61,7 +61,7 @@ const Register = ({ setIsAuthenticated }) => {
         />
 
         <label className="password-message" htmlFor="password">
-          {t('Password')}:
+          {t("register.password")}:
         </label>
         <input
           {...password}
@@ -71,7 +71,7 @@ const Register = ({ setIsAuthenticated }) => {
         />
 
         <label className="password-again-message" htmlFor="passwordAgain">
-          {t('Confirm password')}:
+          {t("register.confirmPassword")}:
         </label>
         <input
           {...passwordAgain}
@@ -93,7 +93,7 @@ const Register = ({ setIsAuthenticated }) => {
           type="submit"
           data-testid="register-form"
         >
-          {t('Register')}
+          {t("register.registerButton")}
         </button>
       </form>
     </div>

@@ -9,6 +9,15 @@
 
   "languageSwitcher.englishButton": "English",
   "languageSwitcher.finnishButton": "Finnish",
+  "languageSwitcher.swedishButton": "Swedish",
+
+  "register.firstName": "First Name",
+  "register.lastName": "Last Name",
+  "register.email": "Email",
+  "register.password": "Password",
+  "register.confirmPassword": "Confirm Password",
+  "register.passwordMismatch": "Passwords do not match",
+  "register.registerButton": "Register",
 
   "landingPage.enchanceLectures": "Enhance your lectures by gathering",
   "landingPage.insighfulFeedback": "insightful student feedback.",
@@ -28,5 +37,19 @@
   "reviewPage.lectureMaterialOpinionQuestion": "What did you think of the lecture material?",
   "reviewPage.additionalComments": "Additional comments:",
   "reviewPage.submitReview": "Submit",
-  "reviewPage.charactersRemaining": "characters remaining"
+  "reviewPage.charactersRemaining": "characters remaining",
+
+  "userPage.courseIDPlaceholder": "Course-ID",
+  "userPage.courseNamePlaceholder": "Course Name",
+  "userPage.startDatePlaceholder": "Start Date",
+  "userPage.endDatePlaceholder": "End Date",
+  "userPage.coursesHeading": "Courses",
+  "userPage.loadingMessage": "Loading...",
+
+  "addCourseCard.addCourse": "Add Course",
+
+  "courseCard.invalidDateFormat": "Invalid date format. Please use either DD.MM.YYYY or D.M.YYYY",
+  "courseCard.fillAllFields": "Please fill in all fields",
+  "courseCard.courseIDPlaceholder": "Course-ID",
+  "courseCard.courseNamePlaceholder": "Course Name"
 }

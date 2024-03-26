@@ -17,7 +17,7 @@ const AddCourseCard = ({ onAddCourse }) => {
 
   return (
     <div className="add-course-card">
-      <h4>{t("Add Course")}</h4>
+      <h4>{t("addCourseCard.addCourse")}</h4>
       <div className="add-button">
         <button onClick={handleAddCourse}>{addButton}</button>
       </div>

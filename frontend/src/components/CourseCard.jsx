@@ -41,7 +41,7 @@ const CourseCard = ({
     ) {
       alert(t("courseCard.invalidDateFormat")); // Translate invalid date format alert
       console.log("Invalid date format");
-    } else if (courseId === t("courseCard.courseIdPlaceholder") || courseName === t("courseCard.courseNamePlaceholder")) {
+    } else if (courseId === t("courseCard.courseIDPlaceholder") || courseName === t("courseCard.courseNamePlaceholder")) {
       alert(t("courseCard.fillAllFields")); // Translate fill all fields alert
       console.log("Please fill in all fields");
     } else {

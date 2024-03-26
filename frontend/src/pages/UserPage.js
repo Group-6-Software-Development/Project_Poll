@@ -60,6 +60,7 @@ function UserPage() {
 
         if (response.ok) {
           const data = await response.json();
+          console.log(data);
 
           fetchCourses();
         } else {
@@ -91,7 +92,7 @@ function UserPage() {
       courseID: t("userPage.courseIDPlaceholder"),
       courseName: t("userPage.courseNamePlaceholder"),
       startDate: t("userPage.startDatePlaceholder"),
-      endDate: t("userPage.endDatePlaceholder")
+      endDate: t("userPage.endDatePlaceholder"),
     };
 
     setLoading(true);
@@ -113,7 +114,7 @@ function UserPage() {
         <AddCourseCard onAddCourse={addCourse} />
 
         {loading ? (
-          <p>{t("userPage.loadingText")}</p>
+          <p>{t("userPage.loadingMessage")}</p>
         ) : (
           courses.map((course) => (
             <CourseCard
