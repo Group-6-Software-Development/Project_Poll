@@ -1,10 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import useField from "../hooks/useField";
 import useRegister from "../hooks/useRegister";
 import "./styles/Register.css";
+import { useTranslation } from 'react-i18next'; // Import useTranslation
 
 const Register = ({ setIsAuthenticated }) => {
   const register = useRegister({ setIsAuthenticated });
+  const { t } = useTranslation(); // Initialize useTranslation
 
   const [error, setError] = useState("");
   const firstName = useField("firstName");
@@ -29,7 +31,7 @@ const Register = ({ setIsAuthenticated }) => {
     <div className="register-page">
       <form className="register-form" onSubmit={handleSubmit}>
         <label className="first-name-message" htmlFor="firstName">
-          First Name:
+          {t('First Name')}:
         </label>
         <input
           {...firstName}
@@ -39,7 +41,7 @@ const Register = ({ setIsAuthenticated }) => {
         />
 
         <label className="last-name-message" htmlFor="lastName">
-          Last Name:
+          {t('Last Name')}:
         </label>
         <input
           {...lastName}
@@ -49,7 +51,7 @@ const Register = ({ setIsAuthenticated }) => {
         />
 
         <label className="email-message" htmlFor="email">
-          Email:
+          {t('Email')}:
         </label>
         <input
           {...email}
@@ -59,7 +61,7 @@ const Register = ({ setIsAuthenticated }) => {
         />
 
         <label className="password-message" htmlFor="password">
-          Password:
+          {t('Password')}:
         </label>
         <input
           {...password}
@@ -69,7 +71,7 @@ const Register = ({ setIsAuthenticated }) => {
         />
 
         <label className="password-again-message" htmlFor="passwordAgain">
-          Confirm password:
+          {t('Confirm password')}:
         </label>
         <input
           {...passwordAgain}
@@ -91,7 +93,7 @@ const Register = ({ setIsAuthenticated }) => {
           type="submit"
           data-testid="register-form"
         >
-          Register
+          {t('Register')}
         </button>
       </form>
     </div>

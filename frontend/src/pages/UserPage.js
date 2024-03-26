@@ -3,12 +3,13 @@ import React, { useState, useEffect, useCallback } from "react";
 import AddCourseCard from "../components/AddCourseCard";
 import CourseCard from "../components/CourseCard";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function UserPage() {
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const { t } = useTranslation();
   const fetchCourses = async () => {
     try {
       const response = await fetch(
@@ -87,10 +88,10 @@ function UserPage() {
     console.log("Adding new course");
 
     const newCourse = {
-      courseID: "Course ID",
-      courseName: "Course Name",
-      startDate: "Start Date",
-      endDate: "End Date",
+      courseID: t("userPage.courseIDPlaceholder"),
+      courseName: t("userPage.courseNamePlaceholder"),
+      startDate: t("userPage.startDatePlaceholder"),
+      endDate: t("userPage.endDatePlaceholder")
     };
 
     setLoading(true);
@@ -107,12 +108,12 @@ function UserPage() {
 
   return (
     <div className="user-page-container">
-      <h1>Courses</h1>
+      <h1>{t("userPage.coursesHeading")}</h1>
       <div className="card-container">
         <AddCourseCard onAddCourse={addCourse} />
 
         {loading ? (
-          <p>Loading...</p>
+          <p>{t("userPage.loadingText")}</p>
         ) : (
           courses.map((course) => (
             <CourseCard

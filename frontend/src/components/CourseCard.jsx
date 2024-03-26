@@ -3,7 +3,7 @@ import "./styles/CourseCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-
+import { useTranslation } from "react-i18next"; // Import useTranslation
 import { useState } from "react";
 
 const editButton = (
@@ -22,6 +22,7 @@ const CourseCard = ({
   end_date,
 }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation(); // Initialize useTranslation
 
   const handleEditClick = () => {
     setIsEditing(!isEditing);
@@ -38,10 +39,10 @@ const CourseCard = ({
       !(dateRegex1.test(startDate) || dateRegex2.test(startDate)) ||
       !(dateRegex1.test(endDate) || dateRegex2.test(endDate))
     ) {
-      alert("Invalid date format. Please use either DD.MM.YYYY or D.M.YYYY");
+      alert(t("courseCard.invalidDateFormat")); // Translate invalid date format alert
       console.log("Invalid date format");
-    } else if (courseId === "Course ID" || courseName === "Course Name") {
-      alert("Please fill in all fields");
+    } else if (courseId === t("courseCard.courseIdPlaceholder") || courseName === t("courseCard.courseNamePlaceholder")) {
+      alert(t("courseCard.fillAllFields")); // Translate fill all fields alert
       console.log("Please fill in all fields");
     } else {
       saveChanges();
@@ -88,7 +89,6 @@ const CourseCard = ({
   const [courseName, setCourseName] = useState(course_name || "Course Name");
   const [startDate, setStartDate] = useState(start_date || "Start Date");
   const [endDate, setEndDate] = useState(end_date || "End Date");
-
   return (
     <div className="course-card">
       <img src={classPhoto} alt="classroom"></img>

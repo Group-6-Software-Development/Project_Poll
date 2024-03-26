@@ -1,0 +1,18 @@
+{
+  "First Name": "Förnamn",
+  "Last Name": "Efternamn",
+  "Email": "E-post",
+  "Password": "Lösenord",
+  "Confirm password": "Bekräfta lösenord",
+  "Password mismatch": "Lösenorden matchar inte",
+  "Register": "Registrera",
+  "Add Course": "Lägg till kurs",
+  "userPage.courseIDPlaceholder": "Kurs-ID",
+  "userPage.courseNamePlaceholder": "Kursnamn",
+  "userPage.startDatePlaceholder": "Startdatum",
+  "userPage.endDatePlaceholder": "Slutdatum",
+  "userPage.coursesHeading": "Kurser",
+  "userPage.loadingText": "Laddar...",
+  "courseCard.invalidDateFormat": "Ogiltigt datumformat. Använd antingen DD.MM.ÅÅÅÅ eller D.M.ÅÅÅÅ",
+  "courseCard.fillAllFields": "Fyll i alla fält"
+}

@@ -34,10 +34,14 @@ const LanguageChangerButton = () => {
             <span className="fi fi-us" /> // Flag icon for English
           ) : (
             <span className="fi fi-fi" /> // Flag icon for Finnish
-          )}
+          ) : (
+            <span className="fi fi-se" /> // Flag icon for Swedish
+          )
+          }
           {i18n.language === "en"
             ? t("languageSwitcher.englishButton")
-            : t("languageSwitcher.finnishButton")}
+            : t("languageSwitcher.finnishButton")
+            : t("languageSwitcher.swedishButton")}
         </button>
         <div className="dropdown-content">
           <button onClick={() => changeLanguage("en")}>
@@ -46,6 +50,10 @@ const LanguageChangerButton = () => {
           </button>
           <button onClick={() => changeLanguage("fi")}>
             <span className="fi fi-fi" /> {/* Flag icon for Finnish */}
+            {t("languageSwitcher.finnishButton")}
+          </button>
+          <button onClick={() => changeLanguage("sv")}>
+            <span className="fi fi-se" /> {/* Flag icon for Swedish */}
             {t("languageSwitcher.finnishButton")}
           </button>
         </div>

@@ -16,6 +16,8 @@ import LectureReview from "./pages/LectureReview";
 import LinkPage from "./pages/LinkPage";
 import ReviewPage from "./pages/ReviewPage";
 import ThankYouPage from "./pages/ThankYouPage";
+import { I18nextProvider } from "react-i18next"; // Import I18nextProvider
+import i18n from "./i18n"; // Import i18n instance
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(
