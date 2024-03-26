@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import "./styles/LanguageChangerButton.css";
 import "/node_modules/flag-icons/css/flag-icons.min.css"; // Import flag-icons CSS
@@ -8,10 +8,20 @@ const LanguageChangerButton = () => {
   const { t } = useTranslation();
   const [isActive, setIsActive] = useState(false);
 
+  useEffect(() => {
+    // Load language preference from localStorage
+    const savedLanguage = localStorage.getItem("language");
+    if (savedLanguage) {
+      i18n.changeLanguage(savedLanguage);
+    }
+  }, [i18n]);
+
   const changeLanguage = (language) => {
     console.log("Changing language to:", language);
     i18n.changeLanguage(language);
     setIsActive(false); // Close the dropdown after language change
+    // Save language preference to localStorage
+    localStorage.setItem("language", language);
   };
 
   const toggleDropdown = () => {

@@ -15,7 +15,10 @@ i18n
         translation: translationFI, // Finnish translations
       },
     },
-    lng: navigator.language || navigator.userLanguage, // Set initial language based on browser's language preference
+    lng:
+      localStorage.getItem("language") ||
+      navigator.language ||
+      navigator.userLanguage, // Set initial language based on localStorage or browser's language preference
     fallbackLng: "en", // Fallback language if preferred language is not available
     interpolation: {
       escapeValue: false, // React already does escaping
