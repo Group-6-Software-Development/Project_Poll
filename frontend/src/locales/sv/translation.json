@@ -45,11 +45,25 @@
   "userPage.endDatePlaceholder": "Slutdatum",
   "userPage.coursesHeading": "Kurser",
   "userPage.loadingText": "Laddar...",
+  "userPage.sessionExpired": "Kirjautuminen vanhentunut. Kirjaudu uudelleen sisään.",
 
   "addCourseCard.addCourse": "Lägg till kurs",
 
   "courseCard.invalidDateFormat": "Ogiltigt datumformat. Använd antingen DD.MM.ÅÅÅÅ eller D.M.ÅÅÅÅ",
   "courseCard.fillAllFields": "Fyll i alla fält",
   "courseCard.courseIDPlaceholder": "Kurssin ID",
-  "courseCard.courseNamePlaceholder": "Kurssin Nimi"
+  "courseCard.courseNamePlaceholder": "Kurssin Nimi",
+  "courseCard.sessionExpired": "Kirjautuminen vanhentunut. Kirjaudu uudelleen sisään.",
+
+  "lecturePreview.sessionExpired": "Kirjautuminen vanhentunut. Kirjaudu uudelleen sisään.",
+  "lecturePreview.heading": "Luentojen esikatselu",
+  "lecturePreview.newLecture": "Uusi luento",
+
+  "lectureReview.sessionExpired": "Kirjautuminen vanhentunut. Kirjaudu uudelleen sisään.",
+  "lectureReview.lecturePreview": "Luentojen esikatselu",
+  "lectureReview.lectureReviews": "Luennon arvostelut",
+  "lectureReview.lectureContent": "Luennon sisällön ymmärtäminen",
+  "lectureReview.lectureMaterial": "Luennon materiaalin laatu",
+
+  "footer.copyRight": "Copyright © Group Six Industries"
 }

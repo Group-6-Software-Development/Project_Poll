@@ -45,11 +45,25 @@
   "userPage.endDatePlaceholder": "End Date",
   "userPage.coursesHeading": "Courses",
   "userPage.loadingMessage": "Loading...",
+  "userPage.sessionExpired": "Session expired. Please login again.",
 
   "addCourseCard.addCourse": "Add Course",
 
   "courseCard.invalidDateFormat": "Invalid date format. Please use either DD.MM.YYYY or D.M.YYYY",
   "courseCard.fillAllFields": "Please fill in all fields",
   "courseCard.courseIDPlaceholder": "Course-ID",
-  "courseCard.courseNamePlaceholder": "Course Name"
+  "courseCard.courseNamePlaceholder": "Course Name",
+  "courseCard.sessionExpired": "Session expired. Please login again.",
+
+  "lecturePreview.sessionExpired": "Session expired. Please login again.",
+  "lecturePreview.heading": "Lecture Preview",
+  "lecturePreview.newLecture": "New Lecture",
+
+  "lectureReview.sessionExpired": "Session expired. Please login again.",
+  "lectureReview.lecturePreview": "Lecture Preview",
+  "lectureReview.lectureReviews": "Lecture Reviews",
+  "lectureReview.lectureContent": "Lecture content understanding",
+  "lectureReview.lectureMaterial": "Lecture material understanding",
+
+  "footer.copyRight": "Copyright © Group Six Industries"
 }

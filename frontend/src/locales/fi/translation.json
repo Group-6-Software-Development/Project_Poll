@@ -11,13 +11,13 @@
   "languageSwitcher.finnishButton": "Suomi",
   "languageSwitcher.swedishButton": "Ruotsi",
 
-  "register.firstName": "Förnamn",
-  "register.lastName": "Efternamn",
-  "register.email": "E-post",
-  "register.password": "Lösenord",
-  "register.confirmPassword": "Bekräfta lösenord",
-  "register.passwordMismatch": "Lösenorden matchar inte",
-  "register.registerButton": "Registrera",
+  "register.firstName": "Etunimi",
+  "register.lastName": "Sukunimi",
+  "register.email": "Sähköposti",
+  "register.password": "Salasana",
+  "register.confirmPassword": "Varmista salasana",
+  "register.passwordMismatch": "Salasanat eivät täsmää",
+  "register.registerButton": "Rekisteröidy",
 
   "landingPage.enchanceLectures": "Paranna luentoja keräämällä",
   "landingPage.insighfulFeedback": "täsmällistä palautetta opiskelijoilta",
@@ -45,11 +45,25 @@
   "userPage.endDatePlaceholder": "Päättymispäivä",
   "userPage.coursesHeading": "Kurssit",
   "userPage.loadingMessage": "Ladataan...",
+  "userPage.sessionExpired": "Kirjautuminen vanhentunut. Kirjaudu uudelleen sisään.",
 
   "addCourseCard.addCourse": "Lisää kurssi",
 
   "courseCard.invalidDateFormat": "Väärä päivämäärämuoto. Käytä muotoa pp.kk.vvvv tai p.k.vvvv",
   "courseCard.fillAllFields": "Täytä kaikki kentät",
   "courseCard.courseIDPlaceholder": "Kurssin ID",
-  "courseCard.courseNamePlaceholder": "Kurssin Nimi"
+  "courseCard.courseNamePlaceholder": "Kurssin Nimi",
+  "courseCard.sessionExpired": "Kirjautuminen vanhentunut. Kirjaudu uudelleen sisään.",
+
+  "lecturePreview.sessionExpired": "Kirjautuminen vanhentunut. Kirjaudu uudelleen sisään.",
+  "lecturePreview.heading": "Luentojen esikatselu",
+  "lecturePreview.newLecture": "Uusi luento",
+
+  "lectureReview.sessionExpired": "Kirjautuminen vanhentunut. Kirjaudu uudelleen sisään.",
+  "lectureReview.lecturePreview": "Luentojen esikatselu",
+  "lectureReview.lectureReviews": "Luennon arvostelut",
+  "lectureReview.lectureContent": "Luennon sisällön ymmärtäminen",
+  "lectureReview.lectureMaterial": "Luennon materiaalin laatu",
+
+  "footer.copyRight": "Tekijänoikeus © Group Six Industries"
 }

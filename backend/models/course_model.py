@@ -83,6 +83,13 @@ def find_courses_by_teacher_uuid(teacher_uuid):
     return courses_data
 
 
+def find_course_id_by_uuid(course_uuid):
+    session = Session()
+    course_id = {"course_id": session.query(CourseModel.course_id).filter_by(uuid=uuid.UUID(course_uuid)).scalar()}
+    session.close()
+    return course_id
+
+
 def delete(course_id):
     session = Session()
     course = session.query(CourseModel).filter_by(uuid=uuid.UUID(course_id)).first()

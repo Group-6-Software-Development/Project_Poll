@@ -23,7 +23,7 @@ export default function useRegister({ setIsAuthenticated }) {
         navigate("/profile");
       } else {
         const error = await response.json();
-        alert(error.message);
+        console.log(error.error);
       }
     } catch (error) {
       console.error("Error:", error);

@@ -31,17 +31,22 @@ const LanguageChangerButton = () => {
       <div className={`dropdown ${isActive ? "active" : ""}`}>
         <button className="dropbtn" onClick={toggleDropdown}>
           {i18n.language === "en" ? (
-            <span className="fi fi-us" /> // Flag icon for English
+            <span className="fi fi-us" />
           ) : i18n.language === "fi" ? (
-            <span className="fi fi-fi" /> // Flag icon for Finnish
+            <span className="fi fi-fi" />
+          ) : i18n.language === "sv" ? (
+            <span className="fi fi-se" />
           ) : (
-            <span className="fi fi-se" /> // Flag icon for Swedish
+            <span className="fi fi-us" />
           )}
+
           {i18n.language === "en"
             ? t("languageSwitcher.englishButton")
             : i18n.language === "fi"
             ? t("languageSwitcher.finnishButton")
-            : t("languageSwitcher.swedishButton")}
+            : i18n.language === "sv"
+            ? t("languageSwitcher.swedishButton")
+            : t("languageSwitcher.englishButton")}
         </button>
         <div className="dropdown-content">
           <button onClick={() => changeLanguage("en")}>
