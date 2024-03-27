@@ -39,6 +39,8 @@ const LanguageChangerButton = () => {
             <span className="fi fi-fi" />
           ) : i18n.language === "sv" ? (
             <span className="fi fi-se" />
+          ) : i18n.language === "zh" ? (
+            <span className="fi fi-cn" />
           ) : (
             <span className="fi fi-us" />
           )}
@@ -65,8 +67,7 @@ const LanguageChangerButton = () => {
             {t("languageSwitcher.swedishButton")}
           </button>
           <button onClick={() => changeLanguage("zh")}>
-            {/* Flag icon for Chinese */}
-            <span className="fi fi-cn" />
+            <span className="fi fi-cn" /> {/* Flag icon for Chinese */}
             {t("languageSwitcher.chineseButton")}
           </button>
         </div>
