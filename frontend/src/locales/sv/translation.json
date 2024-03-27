@@ -1,13 +1,13 @@
 {
-  "login.email": "Sähköposti",
-  "login.password": "Salasana",
-  "login.loginButton": "Kirjaudu",
+  "login.email": "E-post",
+  "login.password": "Lösenord",
+  "login.loginButton": "Logga in",
 
-  "navbar.profileButton": "Profiili",
-  "navbar.logoutButton": "Kirjaudu ulos",
-  "navbar.loginButton": "Kirjaudu sisään",
+  "navbar.profileButton": "Profil",
+  "navbar.logoutButton": "Logga ut",
+  "navbar.loginButton": "Logga in",
 
-  "languageSwitcher.englishButton": "Engelsk",
+  "languageSwitcher.englishButton": "Engelska",
   "languageSwitcher.finnishButton": "Finska",
   "languageSwitcher.swedishButton": "Svenska",
 
@@ -19,25 +19,25 @@
   "register.passwordMismatch": "Lösenorden matchar inte",
   "register.registerButton": "Registrera",
 
-  "landingPage.enchanceLectures": "Paranna luentoja keräämällä",
-  "landingPage.insighfulFeedback": "täsmällistä palautetta opiskelijoilta",
-  "landingPage.signupButton": "Rekisteröidy",
-  "landingPage.gradingLecture": "Arvioimassa luentoa?",
-  "landingPage.evaluateButton": "Arvioi",
-  "landingPage.typeCode": "Kirjoita luentokoodi tähän...",
+  "landingPage.enchanceLectures": "Förbättra föreläsningar genom att samla",
+  "landingPage.insighfulFeedback": "exakt feedback från studenter",
+  "landingPage.signupButton": "Registrera",
+  "landingPage.gradingLecture": "Betygsättning av föreläsning?",
+  "landingPage.evaluateButton": "Utvärdera",
+  "landingPage.typeCode": "Skriv in föreläsningskoden här...",
 
-  "errorPage.emptyClassroomError": "Voi ei! Näyttää siltä, että tämä luokka on tyhjä, tai jokin meni pieleen meillä.",
-  "errorPage.tryAnotherCodeMessage": "Yritä toista luokkakoodia tai siirry etusivulle.",
+  "errorPage.emptyClassroomError": "Åh nej! Det verkar som att detta klassrum är tomt, eller något gick fel hos oss.",
+  "errorPage.tryAnotherCodeMessage": "Försök med en annan föreläsningskod eller gå till startsidan.",
 
-  "thankYouPage.reviewThankYouMessage": "Kiitos arvostelun antamisesta. Palautteesi on meille arvokasta.",
-  "thankYouPage.appreciateInputMessage": "Arvostamme panostasi ja pyrimme parantamaan.",
+  "thankYouPage.reviewThankYouMessage": "Tack för att du ger en recension. Din feedback är värdefull för oss.",
+  "thankYouPage.appreciateInputMessage": "Vi uppskattar din insats och strävar efter att förbättra oss.",
 
-  "reviewPage.submitReviewFailedAlert": "Arvostelun lähettäminen epäonnistui",
-  "reviewPage.lectureUnderstandingQuestion": "Kuinka hyvin ymmärsit luennon sisällön?",
-  "reviewPage.lectureMaterialOpinionQuestion": "Mitä mieltä olit luennon materiaalista?",
-  "reviewPage.additionalComments": "Vapaamuotoinen palaute",
-  "reviewPage.submitReview": "Lähetä",
-  "reviewPage.charactersRemaining": "merkkiä jäljellä",
+  "reviewPage.submitReviewFailedAlert": "Det gick inte att skicka recensionen",
+  "reviewPage.lectureUnderstandingQuestion": "Hur bra förstod du föreläsningens innehåll?",
+  "reviewPage.lectureMaterialOpinionQuestion": "Vad tyckte du om föreläsningens material?",
+  "reviewPage.additionalComments": "Fri kommentar",
+  "reviewPage.submitReview": "Skicka",
+  "reviewPage.charactersRemaining": "tecken kvar",
 
   "userPage.courseIDPlaceholder": "Kurs-ID",
   "userPage.courseNamePlaceholder": "Kursnamn",
@@ -45,25 +45,25 @@
   "userPage.endDatePlaceholder": "Slutdatum",
   "userPage.coursesHeading": "Kurser",
   "userPage.loadingText": "Laddar...",
-  "userPage.sessionExpired": "Kirjautuminen vanhentunut. Kirjaudu uudelleen sisään.",
+  "userPage.sessionExpired": "Inloggningen har gått ut. Logga in igen.",
 
   "addCourseCard.addCourse": "Lägg till kurs",
 
   "courseCard.invalidDateFormat": "Ogiltigt datumformat. Använd antingen DD.MM.ÅÅÅÅ eller D.M.ÅÅÅÅ",
   "courseCard.fillAllFields": "Fyll i alla fält",
-  "courseCard.courseIDPlaceholder": "Kurssin ID",
-  "courseCard.courseNamePlaceholder": "Kurssin Nimi",
-  "courseCard.sessionExpired": "Kirjautuminen vanhentunut. Kirjaudu uudelleen sisään.",
+  "courseCard.courseIDPlaceholder": "Kursens ID",
+  "courseCard.courseNamePlaceholder": "Kursens Namn",
+  "courseCard.sessionExpired": "Inloggningen har gått ut. Logga in igen.",
 
-  "lecturePreview.sessionExpired": "Kirjautuminen vanhentunut. Kirjaudu uudelleen sisään.",
-  "lecturePreview.heading": "Luentojen esikatselu",
-  "lecturePreview.newLecture": "Uusi luento",
+  "lecturePreview.sessionExpired": "Inloggningen har gått ut. Logga in igen.",
+  "lecturePreview.heading": "Föreläsningsförhandsgranskning",
+  "lecturePreview.newLecture": "Ny föreläsning",
 
-  "lectureReview.sessionExpired": "Kirjautuminen vanhentunut. Kirjaudu uudelleen sisään.",
-  "lectureReview.lecturePreview": "Luentojen esikatselu",
-  "lectureReview.lectureReviews": "Luennon arvostelut",
-  "lectureReview.lectureContent": "Luennon sisällön ymmärtäminen",
-  "lectureReview.lectureMaterial": "Luennon materiaalin laatu",
+  "lectureReview.sessionExpired": "Inloggningen har gått ut. Logga in igen.",
+  "lectureReview.lecturePreview": "Föreläsningsförhandsgranskning",
+  "lectureReview.lectureReviews": "Föreläsningsrecensioner",
+  "lectureReview.lectureContent": "Förståelse av föreläsningsinnehåll",
+  "lectureReview.lectureMaterial": "Föreläsningsmaterialskvalitet",
 
-  "footer.copyRight": "Copyright © Group Six Industries"
+  "footer.copyRight": "Upphovsrätt © Group Six Industries"
 }
