@@ -10,6 +10,7 @@ const LanguageChangerButton = () => {
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem("language");
+    console.log("Retrieved language from local storage:", savedLanguage);
     if (savedLanguage) {
       i18n.changeLanguage(savedLanguage);
     }
@@ -25,6 +26,8 @@ const LanguageChangerButton = () => {
   const toggleDropdown = () => {
     setIsActive(!isActive);
   };
+
+  console.log("Current language:", i18n.language);
 
   return (
     <div className="language-changer">
@@ -60,6 +63,11 @@ const LanguageChangerButton = () => {
           <button onClick={() => changeLanguage("sv")}>
             <span className="fi fi-se" /> {/* Flag icon for Swedish */}
             {t("languageSwitcher.swedishButton")}
+          </button>
+          <button onClick={() => changeLanguage("zh")}>
+            {/* Flag icon for Chinese */}
+            <span className="fi fi-cn" />
+            {t("languageSwitcher.chineseButton")}
           </button>
         </div>
       </div>
