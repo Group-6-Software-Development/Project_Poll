@@ -31,10 +31,10 @@ function UserPage() {
 
         if (response.status === 401) {
           localStorage.removeItem("token");
-          alert("Login expired. Please login again.");
+          alert(t("userPage.sessionExpired"));
           navigate("/login");
         } else {
-          alert(error.error);
+          console.log(error.error);
         }
       }
       console.log("Courses fetched");
@@ -69,7 +69,7 @@ function UserPage() {
 
           if (response.status === 401) {
             localStorage.removeItem("token");
-            alert("Login expired. Please login again.");
+            alert(t("userPage.sessionExpired"));
             navigate("/login");
           }
         }

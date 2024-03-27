@@ -49,9 +49,6 @@ const App = () => {
 
                 {/* Page for displaying the QR-code for reviewing a Lecture */}
                 <Route path="/link/:id" element={<LinkPage />} />
-
-                {/* Page for displaying the QR-code for reviewing a Lecture */}
-                <Route path="/link/:id" element={<LinkPage />} />
               </>
             ) : (
               <>

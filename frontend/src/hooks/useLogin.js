@@ -23,7 +23,7 @@ export default function useLogin({ setIsAuthenticated }) {
         navigate("/profile");
       } else {
         const error = await response.json();
-        alert(error.error);
+        console.log(error.error);
       }
     } catch (error) {
       console.error("Error:", error);

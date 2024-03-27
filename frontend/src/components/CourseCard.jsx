@@ -32,19 +32,36 @@ const CourseCard = ({
     setIsEditing(!isEditing);
     console.log("Saving changes");
 
+    // Regular expressions to validate date formats
     const dateRegex1 = /^\d{2}.\d{2}.\d{4}$/; // DD.MM.YYYY
     const dateRegex2 = /^\d{1,2}.\d{1,2}.\d{4}$/; // D.M.YYYY
 
+    // Checking if start date or end date doesn't match expected formats
     if (
       !(dateRegex1.test(startDate) || dateRegex2.test(startDate)) ||
       !(dateRegex1.test(endDate) || dateRegex2.test(endDate))
     ) {
-      alert(t("courseCard.invalidDateFormat")); // Translate invalid date format alert
+      alert(t("courseCard.invalidDateFormat")); // Displaying alert for invalid date format
       console.log("Invalid date format");
-    } else if (courseId === t("courseCard.courseIDPlaceholder") || courseName === t("courseCard.courseNamePlaceholder")) {
-      alert(t("courseCard.fillAllFields")); // Translate fill all fields alert
+      setIsEditing(true);
+      return;
+    }
+    // Checking if any essential field is empty
+    else if (
+      courseId === t("courseCard.courseIDPlaceholder") ||
+      courseName === t("courseCard.courseNamePlaceholder") ||
+      courseId === "" ||
+      courseName === "" ||
+      startDate === "" ||
+      endDate === ""
+    ) {
+      alert(t("courseCard.fillAllFields")); // Displaying alert to fill all fields
       console.log("Please fill in all fields");
-    } else {
+      setIsEditing(true);
+      return;
+    }
+    // If all validations pass, save changes
+    else {
       saveChanges();
     }
   };
@@ -71,11 +88,12 @@ const CourseCard = ({
       if (response.ok) {
         console.log("Changes saved");
       } else {
-        alert(data.error);
+        console.log(data.error);
 
         if (response.status === 401) {
           localStorage.removeItem("token");
-          alert("Login expired. Please login again.");
+
+          alert(t("courseCard.sessionExpired"));
           navigate("/login");
         }
       }

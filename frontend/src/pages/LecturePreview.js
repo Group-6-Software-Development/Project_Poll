@@ -1,13 +1,48 @@
 import LectureCard from "../components/LectureCard";
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const LecturePreview = () => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
+  const [lectureCode, setLectureCode] = useState("");
   const [lectures, setLectures] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const course_uuid = window.location.pathname.split("/")[2];
+
+  const fetchCourseID = async () => {
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_API_URL}/course/id/${course_uuid}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data.course_id);
+        setLectureCode(data.course_id);
+      } else {
+        const error = await response.json();
+        if (response.status === 401) {
+          localStorage.removeItem("token");
+          alert(t("lecturePreview.sessionExpired"));
+          navigate("/login");
+        } else {
+          console.log(error.error);
+        }
+      }
+    } catch (error) {
+      console.log("Error:", error);
+    }
+  };
 
   const fetchLectures = async () => {
     try {
@@ -31,11 +66,10 @@ const LecturePreview = () => {
 
         if (response.status === 401) {
           localStorage.removeItem("token");
-          alert("Login expired. Please login again.");
+          alert(t("lecturePreview.sessionExpired"));
           navigate("/login");
         } else {
           console.log(error.error);
-          alert(error.error);
         }
       }
       console.log("Lectures fetched");
@@ -73,10 +107,9 @@ const LecturePreview = () => {
 
           if (response.status === 401) {
             localStorage.removeItem("token");
-            alert("Login expired. Please login again.");
+            alert(t("lecturePreview.sessionExpired"));
             navigate("/login");
           } else {
-            alert(error.error);
             console.log(error.error);
           }
         }
@@ -91,6 +124,7 @@ const LecturePreview = () => {
   useEffect(() => {
     console.log("Fetching lectures");
     fetchLectures();
+    fetchCourseID();
   }, []);
 
   const addLecture = async () => {
@@ -108,13 +142,11 @@ const LecturePreview = () => {
     setLoading(false);
   };
 
-  const lectureCode =
-    lectures.length > 0 ? lectures[0].course_id : "getLecCode";
-
   return (
     <div className="lecture-preview">
       <h2>
-        Lecture Statistics / <span className="lecture-code">{lectureCode}</span>{" "}
+        {t("lecturePreview.heading")} /{" "}
+        <span className="lecture-code">{lectureCode}</span>{" "}
       </h2>
       <div className="lecture-card-container">
         {loading ? (
@@ -138,7 +170,7 @@ const LecturePreview = () => {
             addLecture();
           }}
         >
-          New Lecture
+          {t("lecturePreview.newLecture")}
         </button>
       </div>
     </div>

@@ -3,7 +3,8 @@ import uuid
 from flask import request
 from sqlalchemy.exc import IntegrityError
 
-from models.course_model import create, update, find_course_by_uuid, find_courses_by_teacher_uuid, delete
+from models.course_model import create, update, find_course_by_uuid, find_courses_by_teacher_uuid, delete, \
+    find_course_id_by_uuid
 
 
 def create_course():
@@ -86,6 +87,25 @@ def get_courses():
         else:
             courses = find_courses_by_teacher_uuid(user_uuid)
             return courses, 200
+
+    except Exception as e:
+        print(f"Unexpected error during course lookup: {str(e)}")
+        return {'error': 'Internal Server Error'}, 500
+
+
+def get_course_id(course_uuid):
+    try:
+        user_id = uuid.UUID(request.decoded_token)
+        if not user_id:
+            return {'error': 'Unauthorized'}, 401
+        if not course_uuid:
+            return {'error': 'Bad Request'}, 400
+        else:
+            course_id = find_course_id_by_uuid(course_uuid)
+            if course_id:
+                return course_id, 200
+            else:
+                return {'error': 'Not Found - Course not found'}, 404
 
     except Exception as e:
         print(f"Unexpected error during course lookup: {str(e)}")
