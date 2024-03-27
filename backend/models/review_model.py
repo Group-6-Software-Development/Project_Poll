@@ -13,7 +13,7 @@ class ReviewModel(Base):
     uuid = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
     understanding_rating = Column(Integer, nullable=False)
     material_rating = Column(Integer, nullable=False)
-    comment = Column(String(255), nullable=False)
+    comment = Column(String(255, collation='utf8mb4_unicode_ci'), nullable=False)
 
     lecture_uuid = Column(UUID(as_uuid=True), ForeignKey('lectures.uuid'), nullable=False)
 

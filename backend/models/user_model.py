@@ -13,10 +13,10 @@ class UserModel(Base):
     __tablename__ = 'users'
 
     uuid = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
-    email = Column(String(50), unique=True, nullable=False)
-    first_name = Column(String(50), nullable=False)
-    last_name = Column(String(50), nullable=False)
-    password = Column(String(255), nullable=False)
+    email = Column(String(50, collation='utf8mb4_unicode_ci'), unique=True, nullable=False)
+    first_name = Column(String(50, collation='utf8mb4_unicode_ci'), nullable=False)
+    last_name = Column(String(50, collation='utf8mb4_unicode_ci'), nullable=False)
+    password = Column(String(255, collation='utf8mb4_unicode_ci'), nullable=False)
 
 
 def signup(first_name, last_name, email, password):

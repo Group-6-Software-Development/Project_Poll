@@ -13,10 +13,10 @@ class CourseModel(Base):
 
     uuid = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
 
-    course_id = Column(String(50), nullable=False)
-    course_name = Column(String(50), nullable=False)
-    start_date = Column(String(50), nullable=False)
-    end_date = Column(String(50), nullable=False)
+    course_id = Column(String(50, collation='utf8mb4_unicode_ci'), nullable=False)
+    course_name = Column(String(50, collation='utf8mb4_unicode_ci'), nullable=False)
+    start_date = Column(String(50, collation='utf8mb4_unicode_ci'), nullable=False)
+    end_date = Column(String(50, collation='utf8mb4_unicode_ci'), nullable=False)
 
     teacher_uuid = Column(UUID(as_uuid=True), ForeignKey('users.uuid'), nullable=False)
 
