@@ -10,6 +10,7 @@ function UserPage() {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation();
+
   const fetchCourses = async () => {
     try {
       const response = await fetch(
@@ -65,7 +66,7 @@ function UserPage() {
           fetchCourses();
         } else {
           const error = await response.json();
-          alert(error.error);
+          console.log(error);
 
           if (response.status === 401) {
             localStorage.removeItem("token");

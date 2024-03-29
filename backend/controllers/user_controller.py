@@ -30,7 +30,7 @@ def register_user():
             data = {'token': token}
             return jsonify(data), 201
         except IntegrityError:
-            return {'message': 'Conflict - Email address already in use'}, 409
+            return {'error': 'Conflict - Email address already in use'}, 409
         except Exception as e:
             print(f"Unexpected error during registration: {str(e)}")
             return {'error': 'Internal Server Error'}, 500

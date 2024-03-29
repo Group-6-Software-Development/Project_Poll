@@ -66,5 +66,9 @@
   "lectureReview.lectureContent": "Luennon sisällön ymmärtäminen",
   "lectureReview.lectureMaterial": "Luennon materiaalin laatu",
 
-  "footer.copyRight": "Tekijänoikeus © Group Six Industries"
+  "footer.copyRight": "Tekijänoikeus © Group Six Industries",
+
+  "useLogin.loginFailed": "Kirjautuminen epäonnistui. Tarkista sähköposti ja salasana.",
+
+  "useRegister.emailExists": "Rekisteröinti epäonnistui. Sähköpostiosoite on jo käytössä."
 }

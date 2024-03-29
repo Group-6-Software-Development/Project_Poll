@@ -66,5 +66,9 @@
   "lectureReview.lectureContent": "Förståelse av föreläsningsinnehåll",
   "lectureReview.lectureMaterial": "Föreläsningsmaterialskvalitet",
 
-  "footer.copyRight": "Upphovsrätt © Group Six Industries"
+  "footer.copyRight": "Upphovsrätt © Group Six Industries",
+
+  "useLogin.loginFailed": "Inloggning misslyckades. Kontrollera dina inloggningsuppgifter och försök igen.",
+
+  "useRegister.emailExists": "E-postadressen är redan registrerad. Vänligen använd en annan e-postadress."
 }

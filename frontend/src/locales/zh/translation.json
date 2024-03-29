@@ -1,71 +1,74 @@
 {
-    "login.email": "电子邮件",
-    "login.password": "密码",
-    "login.loginButton": "登录",
-  
-    "navbar.profileButton": "个人资料",
-    "navbar.logoutButton": "登出",
-    "navbar.loginButton": "登录",
-  
-    "languageSwitcher.englishButton": "英语",
-    "languageSwitcher.finnishButton": "芬兰语",
-    "languageSwitcher.swedishButton": "瑞典语",
-    "languageSwitcher.chineseButton": "基伊納",
-  
-    "register.firstName": "名字",
-    "register.lastName": "姓氏",
-    "register.email": "电子邮件",
-    "register.password": "密码",
-    "register.confirmPassword": "确认密码",
-    "register.passwordMismatch": "密码不匹配",
-    "register.registerButton": "注册",
-  
-    "landingPage.enchanceLectures": "通过收集改进讲座",
-    "landingPage.insighfulFeedback": "来自学生的精准反馈",
-    "landingPage.signupButton": "注册",
-    "landingPage.gradingLecture": "正在评分讲座？",
-    "landingPage.evaluateButton": "评估",
-    "landingPage.typeCode": "在此处输入讲座代码...",
-  
-    "errorPage.emptyClassroomError": "哎呀！这个教室好像是空的，或者我们出了点问题。",
-    "errorPage.tryAnotherCodeMessage": "尝试其他讲座代码或返回首页。",
-  
-    "thankYouPage.reviewThankYouMessage": "感谢您提供评论。您的反馈对我们非常重要。",
-    "thankYouPage.appreciateInputMessage": "我们感谢您的贡献，并努力改进。",
-  
-    "reviewPage.submitReviewFailedAlert": "提交评论失败",
-    "reviewPage.lectureUnderstandingQuestion": "您对讲座内容的理解程度如何？",
-    "reviewPage.lectureMaterialOpinionQuestion": "您对讲座材料的看法如何？",
-    "reviewPage.additionalComments": "其他评论",
-    "reviewPage.submitReview": "提交",
-    "reviewPage.charactersRemaining": "剩余字符",
-  
-    "userPage.courseIDPlaceholder": "课程ID",
-    "userPage.courseNamePlaceholder": "课程名称",
-    "userPage.startDatePlaceholder": "开始日期",
-    "userPage.endDatePlaceholder": "结束日期",
-    "userPage.coursesHeading": "课程",
-    "userPage.loadingText": "加载中...",
-    "userPage.sessionExpired": "登录已过期。请重新登录。",
-  
-    "addCourseCard.addCourse": "添加课程",
-  
-    "courseCard.invalidDateFormat": "无效的日期格式。请使用DD.MM.YYYY或D.M.YYYY",
-    "courseCard.fillAllFields": "请填写所有字段",
-    "courseCard.courseIDPlaceholder": "课程ID",
-    "courseCard.courseNamePlaceholder": "课程名称",
-    "courseCard.sessionExpired": "登录已过期。请重新登录。",
-  
-    "lecturePreview.sessionExpired": "登录已过期。请重新登录。",
-    "lecturePreview.heading": "讲座预览",
-    "lecturePreview.newLecture": "新讲座",
-  
-    "lectureReview.sessionExpired": "登录已过期。请重新登录。",
-    "lectureReview.lecturePreview": "讲座预览",
-    "lectureReview.lectureReviews": "讲座评论",
-    "lectureReview.lectureContent": "讲座内容理解",
-    "lectureReview.lectureMaterial": "讲座材料质量",
-  
-    "footer.copyRight": "版权 © Group Six Industries"
-  }
-  
+  "login.email": "电子邮件",
+  "login.password": "密码",
+  "login.loginButton": "登录",
+
+  "navbar.profileButton": "个人资料",
+  "navbar.logoutButton": "登出",
+  "navbar.loginButton": "登录",
+
+  "languageSwitcher.englishButton": "英语",
+  "languageSwitcher.finnishButton": "芬兰语",
+  "languageSwitcher.swedishButton": "瑞典语",
+  "languageSwitcher.chineseButton": "基伊納",
+
+  "register.firstName": "名字",
+  "register.lastName": "姓氏",
+  "register.email": "电子邮件",
+  "register.password": "密码",
+  "register.confirmPassword": "确认密码",
+  "register.passwordMismatch": "密码不匹配",
+  "register.registerButton": "注册",
+
+  "landingPage.enchanceLectures": "通过收集改进讲座",
+  "landingPage.insighfulFeedback": "来自学生的精准反馈",
+  "landingPage.signupButton": "注册",
+  "landingPage.gradingLecture": "正在评分讲座？",
+  "landingPage.evaluateButton": "评估",
+  "landingPage.typeCode": "在此处输入讲座代码...",
+
+  "errorPage.emptyClassroomError": "哎呀！这个教室好像是空的，或者我们出了点问题。",
+  "errorPage.tryAnotherCodeMessage": "尝试其他讲座代码或返回首页。",
+
+  "thankYouPage.reviewThankYouMessage": "感谢您提供评论。您的反馈对我们非常重要。",
+  "thankYouPage.appreciateInputMessage": "我们感谢您的贡献，并努力改进。",
+
+  "reviewPage.submitReviewFailedAlert": "提交评论失败",
+  "reviewPage.lectureUnderstandingQuestion": "您对讲座内容的理解程度如何？",
+  "reviewPage.lectureMaterialOpinionQuestion": "您对讲座材料的看法如何？",
+  "reviewPage.additionalComments": "其他评论",
+  "reviewPage.submitReview": "提交",
+  "reviewPage.charactersRemaining": "剩余字符",
+
+  "userPage.courseIDPlaceholder": "课程ID",
+  "userPage.courseNamePlaceholder": "课程名称",
+  "userPage.startDatePlaceholder": "开始日期",
+  "userPage.endDatePlaceholder": "结束日期",
+  "userPage.coursesHeading": "课程",
+  "userPage.loadingText": "加载中...",
+  "userPage.sessionExpired": "登录已过期。请重新登录。",
+
+  "addCourseCard.addCourse": "添加课程",
+
+  "courseCard.invalidDateFormat": "无效的日期格式。请使用DD.MM.YYYY或D.M.YYYY",
+  "courseCard.fillAllFields": "请填写所有字段",
+  "courseCard.courseIDPlaceholder": "课程ID",
+  "courseCard.courseNamePlaceholder": "课程名称",
+  "courseCard.sessionExpired": "登录已过期。请重新登录。",
+
+  "lecturePreview.sessionExpired": "登录已过期。请重新登录。",
+  "lecturePreview.heading": "讲座预览",
+  "lecturePreview.newLecture": "新讲座",
+
+  "lectureReview.sessionExpired": "登录已过期。请重新登录。",
+  "lectureReview.lecturePreview": "讲座预览",
+  "lectureReview.lectureReviews": "讲座评论",
+  "lectureReview.lectureContent": "讲座内容理解",
+  "lectureReview.lectureMaterial": "讲座材料质量",
+
+  "footer.copyRight": "版权 © Group Six Industries",
+
+  "useLogin.loginFailed": "登录失败。请检查您的电子邮件和密码。",
+
+  "useRegister.emailExists": "注册失败。电子邮件已在使用中"
+}

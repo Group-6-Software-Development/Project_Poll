@@ -60,6 +60,8 @@ const LecturePreview = () => {
       if (response.ok) {
         const data = await response.json();
 
+        fetchCourseID();
+
         setLectures(data);
       } else {
         const error = await response.json();
@@ -124,7 +126,6 @@ const LecturePreview = () => {
   useEffect(() => {
     console.log("Fetching lectures");
     fetchLectures();
-    fetchCourseID();
   }, []);
 
   const addLecture = async () => {

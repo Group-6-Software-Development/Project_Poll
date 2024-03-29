@@ -66,5 +66,9 @@
   "lectureReview.lectureContent": "Lecture content understanding",
   "lectureReview.lectureMaterial": "Lecture material understanding",
 
-  "footer.copyRight": "Copyright © Group Six Industries"
+  "footer.copyRight": "Copyright © Group Six Industries",
+
+  "useLogin.loginFailed": "Login failed. Please check your email and password.",
+
+  "useRegister.emailExists": "Registration failed. Email already in use."
 }

@@ -69,7 +69,7 @@ const LectureReview = () => {
           alert(t("lectureReview.sessionExpired"));
           navigate("/login");
         } else {
-          alert(error.error);
+          console.log(error.error);
         }
       }
     } catch (error) {

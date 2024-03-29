@@ -8,7 +8,11 @@ const AddCourseCard = ({ onAddCourse }) => {
   const { t } = useTranslation();
 
   const addButton = (
-    <FontAwesomeIcon icon={faPlusCircle} size="4x" style={{ color: "#ff5000" }} />
+    <FontAwesomeIcon
+      icon={faPlusCircle}
+      size="4x"
+      style={{ color: "#ff5000" }}
+    />
   );
 
   const handleAddCourse = () => {

@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function useRegister({ setIsAuthenticated }) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const API_URL = `${process.env.REACT_APP_API_URL}/user/register`;
@@ -21,6 +23,10 @@ export default function useRegister({ setIsAuthenticated }) {
         localStorage.setItem("token", data.token);
         setIsAuthenticated(true);
         navigate("/profile");
+      } else if (response.status === 409) {
+        const error = await response.json();
+        console.log(error.error);
+        alert(t("useRegister.emailExists"));
       } else {
         const error = await response.json();
         console.log(error.error);
