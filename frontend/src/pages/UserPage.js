@@ -33,6 +33,8 @@ function UserPage() {
         if (response.status === 401) {
           localStorage.removeItem("token");
           alert(t("userPage.sessionExpired"));
+          // eslint-disable-next-line no-undef
+          globalThis.setIsAuthenticated(false);
           navigate("/login");
         } else {
           console.log(error.error);
@@ -71,6 +73,8 @@ function UserPage() {
           if (response.status === 401) {
             localStorage.removeItem("token");
             alert(t("userPage.sessionExpired"));
+            // eslint-disable-next-line no-undef
+            globalThis.setIsAuthenticated(false);
             navigate("/login");
           }
         }

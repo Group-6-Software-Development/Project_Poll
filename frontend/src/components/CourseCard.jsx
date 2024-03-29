@@ -93,6 +93,9 @@ const CourseCard = ({
         if (response.status === 401) {
           localStorage.removeItem("token");
 
+          // eslint-disable-next-line no-undef
+          globalThis.setIsAuthenticated(false);
+
           alert(t("courseCard.sessionExpired"));
           navigate("/login");
         }
@@ -107,6 +110,7 @@ const CourseCard = ({
   const [courseName, setCourseName] = useState(course_name || "Course Name");
   const [startDate, setStartDate] = useState(start_date || "Start Date");
   const [endDate, setEndDate] = useState(end_date || "End Date");
+
   return (
     <div className="course-card">
       <img src={classPhoto} alt="classroom"></img>

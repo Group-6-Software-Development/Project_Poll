@@ -67,6 +67,8 @@ const LectureReview = () => {
         if (response.status === 401) {
           localStorage.removeItem("token");
           alert(t("lectureReview.sessionExpired"));
+          // eslint-disable-next-line no-undef
+          globalThis.setIsAuthenticated(false);
           navigate("/login");
         } else {
           console.log(error.error);
@@ -134,6 +136,8 @@ const LectureReview = () => {
         if (response.status === 401) {
           localStorage.removeItem("token");
           alert(t("lectureReview.sessionExpired"));
+          // eslint-disable-next-line no-undef
+          globalThis.setIsAuthenticated(false);
           navigate("/login");
         } else if (response.status === 404) {
           console.log("No reviews found for this lecture.");
