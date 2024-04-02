@@ -3,11 +3,10 @@ import os
 import sys
 import unittest
 
-from main import app
-
 backend_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.append(backend_path)
 
+from main import app
 
 class TestUserRoutes(unittest.TestCase):
 
