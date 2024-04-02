@@ -18,6 +18,9 @@ pipeline {
             steps {
                 // Run the test
                 bat 'python backend/tests/test_user_routes.py'
+                bat 'python backend/tests/test_course_routes.py'
+                bat 'python backend/tests/test_lecture_routes.py'
+                bat 'python backend/tests/test_review_routes.py'
             }
         }
     }
