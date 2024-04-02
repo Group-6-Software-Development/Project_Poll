@@ -13,10 +13,10 @@ class CourseModel(Base):
 
     uuid = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
 
-    course_id = Column(String(50), unique=True, nullable=False)
-    course_name = Column(String(50), unique=True, nullable=False)
-    start_date = Column(String(50), nullable=False)
-    end_date = Column(String(50), nullable=False)
+    course_id = Column(String(50, collation='utf8mb4_unicode_ci'), nullable=False)
+    course_name = Column(String(50, collation='utf8mb4_unicode_ci'), nullable=False)
+    start_date = Column(String(50, collation='utf8mb4_unicode_ci'), nullable=False)
+    end_date = Column(String(50, collation='utf8mb4_unicode_ci'), nullable=False)
 
     teacher_uuid = Column(UUID(as_uuid=True), ForeignKey('users.uuid'), nullable=False)
 
@@ -81,6 +81,13 @@ def find_courses_by_teacher_uuid(teacher_uuid):
 
     session.close()
     return courses_data
+
+
+def find_course_id_by_uuid(course_uuid):
+    session = Session()
+    course_id = {"course_id": session.query(CourseModel.course_id).filter_by(uuid=uuid.UUID(course_uuid)).scalar()}
+    session.close()
+    return course_id
 
 
 def delete(course_id):

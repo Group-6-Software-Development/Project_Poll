@@ -3,11 +3,13 @@ import React, { useState, useEffect, useCallback } from "react";
 import AddCourseCard from "../components/AddCourseCard";
 import CourseCard from "../components/CourseCard";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function UserPage() {
   const navigate = useNavigate();
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { t } = useTranslation();
 
   const fetchCourses = async () => {
     try {
@@ -30,10 +32,12 @@ function UserPage() {
 
         if (response.status === 401) {
           localStorage.removeItem("token");
-          alert("Login expired. Please login again.");
+          alert(t("userPage.sessionExpired"));
+          // eslint-disable-next-line no-undef
+          globalThis.setIsAuthenticated(false);
           navigate("/login");
         } else {
-          alert(error.error);
+          console.log(error.error);
         }
       }
       console.log("Courses fetched");
@@ -59,15 +63,18 @@ function UserPage() {
 
         if (response.ok) {
           const data = await response.json();
+          console.log(data);
 
           fetchCourses();
         } else {
           const error = await response.json();
-          alert(error.error);
+          console.log(error);
 
           if (response.status === 401) {
             localStorage.removeItem("token");
-            alert("Login expired. Please login again.");
+            alert(t("userPage.sessionExpired"));
+            // eslint-disable-next-line no-undef
+            globalThis.setIsAuthenticated(false);
             navigate("/login");
           }
         }
@@ -87,10 +94,10 @@ function UserPage() {
     console.log("Adding new course");
 
     const newCourse = {
-      courseID: "Course ID",
-      courseName: "Course Name",
-      startDate: "Start Date",
-      endDate: "End Date",
+      courseID: t("userPage.courseIDPlaceholder"),
+      courseName: t("userPage.courseNamePlaceholder"),
+      startDate: t("userPage.startDatePlaceholder"),
+      endDate: t("userPage.endDatePlaceholder"),
     };
 
     setLoading(true);
@@ -107,12 +114,12 @@ function UserPage() {
 
   return (
     <div className="user-page-container">
-      <h1>Courses</h1>
+      <h1>{t("userPage.coursesHeading")}</h1>
       <div className="card-container">
         <AddCourseCard onAddCourse={addCourse} />
 
         {loading ? (
-          <p>Loading...</p>
+          <p>{t("userPage.loadingMessage")}</p>
         ) : (
           courses.map((course) => (
             <CourseCard

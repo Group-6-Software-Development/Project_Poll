@@ -1,0 +1,16 @@
+.language-changer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .language-changer button {
+    margin: 1rem;
+    font-weight: bolder;
+    background-color: #fff;
+    color: #f50;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 20px;
+    text-decoration: none;
+  }

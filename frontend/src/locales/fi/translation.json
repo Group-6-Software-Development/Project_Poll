@@ -1,0 +1,74 @@
+{
+  "login.email": "Sähköposti",
+  "login.password": "Salasana",
+  "login.loginButton": "Kirjaudu",
+
+  "navbar.profileButton": "Profiili",
+  "navbar.logoutButton": "Kirjaudu ulos",
+  "navbar.loginButton": "Kirjaudu sisään",
+
+  "languageSwitcher.englishButton": "Englanti",
+  "languageSwitcher.finnishButton": "Suomi",
+  "languageSwitcher.swedishButton": "Ruotsi",
+  "languageSwitcher.chineseButton": "Kiina",
+
+  "register.firstName": "Etunimi",
+  "register.lastName": "Sukunimi",
+  "register.email": "Sähköposti",
+  "register.password": "Salasana",
+  "register.confirmPassword": "Varmista salasana",
+  "register.passwordMismatch": "Salasanat eivät täsmää",
+  "register.registerButton": "Rekisteröidy",
+
+  "landingPage.enchanceLectures": "Paranna luentoja keräämällä",
+  "landingPage.insighfulFeedback": "täsmällistä palautetta opiskelijoilta",
+  "landingPage.signupButton": "Rekisteröidy",
+  "landingPage.gradingLecture": "Arvioimassa luentoa?",
+  "landingPage.evaluateButton": "Arvioi",
+  "landingPage.typeCode": "Kirjoita luentokoodi tähän...",
+
+  "errorPage.emptyClassroomError": "Voi ei! Näyttää siltä, että tämä luokka on tyhjä, tai jokin meni pieleen meillä.",
+  "errorPage.tryAnotherCodeMessage": "Yritä toista luokkakoodia tai siirry etusivulle.",
+
+  "thankYouPage.reviewThankYouMessage": "Kiitos arvostelun antamisesta. Palautteesi on meille arvokasta.",
+  "thankYouPage.appreciateInputMessage": "Arvostamme panostasi ja pyrimme parantamaan.",
+
+  "reviewPage.submitReviewFailedAlert": "Arvostelun lähettäminen epäonnistui",
+  "reviewPage.lectureUnderstandingQuestion": "Kuinka hyvin ymmärsit luennon sisällön?",
+  "reviewPage.lectureMaterialOpinionQuestion": "Mitä mieltä olit luennon materiaalista?",
+  "reviewPage.additionalComments": "Vapaamuotoinen palaute",
+  "reviewPage.submitReview": "Lähetä",
+  "reviewPage.charactersRemaining": "merkkiä jäljellä",
+
+  "userPage.courseIDPlaceholder": "Kurssin ID",
+  "userPage.courseNamePlaceholder": "Kurssin Nimi",
+  "userPage.startDatePlaceholder": "Aloituspäivä",
+  "userPage.endDatePlaceholder": "Päättymispäivä",
+  "userPage.coursesHeading": "Kurssit",
+  "userPage.loadingMessage": "Ladataan...",
+  "userPage.sessionExpired": "Kirjautuminen vanhentunut. Kirjaudu uudelleen sisään.",
+
+  "addCourseCard.addCourse": "Lisää kurssi",
+
+  "courseCard.invalidDateFormat": "Väärä päivämäärämuoto. Käytä muotoa pp.kk.vvvv tai p.k.vvvv",
+  "courseCard.fillAllFields": "Täytä kaikki kentät",
+  "courseCard.courseIDPlaceholder": "Kurssin ID",
+  "courseCard.courseNamePlaceholder": "Kurssin Nimi",
+  "courseCard.sessionExpired": "Kirjautuminen vanhentunut. Kirjaudu uudelleen sisään.",
+
+  "lecturePreview.sessionExpired": "Kirjautuminen vanhentunut. Kirjaudu uudelleen sisään.",
+  "lecturePreview.heading": "Luentojen esikatselu",
+  "lecturePreview.newLecture": "Uusi luento",
+
+  "lectureReview.sessionExpired": "Kirjautuminen vanhentunut. Kirjaudu uudelleen sisään.",
+  "lectureReview.lecturePreview": "Luentojen esikatselu",
+  "lectureReview.lectureReviews": "Luennon arvostelut",
+  "lectureReview.lectureContent": "Luennon sisällön ymmärtäminen",
+  "lectureReview.lectureMaterial": "Luennon materiaalin laatu",
+
+  "footer.copyRight": "Tekijänoikeus © Group Six Industries",
+
+  "useLogin.loginFailed": "Kirjautuminen epäonnistui. Tarkista sähköposti ja salasana.",
+
+  "useRegister.emailExists": "Rekisteröinti epäonnistui. Sähköpostiosoite on jo käytössä."
+}

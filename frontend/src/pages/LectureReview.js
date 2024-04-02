@@ -7,6 +7,7 @@ import {
 import LectureComment from "../components/LectureComment";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const goodIcon = (
   <FontAwesomeIcon icon={faFaceSmile} style={{ color: "#5cb85c" }} size="3x" />
@@ -22,6 +23,8 @@ const weakIcon = (
 
 const LectureReview = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
   const lecture_uuid = window.location.pathname.split("/")[2];
 
   const [contentGood, setContentGood] = useState(0);
@@ -63,10 +66,12 @@ const LectureReview = () => {
 
         if (response.status === 401) {
           localStorage.removeItem("token");
-          alert("Login expired. Please login again.");
+          alert(t("lectureReview.sessionExpired"));
+          // eslint-disable-next-line no-undef
+          globalThis.setIsAuthenticated(false);
           navigate("/login");
         } else {
-          alert(error.error);
+          console.log(error.error);
         }
       }
     } catch (error) {
@@ -130,12 +135,14 @@ const LectureReview = () => {
 
         if (response.status === 401) {
           localStorage.removeItem("token");
-          alert("Login expired. Please login again.");
+          alert(t("lectureReview.sessionExpired"));
+          // eslint-disable-next-line no-undef
+          globalThis.setIsAuthenticated(false);
           navigate("/login");
         } else if (response.status === 404) {
           console.log("No reviews found for this lecture.");
         } else {
-          alert(error.error);
+          console.else(error.error);
         }
       }
     } catch (error) {
@@ -146,17 +153,22 @@ const LectureReview = () => {
   return (
     <div className="lecture-review">
       <h2>
-        Lecture Preview / <span className="lecture-code">{lectureCode}</span> /{" "}
-        {lectureDate} Lecture Review
+        {t("lectureReview.lecturePreview")} /{" "}
+        <span className="lecture-code">{lectureCode}</span> / {lectureDate}{" "}
+        {t("lectureReview.lectureReviews")}
       </h2>
       <div className="feedback-container">
         <div className="rating-container">
           <div className="lecture-content">
-            <p>{`Lecture content understanding: ${contentGood} ${contentMid} ${contentWeak}  `}</p>
+            <p>{`${t(
+              "lectureReview.lectureContent"
+            )}: ${contentWeak} ${contentMid} ${contentGood}  `}</p>
             <div className="rating-icons">
-              {goodIcon} {neutralIcon} {weakIcon}
+              {weakIcon} {neutralIcon} {goodIcon}
             </div>
-            <p>{`Lecture material understanding: ${materialGood} ${materialMid} ${materialWeak}  `}</p>
+            <p>{`${t(
+              "lectureReview.lectureMaterial"
+            )}: ${materialWeak} ${materialMid} ${materialGood}  `}</p>
           </div>
         </div>
         <div className="comment-container">

@@ -1,12 +1,15 @@
 import errorPhoto from "../images/errorPage.png";
+import { useTranslation } from "react-i18next";
 
 const ErrorPage = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="error-page">
       <strong>
-        Woops! looks like this classroom is empty, or something has gone wrong
-        on our end. <br /> Please try another classroom code or make your way to
-        the homepage.
+        {t("errorPage.emptyClassroomError")}
+        <br />
+        {t("errorPage.tryAnotherCodeMessage")}
       </strong>
       <img src={errorPhoto} alt="error" />
     </div>
