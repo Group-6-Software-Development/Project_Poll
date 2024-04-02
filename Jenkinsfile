@@ -4,18 +4,21 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Group-6-Software-Development/Project_Poll.git']])
+                checkout scm
             }
         }
         stage('Build') {
             steps {
-                git branch: 'main', url: 'https://github.com/Group-6-Software-Development/Project_Poll.git'
-                sh 'python3 test_user_routes.py'
+                // No build steps required in this case
             }
         }
         stage('Test') {
             steps {
-                sh 'python3 -m pytest'
+                // Navigate to the directory containing the tests
+                dir('backend/tests/') {
+                    // Execute the tests using python command
+                    bat 'python test_user_routes.py'
+                }
             }
         }
     }
