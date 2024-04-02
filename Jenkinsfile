@@ -7,11 +7,6 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build') {
-            steps {
-                // No build steps required in this case
-            }
-        }
         stage('Test') {
             steps {
                 // Navigate to the directory containing the tests
