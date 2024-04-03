@@ -25,19 +25,15 @@ pipeline {
                 // Run the tests
                 script {
                     if (isUnix()) {
-                        sh 'coverage run backend/tests/test_user_routes.py'
-                        sh 'coverage run backend/tests/test_course_routes.py'
-                        sh 'coverage run backend/tests/test_lecture_routes.py'
-                        sh 'coverage run backend/tests/test_review_routes.py'
-                        sh 'coverage combine' // Combine coverage data from all tests
-                        sh 'coverage html -d coverage_report' // Generate HTML coverage report
+                        sh 'python backend/tests/test_user_routes.py'
+                        sh 'python backend/tests/test_course_routes.py'
+                        sh 'python backend/tests/test_lecture_routes.py'
+                        sh 'python backend/tests/test_review_routes.py'
                     } else {
-                        bat 'coverage run backend/tests/test_user_routes.py'
-                        bat 'coverage run backend/tests/test_course_routes.py'
-                        bat 'coverage run backend/tests/test_lecture_routes.py'
-                        bat 'coverage run backend/tests/test_review_routes.py'
-                        bat 'coverage combine' // Combine coverage data from all tests
-                        bat 'coverage html -d coverage_report' // Generate HTML coverage report
+                        bat 'python backend/tests/test_user_routes.py'
+                        bat 'python backend/tests/test_course_routes.py'
+                        bat 'python backend/tests/test_lecture_routes.py'
+                        bat 'python backend/tests/test_review_routes.py'
                     }
                 }
             }
