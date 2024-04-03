@@ -11,16 +11,31 @@ pipeline {
         stage('Setup') {
             steps {
                 // Install necessary dependencies
-                sh 'pip install -r backend/requirements.txt'
+                script {
+                    if (isUnix()) {
+                        sh 'pip install -r backend/requirements.txt'
+                    } else {
+                        bat 'pip install -r backend/requirements.txt'
+                    }
+                }
             }
         }
         stage('Test') {
             steps {
-                // Run the test
-                sh 'python backend/tests/test_user_routes.py'
-                sh 'python backend/tests/test_course_routes.py'
-                sh 'python backend/tests/test_lecture_routes.py'
-                sh 'python backend/tests/test_review_routes.py'
+                // Run the tests
+                script {
+                    if (isUnix()) {
+                        sh 'python backend/tests/test_user_routes.py'
+                        sh 'python backend/tests/test_course_routes.py'
+                        sh 'python backend/tests/test_lecture_routes.py'
+                        sh 'python backend/tests/test_review_routes.py'
+                    } else {
+                        bat 'python backend/tests/test_user_routes.py'
+                        bat 'python backend/tests/test_course_routes.py'
+                        bat 'python backend/tests/test_lecture_routes.py'
+                        bat 'python backend/tests/test_review_routes.py'
+                    }
+                }
             }
         }
     }
