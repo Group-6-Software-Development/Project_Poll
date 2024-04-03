@@ -11,16 +11,16 @@ pipeline {
         stage('Setup') {
             steps {
                 // Install necessary dependencies
-                bat 'pip install -r backend/requirements.txt'
+                sh 'pip install -r backend/requirements.txt'
             }
         }
         stage('Test') {
             steps {
                 // Run the test
-                bat 'python backend/tests/test_user_routes.py'
-                bat 'python backend/tests/test_course_routes.py'
-                bat 'python backend/tests/test_lecture_routes.py'
-                bat 'python backend/tests/test_review_routes.py'
+                sh 'python backend/tests/test_user_routes.py'
+                sh 'python backend/tests/test_course_routes.py'
+                sh 'python backend/tests/test_lecture_routes.py'
+                sh 'python backend/tests/test_review_routes.py'
             }
         }
     }
