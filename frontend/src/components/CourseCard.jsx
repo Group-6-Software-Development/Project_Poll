@@ -3,7 +3,7 @@ import "./styles/CourseCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-
+import { useTranslation } from "react-i18next"; // Import useTranslation
 import { useState } from "react";
 
 const editButton = (
@@ -22,6 +22,7 @@ const CourseCard = ({
   end_date,
 }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation(); // Initialize useTranslation
 
   const handleEditClick = () => {
     setIsEditing(!isEditing);
@@ -31,19 +32,36 @@ const CourseCard = ({
     setIsEditing(!isEditing);
     console.log("Saving changes");
 
+    // Regular expressions to validate date formats
     const dateRegex1 = /^\d{2}.\d{2}.\d{4}$/; // DD.MM.YYYY
     const dateRegex2 = /^\d{1,2}.\d{1,2}.\d{4}$/; // D.M.YYYY
 
+    // Checking if start date or end date doesn't match expected formats
     if (
       !(dateRegex1.test(startDate) || dateRegex2.test(startDate)) ||
       !(dateRegex1.test(endDate) || dateRegex2.test(endDate))
     ) {
-      alert("Invalid date format. Please use either DD.MM.YYYY or D.M.YYYY");
+      alert(t("courseCard.invalidDateFormat")); // Displaying alert for invalid date format
       console.log("Invalid date format");
-    } else if (courseId === "Course ID" || courseName === "Course Name") {
-      alert("Please fill in all fields");
+      setIsEditing(true);
+      return;
+    }
+    // Checking if any essential field is empty
+    else if (
+      courseId === t("courseCard.courseIDPlaceholder") ||
+      courseName === t("courseCard.courseNamePlaceholder") ||
+      courseId === "" ||
+      courseName === "" ||
+      startDate === "" ||
+      endDate === ""
+    ) {
+      alert(t("courseCard.fillAllFields")); // Displaying alert to fill all fields
       console.log("Please fill in all fields");
-    } else {
+      setIsEditing(true);
+      return;
+    }
+    // If all validations pass, save changes
+    else {
       saveChanges();
     }
   };
@@ -51,7 +69,7 @@ const CourseCard = ({
   const saveChanges = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/course/update/${course_uuid}`,
+        `${process.env.REACT_APP_API_URL}/course/update/${course_uuid}`,
         {
           method: "PUT",
           headers: {
@@ -70,11 +88,15 @@ const CourseCard = ({
       if (response.ok) {
         console.log("Changes saved");
       } else {
-        alert(data.error);
+        console.log(data.error);
 
         if (response.status === 401) {
           localStorage.removeItem("token");
-          alert("Login expired. Please login again.");
+
+          // eslint-disable-next-line no-undef
+          globalThis.setIsAuthenticated(false);
+
+          alert(t("courseCard.sessionExpired"));
           navigate("/login");
         }
       }
@@ -131,7 +153,7 @@ const CourseCard = ({
             </div>
           </>
         ) : (
-          <a href={`http://localhost:3000/lecture/${course_uuid}`}>
+          <a href={`${process.env.REACT_APP_FE_URL}/lecture/${course_uuid}`}>
             <div className="course-id">
               <p>{courseId}</p>
             </div>

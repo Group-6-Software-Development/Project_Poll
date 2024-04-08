@@ -1,0 +1,74 @@
+{
+  "login.email": "E-post",
+  "login.password": "Lösenord",
+  "login.loginButton": "Logga in",
+
+  "navbar.profileButton": "Profil",
+  "navbar.logoutButton": "Logga ut",
+  "navbar.loginButton": "Logga in",
+
+  "languageSwitcher.englishButton": "Engelska",
+  "languageSwitcher.finnishButton": "Finska",
+  "languageSwitcher.swedishButton": "Svenska",
+  "languageSwitcher.chineseButton": "Kina",
+
+  "register.firstName": "Förnamn",
+  "register.lastName": "Efternamn",
+  "register.email": "E-post",
+  "register.password": "Lösenord",
+  "register.confirmPassword": "Bekräfta lösenord",
+  "register.passwordMismatch": "Lösenorden matchar inte",
+  "register.registerButton": "Registrera",
+
+  "landingPage.enchanceLectures": "Förbättra föreläsningar genom att samla",
+  "landingPage.insighfulFeedback": "exakt feedback från studenter",
+  "landingPage.signupButton": "Registrera",
+  "landingPage.gradingLecture": "Betygsättning av föreläsning?",
+  "landingPage.evaluateButton": "Utvärdera",
+  "landingPage.typeCode": "Skriv in föreläsningskoden här...",
+
+  "errorPage.emptyClassroomError": "Åh nej! Det verkar som att detta klassrum är tomt, eller något gick fel hos oss.",
+  "errorPage.tryAnotherCodeMessage": "Försök med en annan föreläsningskod eller gå till startsidan.",
+
+  "thankYouPage.reviewThankYouMessage": "Tack för att du ger en recension. Din feedback är värdefull för oss.",
+  "thankYouPage.appreciateInputMessage": "Vi uppskattar din insats och strävar efter att förbättra oss.",
+
+  "reviewPage.submitReviewFailedAlert": "Det gick inte att skicka recensionen",
+  "reviewPage.lectureUnderstandingQuestion": "Hur bra förstod du föreläsningens innehåll?",
+  "reviewPage.lectureMaterialOpinionQuestion": "Vad tyckte du om föreläsningens material?",
+  "reviewPage.additionalComments": "Fri kommentar",
+  "reviewPage.submitReview": "Skicka",
+  "reviewPage.charactersRemaining": "tecken kvar",
+
+  "userPage.courseIDPlaceholder": "Kurs-ID",
+  "userPage.courseNamePlaceholder": "Kursnamn",
+  "userPage.startDatePlaceholder": "Startdatum",
+  "userPage.endDatePlaceholder": "Slutdatum",
+  "userPage.coursesHeading": "Kurser",
+  "userPage.loadingText": "Laddar...",
+  "userPage.sessionExpired": "Inloggningen har gått ut. Logga in igen.",
+
+  "addCourseCard.addCourse": "Lägg till kurs",
+
+  "courseCard.invalidDateFormat": "Ogiltigt datumformat. Använd antingen DD.MM.ÅÅÅÅ eller D.M.ÅÅÅÅ",
+  "courseCard.fillAllFields": "Fyll i alla fält",
+  "courseCard.courseIDPlaceholder": "Kursens ID",
+  "courseCard.courseNamePlaceholder": "Kursens Namn",
+  "courseCard.sessionExpired": "Inloggningen har gått ut. Logga in igen.",
+
+  "lecturePreview.sessionExpired": "Inloggningen har gått ut. Logga in igen.",
+  "lecturePreview.heading": "Föreläsningsförhandsgranskning",
+  "lecturePreview.newLecture": "Ny föreläsning",
+
+  "lectureReview.sessionExpired": "Inloggningen har gått ut. Logga in igen.",
+  "lectureReview.lecturePreview": "Föreläsningsförhandsgranskning",
+  "lectureReview.lectureReviews": "Föreläsningsrecensioner",
+  "lectureReview.lectureContent": "Förståelse av föreläsningsinnehåll",
+  "lectureReview.lectureMaterial": "Föreläsningsmaterialskvalitet",
+
+  "footer.copyRight": "Upphovsrätt © Group Six Industries",
+
+  "useLogin.loginFailed": "Inloggning misslyckades. Kontrollera dina inloggningsuppgifter och försök igen.",
+
+  "useRegister.emailExists": "E-postadressen är redan registrerad. Vänligen använd en annan e-postadress."
+}

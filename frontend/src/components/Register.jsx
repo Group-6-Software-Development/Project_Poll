@@ -1,25 +1,25 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import useField from "../hooks/useField";
 import useRegister from "../hooks/useRegister";
 import "./styles/Register.css";
+import { useTranslation } from "react-i18next"; // Import useTranslation
 
 const Register = ({ setIsAuthenticated }) => {
   const register = useRegister({ setIsAuthenticated });
+  const { t } = useTranslation(); // Initialize useTranslation
 
+  const [error, setError] = useState("");
   const firstName = useField("firstName");
   const lastName = useField("lastName");
   const email = useField("email");
   const password = useField("password");
   const passwordAgain = useField("password");
 
-  const [error, setError] = useState("");
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (password.value !== passwordAgain.value) {
-      setError("Passwords do not match");
-      return;
+      setError(t("register.passwordMismatch"));
     } else {
       setError("");
 
@@ -31,29 +31,54 @@ const Register = ({ setIsAuthenticated }) => {
     <div className="register-page">
       <form className="register-form" onSubmit={handleSubmit}>
         <label className="first-name-message" htmlFor="firstName">
-          First Name:
+          {t("register.firstName")}:
         </label>
-        <input {...firstName} className="first-name-input" required />
+        <input
+          {...firstName}
+          className="first-name-input"
+          required
+          data-testid="first-name-input"
+        />
 
         <label className="last-name-message" htmlFor="lastName">
-          Last Name:
+          {t("register.lastName")}:
         </label>
-        <input {...lastName} className="last-name-input" required />
+        <input
+          {...lastName}
+          className="last-name-input"
+          required
+          data-testid="last-name-input"
+        />
 
         <label className="email-message" htmlFor="email">
-          Email:
+          {t("register.email")}:
         </label>
-        <input {...email} className="email-input" required />
+        <input
+          {...email}
+          className="email-input"
+          required
+          data-testid="email-input"
+        />
 
         <label className="password-message" htmlFor="password">
-          Password:
+          {t("register.password")}:
         </label>
-        <input {...password} className="password-input" required />
+        <input
+          {...password}
+          className="password-input"
+          required
+          data-testid="password-input"
+        />
 
         <label className="password-again-message" htmlFor="passwordAgain">
-          Password again:
+          {t("register.confirmPassword")}:
         </label>
-        <input {...passwordAgain} className="password-again-input" required />
+        <input
+          {...passwordAgain}
+          className="password-again-input"
+          required
+          data-testid="password-again-input"
+        />
 
         {error && (
           <p
@@ -63,8 +88,12 @@ const Register = ({ setIsAuthenticated }) => {
           </p>
         )}
 
-        <button className="register-button" type="submit">
-          Register
+        <button
+          className="register-button"
+          type="submit"
+          data-testid="register-form"
+        >
+          {t("register.registerButton")}
         </button>
       </form>
     </div>

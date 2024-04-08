@@ -33,7 +33,7 @@ const LectureCard = ({
     const fetchReviews = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/review/reviews/${lecture_uuid}`,
+          `${process.env.REACT_APP_API_URL}/review/reviews/${lecture_uuid}`,
           {
             method: "GET",
             headers: {
@@ -72,7 +72,7 @@ const LectureCard = ({
 
   return (
     <div className="lecture-card">
-      <a href={`http://localhost:3000/reviews/${lecture_uuid}`}>
+      <a href={`${process.env.REACT_APP_FE_URL}/reviews/${lecture_uuid}`}>
         <div className="lecture-code">
           <p>{lectureCode}</p>
           <h5>{courseName}</h5>

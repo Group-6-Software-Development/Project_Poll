@@ -1,0 +1,74 @@
+{
+  "login.email": "Email",
+  "login.password": "Password",
+  "login.loginButton": "Login",
+
+  "navbar.profileButton": "Profile",
+  "navbar.logoutButton": "Logout",
+  "navbar.loginButton": "Login",
+
+  "languageSwitcher.englishButton": "English",
+  "languageSwitcher.finnishButton": "Finnish",
+  "languageSwitcher.swedishButton": "Swedish",
+  "languageSwitcher.chineseButton": "Chinese",
+
+  "register.firstName": "First Name",
+  "register.lastName": "Last Name",
+  "register.email": "Email",
+  "register.password": "Password",
+  "register.confirmPassword": "Confirm Password",
+  "register.passwordMismatch": "Passwords do not match",
+  "register.registerButton": "Register",
+
+  "landingPage.enchanceLectures": "Enhance your lectures by gathering",
+  "landingPage.insighfulFeedback": "insightful student feedback.",
+  "landingPage.signupButton": "Signup",
+  "landingPage.gradingLecture": "Looking to grade a lecture?",
+  "landingPage.evaluateButton": "Evaluate",
+  "landingPage.typeCode": "Type lecture code here...",
+
+  "errorPage.emptyClassroomError": "Woops! looks like this classroom is empty, or something has gone wrong on our end.",
+  "errorPage.tryAnotherCodeMessage": "Please try another classroom code or make your way to the homepage.",
+
+  "thankYouPage.reviewThankYouMessage": "Thank you for taking the time to review. Your feedback is valuable to us.",
+  "thankYouPage.appreciateInputMessage": "We appreciate your input and strive to improve.",
+
+  "reviewPage.submitReviewFailedAlert": "Failed to submit review",
+  "reviewPage.lectureUnderstandingQuestion": "How well did you understand the lecture?",
+  "reviewPage.lectureMaterialOpinionQuestion": "What did you think of the lecture material?",
+  "reviewPage.additionalComments": "Additional comments:",
+  "reviewPage.submitReview": "Submit",
+  "reviewPage.charactersRemaining": "characters remaining",
+
+  "userPage.courseIDPlaceholder": "Course-ID",
+  "userPage.courseNamePlaceholder": "Course Name",
+  "userPage.startDatePlaceholder": "Start Date",
+  "userPage.endDatePlaceholder": "End Date",
+  "userPage.coursesHeading": "Courses",
+  "userPage.loadingMessage": "Loading...",
+  "userPage.sessionExpired": "Session expired. Please login again.",
+
+  "addCourseCard.addCourse": "Add Course",
+
+  "courseCard.invalidDateFormat": "Invalid date format. Please use either DD.MM.YYYY or D.M.YYYY",
+  "courseCard.fillAllFields": "Please fill in all fields",
+  "courseCard.courseIDPlaceholder": "Course-ID",
+  "courseCard.courseNamePlaceholder": "Course Name",
+  "courseCard.sessionExpired": "Session expired. Please login again.",
+
+  "lecturePreview.sessionExpired": "Session expired. Please login again.",
+  "lecturePreview.heading": "Lecture Preview",
+  "lecturePreview.newLecture": "New Lecture",
+
+  "lectureReview.sessionExpired": "Session expired. Please login again.",
+  "lectureReview.lecturePreview": "Lecture Preview",
+  "lectureReview.lectureReviews": "Lecture Reviews",
+  "lectureReview.lectureContent": "Lecture content understanding",
+  "lectureReview.lectureMaterial": "Lecture material understanding",
+
+  "footer.copyRight": "Copyright © Group Six Industries",
+
+  "useLogin.loginFailed": "Login failed. Please check your email and password.",
+
+  "useRegister.emailExists": "Registration failed. Email already in use."
+}

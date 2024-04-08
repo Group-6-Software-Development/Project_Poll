@@ -3,5 +3,7 @@ Flask==3.0.2
 mysqlclient==2.2.4
 PyJWT==2.8.0
 python-dotenv==1.0.1
-SQLAlchemy==2.0.27
+SQLAlchemy==2.0.28
 flask-cors==4.0.0
+mysql-connector-python==8.3.0
+waitress==3.0.0

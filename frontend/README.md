@@ -1,6 +1,10 @@
 # Frontend
 
-How to run the frontend:
+## Configuration
+
+Create a `.env` file using the `.env.example` file as a reference
+
+## How to run the frontend
 
 1. Install Node.js
 2. Run `npm install` in the frontend directory

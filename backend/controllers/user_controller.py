@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta, timezone
 
 from flask import request, jsonify
-from jwt import encode, ExpiredSignatureError
+from jwt import encode
 from sqlalchemy.exc import IntegrityError
 
 from config.env_config import JWT_SECRET, JWT_TOKEN_TIME_TO_LIVE
@@ -30,7 +30,7 @@ def register_user():
             data = {'token': token}
             return jsonify(data), 201
         except IntegrityError:
-            return {'message': 'Conflict - Email address already in use'}, 409
+            return {'error': 'Conflict - Email address already in use'}, 409
         except Exception as e:
             print(f"Unexpected error during registration: {str(e)}")
             return {'error': 'Internal Server Error'}, 500
@@ -52,8 +52,6 @@ def login_user():
                 return jsonify(data), 200
             else:
                 return {'error': 'Unauthorized - Invalid credentials'}, 401
-        except ExpiredSignatureError:
-            return {'error': 'Unauthorized - Token has expired'}, 401
         except Exception as e:
             print(f"Unexpected error during login: {str(e)}")
             return {'error': 'Internal Server Error'}, 500

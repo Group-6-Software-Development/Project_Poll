@@ -1,9 +1,12 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import useField from "../hooks/useField";
 import useLogin from "../hooks/useLogin";
 import "./styles/Login.css";
 
 const Login = ({ setIsAuthenticated }) => {
+  const { t } = useTranslation();
+
   const login = useLogin({ setIsAuthenticated });
 
   const email = useField("email");
@@ -19,17 +22,27 @@ const Login = ({ setIsAuthenticated }) => {
     <div className="login-page">
       <form className="login-form" onSubmit={handleSubmit}>
         <label className="email-message" htmlFor="email">
-          Email:
+          {t("login.email")}:
         </label>
-        <input {...email} className="email-input" required />
+        <input
+          {...email}
+          className="email-input"
+          data-testid="email-input"
+          required
+        />
 
         <label className="password-message" htmlFor="password">
-          Password:
+          {t("login.password")}:
         </label>
-        <input {...password} className="password-input" required />
+        <input
+          {...password}
+          className="password-input"
+          data-testid="password-input"
+          required
+        />
 
-        <button className="login-button" type="submit">
-          Login
+        <button className="login-button" type="submit" data-testid="login-form">
+          {t("login.loginButton")}
         </button>
       </form>
     </div>

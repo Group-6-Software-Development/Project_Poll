@@ -1,12 +1,13 @@
 from flask import Blueprint
 
-from controllers.course_controller import create_course, get_courses, get_course, update_course, delete_course
+from controllers.course_controller import create_course, get_courses, get_course, update_course, delete_course, get_course_id
 from middleware.auth_middleware import protected
 
 course_create = Blueprint('course_create', __name__)
 courses_get = Blueprint('courses_get', __name__)
 course_get = Blueprint('course_get', __name__)
 course_update = Blueprint('course_update', __name__)
+course_get_id = Blueprint('course_get_id', __name__)
 course_delete = Blueprint('course_delete', __name__)
 
 
@@ -32,6 +33,12 @@ def course_route(course_uuid):
 @protected
 def update_route(course_uuid):
     return update_course(course_uuid)
+
+
+@course_get_id.route('/api/course/id/<course_uuid>', methods=['GET'])
+@protected
+def get_id_route(course_uuid):
+    return get_course_id(course_uuid)
 
 
 @course_delete.route('/api/course/delete/<course_uuid>', methods=['DELETE'])

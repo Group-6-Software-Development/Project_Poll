@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFaceSmile,
@@ -6,8 +6,10 @@ import {
   faFaceFrown,
 } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const ReviewPage = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const lectureUUID = window.location.pathname.split("/")[2];
@@ -19,6 +21,7 @@ const ReviewPage = () => {
   }, []);
 
   const textareaRef = useRef(null);
+  const [remainingChars, setRemainingChars] = useState(255);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -50,7 +53,7 @@ const ReviewPage = () => {
   ) => {
     try {
       const response = await fetch(
-        `http://192.168.50.232:5000/api/review/create`,
+        `${process.env.REACT_APP_API_URL}/review/create`,
         {
           method: "POST",
           headers: {
@@ -66,10 +69,10 @@ const ReviewPage = () => {
       );
 
       if (response.status === 201) {
-        // localStorage.setItem("coursesReviewed", lectureUUID);
+        localStorage.setItem("coursesReviewed", lectureUUID);
         navigate("/thank-you");
       } else {
-        alert("Failed to submit review");
+        alert(t("reviewPage.submitReviewFailedAlert"));
       }
     } catch (error) {
       console.log(error);
@@ -79,6 +82,12 @@ const ReviewPage = () => {
   function handleForm(e) {
     e.preventDefault();
   }
+
+  const handleTextareaChange = (e) => {
+    const inputText = e.target.value;
+    const remaining = 255 - inputText.length;
+    setRemainingChars(remaining);
+  };
 
   const convertRating = (rating) => {
     switch (rating) {
@@ -127,7 +136,7 @@ const ReviewPage = () => {
     <div className="review-page-container">
       <form onSubmit={handleForm}>
         <div className="content-card">
-          <p>How well did you understand the lectures content?</p>
+          <p>{t("reviewPage.lectureUnderstandingQuestion")}</p>
           <button>
             {weakIcon(selectedContentIcon, setSelectedContentIcon)}
           </button>
@@ -139,7 +148,7 @@ const ReviewPage = () => {
           </button>
         </div>
         <div className="material-card">
-          <p>What did you think of the lecture material?</p>
+          <p>{t("reviewPage.lectureMaterialOpinionQuestion")}</p>
           <button>
             {weakIcon(selectedMaterialIcon, setSelectedMaterialIcon)}
           </button>
@@ -151,7 +160,7 @@ const ReviewPage = () => {
           </button>
         </div>
         <label>
-          Free word:
+          {t("reviewPage.additionalComments")}
           <br />
           <textarea
             ref={textareaRef}
@@ -159,12 +168,17 @@ const ReviewPage = () => {
             id=""
             cols="40"
             rows="10"
+            maxLength="255"
             defaultValue=""
+            onChange={handleTextareaChange}
           />
+          <div>
+            {remainingChars} {t("reviewPage.charactersRemaining")}
+          </div>
         </label>{" "}
         <br />
         <button className="submit-button" type="submit" onClick={handleSubmit}>
-          Submit
+          {t("reviewPage.submitReview")}
         </button>
       </form>
     </div>
