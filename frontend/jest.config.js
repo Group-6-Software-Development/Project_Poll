@@ -10,3 +10,5 @@ module.exports = {
       "!**/jest.config.js",
     ],
   };
+
+// For more information, check out the Jest documentation:
