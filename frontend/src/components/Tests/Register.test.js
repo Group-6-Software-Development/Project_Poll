@@ -40,19 +40,30 @@ describe('Register component', () => {
     expect(mockRegister).toHaveBeenCalledWith('', '', '', '');
   });
 
-  it('displays error message for password mismatch', () => {
+  it('sets error message when passwords do not match and calls register when they do', () => {
+    const mockRegister = jest.fn();
+    useRegister.mockReturnValue(mockRegister);
+  
     const { getByTestId, getByText } = render(<Register />);
     const passwordInput = getByTestId('password-input');
     const passwordAgainInput = getByTestId('password-again-input');
     const form = getByTestId('register-form');
-
+  
     // Simulate password mismatch
     fireEvent.change(passwordInput, { target: { value: 'password' } });
     fireEvent.change(passwordAgainInput, { target: { value: 'differentpassword' } });
-
+  
     fireEvent.submit(form);
-
+  
     // Check if the password mismatch error message is displayed
     expect(getByText('register.passwordMismatch')).toBeInTheDocument();
+  
+    // Now simulate matching passwords
+    fireEvent.change(passwordAgainInput, { target: { value: 'password' } });
+  
+    fireEvent.submit(form);
+  
+    // Check if the register function is called with the correct arguments
+    expect(mockRegister).toHaveBeenCalledWith('', '', '', 'password');
   });
 });
