@@ -1,38 +1,52 @@
-import "@testing-library/jest-dom/extend-expect";
-import { fireEvent, render, screen } from "@testing-library/react";
-import CourseCard from "../CourseCard";
+import React from 'react';
+import { render, fireEvent } from '@testing-library/react';
+import CourseCard from '../CourseCard';
+import { useTranslation } from 'react-i18next';
+import { useNavigate } from "react-router-dom";
+import "../styles/CourseCard.css";
 
-test("allows editing of course ID", () => {
-  render(<CourseCard />);
-  fireEvent.click(screen.getByRole("button")); // Switch to edit mode
-  const courseIdInput = screen.getByLabelText("Course ID");
-  fireEvent.change(courseIdInput, { target: { value: "New Course ID" } });
-  expect(courseIdInput).toHaveValue("New Course ID");
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({ t: key => key }),
+}));
+
+describe('CourseCard component', () => {
+  it('renders without crashing', () => {
+    const props = {
+      course_uuid: '1234',
+      course_id: 'C001',
+      course_name: 'Mathematics',
+      start_date: '2022-01-01',
+      end_date: '2022-06-30',
+    };
+    render(<CourseCard {...props} />);
+  });
+
+  it('toggles edit mode correctly', () => {
+    const props = {
+      course_uuid: '1234',
+      course_id: 'C001',
+      course_name: 'Mathematics',
+      start_date: '2022-01-01',
+      end_date: '2022-06-30',
+    };
+    const { getByText, getByTestId } = render(<CourseCard {...props} />);
+
+    // Check if the component initially renders in non-edit mode
+    expect(getByText('Mathematics')).toBeInTheDocument();
+    expect(getByTestId('course-id')).toHaveTextContent('C001');
+    expect(getByTestId('course-date')).toHaveTextContent('2022-01-01 - 2022-06-30');
+    expect(getByTestId('edit-button')).toBeInTheDocument();
+
+    // Click on the edit button
+    fireEvent.click(getByTestId('edit-button'));
+
+    // Check if the component switches to edit mode
+    expect(getByTestId('course-id-input')).toBeInTheDocument();
+    expect(getByTestId('course-name-input')).toBeInTheDocument();
+    expect(getByTestId('start-date-input')).toBeInTheDocument();
+    expect(getByTestId('end-date-input')).toBeInTheDocument();
+    expect(getByTestId('save-button')).toBeInTheDocument();
+  });
+
+  // Add more tests as needed...
 });
-
-test("allows editing of course name", () => {
-  render(<CourseCard />);
-  fireEvent.click(screen.getByRole("button")); // Switch to edit mode
-  const courseNameInput = screen.getByLabelText("Course Name");
-  fireEvent.change(courseNameInput, { target: { value: "New Course Name" } });
-  expect(courseNameInput).toHaveValue("New Course Name");
-});
-
-test("allows editing of course date", () => {
-  render(<CourseCard />);
-  fireEvent.click(screen.getByRole("button")); // Switch to edit mode
-  const courseDateInput = screen.getByLabelText("Date");
-  fireEvent.change(courseDateInput, { target: { value: "New Date" } });
-  expect(courseDateInput).toHaveValue("New Date");
-});
-
-//TODO: Line 22 still need to be tested (for reference):
-//const CourseCard = () => {
-	//const handleEditClick = () => {
-	//  setIsEditing(!isEditing);
-	//};
-	//const handleSaveClick = () => {
-	  // #TODO: validate changes and save to db
-	//  setIsEditing(!isEditing);
-	//};
-	//
