@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import "./styles/LanguageChangerButton.css";
-import "/node_modules/flag-icons/css/flag-icons.min.css";
+import "flag-icons/css/flag-icons.min.css";
 
 const LanguageChangerButton = () => {
   const { i18n } = useTranslation();
