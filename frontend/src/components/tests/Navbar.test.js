@@ -10,10 +10,7 @@ jest.mock('jwt-decode', () => jest.fn());
 describe('Navbar', () => {
   let setIsAuthenticated;
 
-  beforeEach(() => {
-    setIsAuthenticated = jest.fn();
-    localStorage.clear();
-  });
+  beforeEach(() => { setIsAuthenticated = jest.fn(); localStorage.clear(); });
 
   it('should render login button when not authenticated', () => {
     const { getByText } = render(
@@ -65,5 +62,42 @@ describe('Navbar', () => {
   
     // Assert that setIsAuthenticated was called with false
     expect(setIsAuthenticated).toHaveBeenCalledWith(false);
+  });
+  it('should navigate to profile page when profile button is clicked', () => {
+    const { getByText } = render(
+      <Router>
+        <Navbar isAuthenticated={true} setIsAuthenticated={setIsAuthenticated} />
+      </Router>
+    );
+
+    fireEvent.click(getByText('navbar.profileButton'));
+
+    expect(navigate).toHaveBeenCalledWith('/profile');
+  });
+
+  it('should remove token, set isAuthenticated to false, and navigate to home page when logout button is clicked', () => {
+    const { getByText } = render(
+      <Router>
+        <Navbar isAuthenticated={true} setIsAuthenticated={setIsAuthenticated} />
+      </Router>
+    );
+
+    fireEvent.click(getByText('navbar.logoutButton'));
+
+    expect(localStorage.removeItem).toHaveBeenCalledWith('token');
+    expect(setIsAuthenticated).toHaveBeenCalledWith(false);
+    expect(navigate).toHaveBeenCalledWith('/');
+  });
+
+  it('should navigate to login page when login button is clicked', () => {
+    const { getByText } = render(
+      <Router>
+        <Navbar isAuthenticated={false} setIsAuthenticated={setIsAuthenticated} />
+      </Router>
+    );
+
+    fireEvent.click(getByText('navbar.loginButton'));
+
+    expect(navigate).toHaveBeenCalledWith('/login');
   });
 });
