@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import CourseCard from '../CourseCard';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from "react-router-dom";
@@ -41,6 +41,7 @@ describe('CourseCard component', () => {
     fireEvent.click(getByTestId('edit-button'));
 
     // Check if the component switches to edit mode
+    console.log(screen.debug()); // Debugging the rendered output
     expect(getByTestId('course-id-input')).toBeInTheDocument();
     expect(getByTestId('course-name-input')).toBeInTheDocument();
     expect(getByTestId('start-date-input')).toBeInTheDocument();
