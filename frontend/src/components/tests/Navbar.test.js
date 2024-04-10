@@ -4,6 +4,7 @@ import '@testing-library/jest-dom';
 import Navbar from '../Navbar';
 import { MemoryRouter } from 'react-router-dom';
 
+
 test('renders logo in Navbar', () => {
   render(
     <MemoryRouter>
