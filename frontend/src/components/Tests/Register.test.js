@@ -29,21 +29,25 @@ describe('Register component', () => {
   it('submits form with valid data', () => {
     const mockRegister = jest.fn();
     useRegister.mockReturnValue(mockRegister);
-
+  
     const { getByTestId } = render(<Register />);
     const form = getByTestId('register-form');
-
+  
+    // Fill in the form fields
+    fireEvent.change(getByTestId('first-name-input'), { target: { value: 'John' } });
+    fireEvent.change(getByTestId('last-name-input'), { target: { value: 'Doe' } });
+    fireEvent.change(getByTestId('email-input'), { target: { value: 'john@example.com' } });
+    fireEvent.change(getByTestId('password-input'), { target: { value: 'password' } });
+    fireEvent.change(getByTestId('password-again-input'), { target: { value: 'password' } });
+  
     // Simulate form submission
     fireEvent.submit(form);
-
+  
     // Check if the register function is called with the correct arguments
-    expect(mockRegister).toHaveBeenCalledWith('', '', '', '');
+    expect(mockRegister).toHaveBeenCalledWith('John', 'Doe', 'john@example.com', 'password');
   });
 
-  it('sets error message when passwords do not match and calls register when they do', () => {
-    const mockRegister = jest.fn();
-    useRegister.mockReturnValue(mockRegister);
-  
+  it('sets error message when passwords do not match', () => {
     const { getByTestId, getByText } = render(<Register />);
     const passwordInput = getByTestId('password-input');
     const passwordAgainInput = getByTestId('password-again-input');
@@ -56,14 +60,6 @@ describe('Register component', () => {
     fireEvent.submit(form);
   
     // Check if the password mismatch error message is displayed
-    expect(getByText('register.passwordMismatch')).toBeInTheDocument();
-  
-    // Now simulate matching passwords
-    fireEvent.change(passwordAgainInput, { target: { value: 'password' } });
-  
-    fireEvent.submit(form);
-  
-    // Check if the register function is called with the correct arguments
-    expect(mockRegister).toHaveBeenCalledWith('', '', '', 'password');
+    expect(getByText('Passwords do not match')).toBeInTheDocument(); // Update text matcher
   });
 });
