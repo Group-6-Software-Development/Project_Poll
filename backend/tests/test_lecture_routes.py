@@ -43,6 +43,32 @@ class TestLectureRoutes(unittest.TestCase):
 
         self.assertEqual(response_create_lecture.status_code, 201)
 
+    def test_create_lecture_fail(self):
+        register_response = self.app.post('/api/user/register', json={
+            'firstName': 'Test',
+            'lastName': 'Lecture_Create',
+            'email': 'test@lecture_create_fail.fi',
+            'password': 'asd123!'
+        })
+        decoded_token = register_response.data.decode('utf-8')
+        decoded_token = json.loads(decoded_token)['token']
+
+        response_create_course = self.app.post('/api/course/create',
+                                               json={
+                                                   'courseID': 'TX00EY27-3004',
+                                                   'courseName': 'Ohjelmistotuotantoprojekti 1',
+                                                   'startDate': '18.1.2024',
+                                                   'endDate': '15.3.2024'
+                                               },
+                                               headers={'Authorization': f'Bearer {decoded_token}'})
+
+        response_create_lecture = self.app.post('/api/lecture/create',
+                                                json={'courseUUID': response_create_course.json['uuid']
+                                                      },
+                                                headers={'Authorization': f'Bearer {decoded_token}'})
+
+        self.assertEqual(response_create_lecture.status_code, 400)
+
     def test_get_lecture(self):
         register_response = self.app.post('/api/user/register', json={
             'firstName': 'Test',
@@ -106,7 +132,3 @@ class TestLectureRoutes(unittest.TestCase):
                                              headers={'Authorization': f'Bearer {decoded_token}'})
 
         self.assertEqual(response_get_lectures.status_code, 200)
-
-
-if __name__ == '__main__':
-    unittest.main()
