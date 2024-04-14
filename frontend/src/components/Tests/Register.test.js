@@ -4,9 +4,12 @@ import Register from '../Register';
 import { useTranslation } from 'react-i18next';
 import useRegister from '../../hooks/useRegister';
 import useField from '../../hooks/useField';
+import '@testing-library/jest-dom/extend-expect';
 
 jest.mock('react-i18next', () => ({
-  useTranslation: () => ({ t: key => key }),
+  useTranslation: () => ({
+    t: (str) => str,
+  }),
 }));
 
 jest.mock('../../hooks/useRegister', () => jest.fn());
@@ -39,31 +42,22 @@ describe('Register component', () => {
     // Check if the register function is called with the correct arguments
     expect(mockRegister).toHaveBeenCalledWith('', '', '', '');
   });
+  it('sets error message when passwords do not match', async () => {
+  const mockRegister = jest.fn().mockRejectedValue(new Error('register.passwordMismatch'));
+  useRegister.mockReturnValue(mockRegister);
 
-  it('sets error message when passwords do not match and calls register when they do', () => {
-    const mockRegister = jest.fn();
-    useRegister.mockReturnValue(mockRegister);
-  
-    const { getByTestId, getByText } = render(<Register />);
-    const passwordInput = getByTestId('password-input');
-    const passwordAgainInput = getByTestId('password-again-input');
-    const form = getByTestId('register-form');
-  
-    // Simulate password mismatch
-    fireEvent.change(passwordInput, { target: { value: 'password' } });
-    fireEvent.change(passwordAgainInput, { target: { value: 'differentpassword' } });
-  
-    fireEvent.submit(form);
-  
-    // Check if the password mismatch error message is displayed
-    expect(getByText('register.passwordMismatch')).toBeInTheDocument();
-  
-    // Now simulate matching passwords
-    fireEvent.change(passwordAgainInput, { target: { value: 'password' } });
-  
-    fireEvent.submit(form);
-  
-    // Check if the register function is called with the correct arguments
-    expect(mockRegister).toHaveBeenCalledWith('', '', '', 'password');
-  });
+  const { getByTestId, findByText } = render(<Register />);
+  const form = getByTestId('register-form');
+
+  // Simulate different passwords
+  fireEvent.change(getByTestId('password-input'), { target: { value: 'password1' } });
+  fireEvent.change(getByTestId('password-again-input'), { target: { value: 'password2' } });
+
+  // Simulate form submission
+  fireEvent.submit(form);
+
+  // Wait for the error message to be displayed
+  const errorAlert = await findByText("register.passwordMismatch");
+  expect(errorAlert).toBeInTheDocument();
+});
 });

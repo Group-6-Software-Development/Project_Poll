@@ -18,7 +18,7 @@ const Register = ({ setIsAuthenticated }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (password.value !== passwordAgain.value) {
+    if (password !== passwordAgain) {
       setError(t("register.passwordMismatch"));
     } else {
       setError("");
