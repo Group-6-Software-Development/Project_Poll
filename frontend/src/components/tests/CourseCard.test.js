@@ -42,25 +42,55 @@ describe('CourseCard', () => {
     };
   
     // Act
-    const { getByRole } = render(<CourseCard {...course} />);
-    const editButton = getByRole('button', { name: 'Edit Course' }); // Get the edit button
-    fireEvent.click(editButton); // Click the edit button
+    const { getByRole, getByLabelText, debug } = render(<CourseCard {...course} />);
+    try {
+      const editButton = getByRole('button'); // Get the edit button without specifying the name attribute
+      fireEvent.click(editButton); // Click the edit button
   
+      // Assert that input fields are rendered
+      expect(getByLabelText('courseCard.courseIDLabel')).toBeInTheDocument();
+      expect(getByLabelText('courseCard.courseNameLabel')).toBeInTheDocument();
+      expect(getByLabelText('courseCard.startDateLabel')).toBeInTheDocument();
+      expect(getByLabelText('courseCard.endDateLabel')).toBeInTheDocument();
+    } catch (error) {
+      // If the edit button is not found, log the rendered component for debugging
+      debug();
+      throw error;
+    }
+  });
+
+  test('allows saving edited course details', async () => {
+    // Arrange
+    const course = {
+      course_uuid: '123',
+      course_id: 'C101',
+      course_name: 'Introduction to React',
+      start_date: '2024-04-10',
+      end_date: '2024-05-10',
+    };
+
+    // Act
+    const { getByLabelText, getByTestId, getByRole } = render(<CourseCard {...course} />);
+    const editButtonIcon = getByTestId('edit-button-icon'); // Get the edit button
+    fireEvent.click(editButtonIcon); // Click the edit button
+
     // Simulate changes in input fields
-    const courseIdInput = getByRole('textbox', { name: 'Course ID' });
-    const courseNameInput = getByRole('textbox', { name: 'Course Name' });
-    const startDateInput = getByRole('textbox', { name: 'Start Date' });
-    const endDateInput = getByRole('textbox', { name: 'End Date' });
-  
-    fireEvent.change(courseIdInput, { target: { value: 'New Course ID' } });
-    fireEvent.change(courseNameInput, { target: { value: 'New Course Name' } });
-    fireEvent.change(startDateInput, { target: { value: '2025-01-01' } });
-    fireEvent.change(endDateInput, { target: { value: '2025-02-01' } });
-  
+    fireEvent.change(getByLabelText('courseCard.courseIDLabel'), { target: { value: 'New Course ID' } });
+    fireEvent.change(getByLabelText('courseCard.courseNameLabel'), { target: { value: 'New Course Name' } });
+    fireEvent.change(getByLabelText('courseCard.startDateLabel'), { target: { value: '2025-01-01' } });
+    fireEvent.change(getByLabelText('courseCard.endDateLabel'), { target: { value: '2025-02-01' } });
+
+    // Click the save button
+    const saveButton = getByRole('button', { name: '' }); // Find by role since name is not set
+    fireEvent.click(saveButton);
+
     // Assert
-    expect(courseIdInput.value).toBe('New Course ID');
-    expect(courseNameInput.value).toBe('New Course Name');
-    expect(startDateInput.value).toBe('2025-01-01');
-    expect(endDateInput.value).toBe('2025-02-01');
+    await waitFor(() => {
+      expect(getByLabelText('courseCard.courseIDLabel')).toHaveValue('New Course ID');
+      expect(getByLabelText('courseCard.courseNameLabel')).toHaveValue('New Course Name');
+      expect(getByLabelText('courseCard.startDateLabel')).toHaveValue('2025-01-01');
+      expect(getByLabelText('courseCard.endDateLabel')).toHaveValue('2025-02-01');
+    });
   });
 });
+

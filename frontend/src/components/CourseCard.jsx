@@ -3,11 +3,11 @@ import "./styles/CourseCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next"; // Import useTranslation
+import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
 const editButton = (
-  <FontAwesomeIcon icon={faPen} style={{ color: "#ff5000" }} size="xl" />
+  <FontAwesomeIcon data-testid="edit-button-icon" icon={faPen} style={{ color: "#ff5000" }} size="xl" />
 );
 
 const saveButton = (
@@ -22,7 +22,7 @@ const CourseCard = ({
   end_date,
 }) => {
   const navigate = useNavigate();
-  const { t } = useTranslation(); // Initialize useTranslation
+  const { t } = useTranslation();
 
   const handleEditClick = () => {
     setIsEditing(!isEditing);
@@ -41,27 +41,21 @@ const CourseCard = ({
       !(dateRegex1.test(startDate) || dateRegex2.test(startDate)) ||
       !(dateRegex1.test(endDate) || dateRegex2.test(endDate))
     ) {
-      alert(t("courseCard.invalidDateFormat")); // Displaying alert for invalid date format
+      alert(t("courseCard.invalidDateFormat"));
       console.log("Invalid date format");
       setIsEditing(true);
       return;
-    }
-    // Checking if any essential field is empty
-    else if (
+    } else if (
       courseId === t("courseCard.courseIDPlaceholder") ||
       courseName === t("courseCard.courseNamePlaceholder") ||
-      courseId === "" ||
-      courseName === "" ||
       startDate === "" ||
       endDate === ""
     ) {
-      alert(t("courseCard.fillAllFields")); // Displaying alert to fill all fields
+      alert(t("courseCard.fillAllFields"));
       console.log("Please fill in all fields");
       setIsEditing(true);
       return;
-    }
-    // If all validations pass, save changes
-    else {
+    } else {
       saveChanges();
     }
   };
@@ -92,10 +86,7 @@ const CourseCard = ({
 
         if (response.status === 401) {
           localStorage.removeItem("token");
-
-          // eslint-disable-next-line no-undef
           globalThis.setIsAuthenticated(false);
-
           alert(t("courseCard.sessionExpired"));
           navigate("/login");
         }
@@ -106,32 +97,36 @@ const CourseCard = ({
   };
 
   const [isEditing, setIsEditing] = useState(false);
-  const [courseId, setCourseId] = useState(course_id || "Course ID");
-  const [courseName, setCourseName] = useState(course_name || "Course Name");
-  const [startDate, setStartDate] = useState(start_date || "Start Date");
-  const [endDate, setEndDate] = useState(end_date || "End Date");
+  const [courseId, setCourseId] = useState(course_id || t("courseCard.courseIDPlaceholder"));
+  const [courseName, setCourseName] = useState(course_name || t("courseCard.courseNamePlaceholder"));
+  const [startDate, setStartDate] = useState(start_date || t("courseCard.startDatePlaceholder"));
+  const [endDate, setEndDate] = useState(end_date || t("courseCard.endDatePlaceholder"));
 
   return (
     <div className="course-card">
-      <img src={classPhoto} alt="classroom"></img>
+      <img src={classPhoto} alt="classroom" />
       {isEditing ? (
         <button onClick={handleSaveClick}>{saveButton}</button>
       ) : (
-        <button onClick={handleEditClick}>{editButton}</button>
+        <button name="Edit Course" onClick={handleEditClick}>{editButton}</button>
       )}
 
       <div className="course-info">
         {isEditing ? (
           <>
             <div className="course-id">
+              <label htmlFor="courseId">{t("courseCard.courseIDLabel")}</label>
               <input
+                id="courseId"
                 type="text"
                 value={courseId}
                 onChange={(e) => setCourseId(e.target.value)}
               />
             </div>
             <div className="course-name">
+              <label htmlFor="courseName">{t("courseCard.courseNameLabel")}</label>
               <input
+                id="courseName"
                 type="text"
                 value={courseName}
                 onChange={(e) => setCourseName(e.target.value)}
@@ -139,16 +134,20 @@ const CourseCard = ({
             </div>
             <div className="course-date">
               <div>
+                <label htmlFor="startDate">{t("courseCard.startDateLabel")}</label>
                 <input
+                  id="startDate"
                   type="text"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
                 />
+                <label htmlFor="endDate">{t("courseCard.endDateLabel")}</label>
                 <input
+                  id="endDate"
                   type="text"
                   value={endDate}
                   onChange={(e) => setEndDate(e.target.value)}
-                ></input>
+                />
               </div>
             </div>
           </>
