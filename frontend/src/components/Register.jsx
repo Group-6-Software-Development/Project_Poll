@@ -22,8 +22,8 @@ const Register = ({ setIsAuthenticated }) => {
       setError(t("register.passwordMismatch"));
     } else {
       setError("");
-
-      register(firstName.value, lastName.value, email.value, password.value);
+      // Took out the .value from the fields will have to test if it breaks the code!
+      register(firstName, lastName, email, password);
     }
   };
 
