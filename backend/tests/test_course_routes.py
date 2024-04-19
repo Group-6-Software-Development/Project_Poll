@@ -15,6 +15,25 @@ class TestCourseRoutes(unittest.TestCase):
         app.testing = True
         self.app = app.test_client()
 
+    def test_create_course_route_bad_request(self):
+        response = self.app.post('/api/user/register',
+                                 json={'firstName': 'Test', 'lastName': 'Course_Create',
+                                       'email': 'test@course_create_fail.com',
+                                       'password': 'asd123!'})
+
+        decoded_token = response.data.decode('utf-8')
+        decoded_token = json.loads(decoded_token)['token']
+
+        response_create_course = self.app.post('/api/course/create',
+                                               json={
+                                                   'courseID': 'TX00EY27-3004',
+                                                   'courseName': 'Ohjelmistotuotantoprojekti 1',
+                                                   'startDate': '18.1.2024'
+                                               },
+                                               headers={'Authorization': f'Bearer {decoded_token}'})
+
+        self.assertEqual(response_create_course.status_code, 400)
+
     def test_create_course_route(self):
         response = self.app.post('/api/user/register',
                                  json={'firstName': 'Test', 'lastName': 'Course_Create',
@@ -85,6 +104,36 @@ class TestCourseRoutes(unittest.TestCase):
         self.app.delete('/api/course/delete/' + uuid, headers={'Authorization': f'Bearer {decoded_token}'})
         self.app.delete('/api/user/delete', headers={'Authorization': f'Bearer {decoded_token}'})
 
+    def test_get_course_route_no_uuid(self):
+        response = self.app.post('/api/user/register',
+                                 json={'firstName': 'Test', 'lastName': 'Course_Get',
+                                       'email': 'test@course_get_fail.com',
+                                       'password': 'asd123!'})
+        decoded_token = response.data.decode('utf-8')
+
+        decoded_token = json.loads(decoded_token)['token']
+
+        response_create_course = self.app.post('/api/course/create',
+                                               json={
+                                                   'courseID': 'TX00EY27-3004',
+                                                   'courseName': 'Ohjelmistotuotantoprojekti 1',
+                                                   'startDate': '18.1.2024',
+                                                   'endDate': '15.3.2024'
+                                               },
+                                               headers={'Authorization': f'Bearer {decoded_token}'})
+
+        self.app.get('/api/course/courses', headers={'Authorization': f'Bearer {decoded_token}'})
+        course_id = '5d25b3dc-7d68-4b6f-a43b-5b5dc7fb6e6e'
+        response_get_course = self.app.get(f'/api/course/{course_id}',
+                                           headers={'Authorization': f'Bearer {decoded_token}'})
+
+        self.assertEqual(response_get_course.status_code, 404)
+        response_create_course = response_create_course.json
+        uuid = response_create_course.get('uuid')
+
+        self.app.delete('/api/course/delete/' + uuid, headers={'Authorization': f'Bearer {decoded_token}'})
+        self.app.delete('/api/user/delete', headers={'Authorization': f'Bearer {decoded_token}'})
+
     def test_update_course_route(self):
         response = self.app.post('/api/user/register',
                                  json={'firstName': 'Test', 'lastName': 'Course_Update',
@@ -120,6 +169,37 @@ class TestCourseRoutes(unittest.TestCase):
         self.app.delete('/api/course/delete/' + course_uuid, headers={'Authorization': f'Bearer {decoded_token}'})
         self.app.delete('/api/user/delete', headers={'Authorization': f'Bearer {decoded_token}'})
 
+    def test_update_course_route_bad_request(self):
+        response = self.app.post('/api/user/register',
+                                 json={'firstName': 'Test', 'lastName': 'Course_Update',
+                                       'email': 'test@course_update_fail.com',
+                                       'password': 'asd123!'})
+
+        decoded_token = response.data.decode('utf-8')
+        decoded_token = json.loads(decoded_token)['token']
+
+        self.app.post('/api/course/create',
+                      json={
+                          'courseID': 'TX00EY27-3004',
+                          'courseName': 'Ohjelmistotuotantoprojekti 1',
+                          'startDate': '18.1.2024',
+                          'endDate': '15.3.2024'
+                      },
+                      headers={'Authorization': f'Bearer {decoded_token}'})
+
+        response_get_courses = self.app.get('/api/course/courses', headers={'Authorization': f'Bearer {decoded_token}'})
+        course_uuid = response_get_courses.json[0]['uuid']
+
+        new_course_data = {
+            'courseID': 'TX00EY27-3004',
+            'courseName': 'Ohjelmistotuotantoprojekti 1',
+            'startDate': '18.1.2024'
+        }
+        response = self.app.put(f'/api/course/update/{course_uuid}', json=new_course_data,
+                                headers={'Authorization': f'Bearer {decoded_token}'})
+
+        self.assertEqual(response.status_code, 400)
+
     def test_delete_course_route(self):
         response = self.app.post('/api/user/register',
                                  json={'firstName': 'Test', 'lastName': 'Course_Delete',
@@ -144,6 +224,24 @@ class TestCourseRoutes(unittest.TestCase):
         self.assertEqual(response.status_code, 204)
         self.app.delete('/api/user/delete', headers={'Authorization': f'Bearer {decoded_token}'})
 
+    def test_get_course_id(self):
+        response = self.app.post('/api/user/register',
+                                 json={'firstName': 'Test', 'lastName': 'Course_Get',
+                                       'email': 'test@course_get_id.com', 'password': 'asd123!'})
+        decoded_token = response.data.decode('utf-8')
+        decoded_token = json.loads(decoded_token)['token']
 
-if __name__ == '__main__':
-    unittest.main()
+        response_create_course = self.app.post('/api/course/create',
+                                               json={
+                                                   'courseID': 'TX00EY27-3004',
+                                                   'courseName': 'Ohjelmistotuotantoprojekti 1',
+                                                   'startDate': '18.1.2024',
+                                                   'endDate': '15.3.2024'
+                                               },
+                                               headers={'Authorization': f'Bearer {decoded_token}'})
+        response_create_course = response_create_course.json
+        uuid = response_create_course.get('uuid')
+
+        response_get_course_id = self.app.get(f'/api/course/id/{uuid}',
+                                              headers={'Authorization': f'Bearer {decoded_token}'})
+        self.assertEqual(response_get_course_id.status_code, 200)
