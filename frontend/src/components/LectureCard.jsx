@@ -78,17 +78,17 @@ const LectureCard = ({
           <h5>{courseName}</h5>
         </div>
         <div className="lecture-rating">
-          <div className="good-rating">
-            <strong>{ratings.good}</strong>
-            {goodIcon}
+          <div className="weak-rating">
+            <strong>{ratings.weak}</strong>
+            {weakIcon}
           </div>
           <div className="neutral-rating">
             <strong>{ratings.neutral}</strong>
             {neutralIcon}
           </div>
-          <div className="weak-rating">
-            <strong>{ratings.weak}</strong>
-            {weakIcon}
+          <div className="good-rating">
+            <strong>{ratings.good}</strong>
+            {goodIcon}
           </div>
         </div>
         <div className="lecture-date">

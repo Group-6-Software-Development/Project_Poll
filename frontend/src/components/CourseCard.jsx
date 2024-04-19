@@ -7,7 +7,12 @@ import { useTranslation } from "react-i18next";
 import { useState } from "react";
 
 const editButton = (
-  <FontAwesomeIcon data-testid="edit-button-icon" icon={faPen} style={{ color: "#ff5000" }} size="xl" />
+  <FontAwesomeIcon
+    data-testid="edit-button-icon"
+    icon={faPen}
+    style={{ color: "#ff5000" }}
+    size="xl"
+  />
 );
 
 const saveButton = (
@@ -86,6 +91,7 @@ const CourseCard = ({
 
         if (response.status === 401) {
           localStorage.removeItem("token");
+          // eslint-disable-next-line no-undef
           globalThis.setIsAuthenticated(false);
           alert(t("courseCard.sessionExpired"));
           navigate("/login");
@@ -97,10 +103,10 @@ const CourseCard = ({
   };
 
   const [isEditing, setIsEditing] = useState(false);
-  const [courseId, setCourseId] = useState(course_id || t("courseCard.courseIDPlaceholder"));
-  const [courseName, setCourseName] = useState(course_name || t("courseCard.courseNamePlaceholder"));
-  const [startDate, setStartDate] = useState(start_date || t("courseCard.startDatePlaceholder"));
-  const [endDate, setEndDate] = useState(end_date || t("courseCard.endDatePlaceholder"));
+  const [courseId, setCourseId] = useState(course_id || "Course ID");
+  const [courseName, setCourseName] = useState(course_name || "Course Name");
+  const [startDate, setStartDate] = useState(start_date || "Start Date");
+  const [endDate, setEndDate] = useState(end_date || "End Date");
 
   return (
     <div className="course-card">
@@ -108,14 +114,15 @@ const CourseCard = ({
       {isEditing ? (
         <button onClick={handleSaveClick}>{saveButton}</button>
       ) : (
-        <button name="Edit Course" onClick={handleEditClick}>{editButton}</button>
+        <button name="Edit Course" onClick={handleEditClick}>
+          {editButton}
+        </button>
       )}
 
       <div className="course-info">
         {isEditing ? (
           <>
             <div className="course-id">
-              <label htmlFor="courseId">{t("courseCard.courseIDLabel")}</label>
               <input
                 id="courseId"
                 type="text"
@@ -124,7 +131,6 @@ const CourseCard = ({
               />
             </div>
             <div className="course-name">
-              <label htmlFor="courseName">{t("courseCard.courseNameLabel")}</label>
               <input
                 id="courseName"
                 type="text"
@@ -134,14 +140,12 @@ const CourseCard = ({
             </div>
             <div className="course-date">
               <div>
-                <label htmlFor="startDate">{t("courseCard.startDateLabel")}</label>
                 <input
                   id="startDate"
                   type="text"
                   value={startDate}
                   onChange={(e) => setStartDate(e.target.value)}
                 />
-                <label htmlFor="endDate">{t("courseCard.endDateLabel")}</label>
                 <input
                   id="endDate"
                   type="text"

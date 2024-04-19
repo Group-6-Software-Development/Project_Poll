@@ -18,12 +18,11 @@ const Register = ({ setIsAuthenticated }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (password !== passwordAgain) {
+    if (password.value !== passwordAgain.value) {
       setError(t("register.passwordMismatch"));
     } else {
       setError("");
-      // Took out the .value from the fields will have to test if it breaks the code!
-      register(firstName, lastName, email, password);
+      register(firstName.value, lastName.value, email.value, password.value);
     }
   };
 
