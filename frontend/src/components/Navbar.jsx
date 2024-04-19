@@ -4,7 +4,7 @@ import logo from "../images/logo.png";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import LanguageChangerButton from "./LanguageChangerButton";
-import  jwtDecode  from "jwt-decode";
+import jwtDecode from "jwt-decode";
 
 const Navbar = ({ isAuthenticated, setIsAuthenticated }) => {
   const { t } = useTranslation();

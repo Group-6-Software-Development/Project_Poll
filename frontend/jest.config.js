@@ -1,14 +1,15 @@
-module.exports = {
-    moduleNameMapper: {
-      "\\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules",
-    },
-  };
-  module.exports = {
-    collectCoverageFrom: [
-      "**/*.{js,jsx}",
-      "!**/node_modules/**",
-      "!**/jest.config.js",
-    ],
-  };
+const { configure } = require('enzyme');
+const Adapter = require('enzyme-adapter-react-16');
 
-// For more information, check out the Jest documentation:
+configure({ adapter: new Adapter() });
+
+module.exports = {
+  moduleNameMapper: {
+    "\.(css|less|scss|sss|styl)$": "<rootDir>/node_modules/jest-css-modules",
+  },
+  collectCoverageFrom: [
+    "/*.{js,jsx}",
+    "!/node_modules/",
+    "!/jest.config.js",
+  ],
+};

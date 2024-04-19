@@ -1,28 +1,50 @@
-// Import the fireEvent and render functions from @testing-library/react
-import { render, fireEvent } from "@testing-library/react";
-import React from "react";
-import Login from "../Login";
+import React from 'react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect'; // Jest-dom extension
+import Login from '../Login';
+import useLogin from '../../hooks/useLogin'; // Import the useLogin hook
 
-// Mock the console.log function
-console.log = jest.fn();
+// Mocking useTranslation hook
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({ t: key => key }),
+}));
 
-describe("Login component", () => {
-  it("calls console.log when form is submitted", () => {
+// Mocking useField hook
+jest.mock('../../hooks/useField', () => jest.fn(() => ({
+  value: '',
+  onChange: jest.fn(),
+})));
+
+// Mocking useLogin hook globally
+jest.mock('../../hooks/useLogin');
+
+describe('Login component', () => {
+  beforeEach(() => {
+    jest.clearAllMocks(); // Clear all mocks before each test
+  });
+
+  it('renders without crashing', () => {
+    render(<Login />);
+  });
+
+  it('submits the form with valid credentials', async () => {
+    const mockLogin = jest.fn(); // Create a mock function for useLogin hook
+    useLogin.mockReturnValue(mockLogin); // Mock the useLogin hook
+
     const { getByTestId } = render(<Login />);
 
-    // Get the email and password input fields and change their values
-    const emailInput = getByTestId("email-input");
-    const passwordInput = getByTestId("password-input");
-    fireEvent.change(emailInput, { target: { value: "test@example.com" } });
-    fireEvent.change(passwordInput, { target: { value: "password" } });
+    // Fill in the email and password fields
+    fireEvent.change(getByTestId('email-input'), { target: { value: 'test@example.com' } });
+    fireEvent.change(getByTestId('password-input'), { target: { value: 'password123' } });
 
-    // Submit the form
-    fireEvent.submit(getByTestId("login-form"));
+    // Click the login button
+    fireEvent.click(getByTestId('login-form'));
 
-    // Check if console.log is called with correct data
-    expect(console.log).toHaveBeenCalledWith("Logging in with:", {
-      email: "test@example.com",
-      password: "password",
+    // Asynchronous operation, wait for navigation to occur
+    await waitFor(() => {
+      expect(mockLogin).toHaveBeenCalledWith('test@example.com', 'password123');
     });
   });
+
+  // Add more test cases as needed...
 });

@@ -1,7 +1,7 @@
 import { render, fireEvent } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from '../Navbar';
-import  jwtDecode  from 'jwt-decode';
+import jwtDecode  from 'jwt-decode';
 import '@testing-library/jest-dom/extend-expect';
 
 
