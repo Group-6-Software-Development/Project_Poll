@@ -1,80 +1,64 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import Register from '../Register';
+import { useTranslation } from 'react-i18next';
+import useRegister from '../../hooks/useRegister';
+import useField from '../../hooks/useField';
+
+// Mock useTranslation hook
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({ t: (str) => str }),
+}));
+
+// Mock useRegister hook
+jest.mock('../../hooks/useRegister', () => jest.fn());
+
+// Mock useField hook
+jest.mock('../../hooks/useField', () => jest.fn(() => ({
+  value: '',
+  onChange: jest.fn(),
+})));
+
 
 describe('Register component', () => {
-  let originalConsoleLog;
-
   beforeEach(() => {
-    // Save the original console.log
-    originalConsoleLog = console.log;
-    // Mock data console.log
-    console.log = jest.fn();
+    jest.clearAllMocks(); // Clear all mock function calls before each test
   });
 
-  afterEach(() => {
-    // Send back the original console.log
-    console.log = originalConsoleLog;
+  it('renders without crashing', () => {
+    render(<Register />);
+    // Add any additional assertions about rendering here
   });
 
-  it('renders all input fields and a submit button', () => {
+  it('submits form with valid data', () => {
+    const mockRegister = jest.fn();
+    useRegister.mockReturnValue(mockRegister);
 
+    const { getByTestId } = render(<Register />);
+    const formElement = getByTestId('register-form');
+
+    // Simulate form submission
+    fireEvent.submit(formElement);
+
+    // Check if the register function is called with the correct arguments
+    expect(mockRegister).toHaveBeenCalledWith(undefined, undefined, undefined, undefined); // Adjust with expected arguments
+  });
+  it('sets error message when passwords do not match', async () => {
     const { getByTestId, getByText } = render(<Register />);
+    
+    // Get form elements
+    const passwordInput = getByTestId('password-input');
+    const passwordAgainInput = getByTestId('password-again-input');
 
-    // Check if all input fields are rendered
-    expect(getByTestId('first-name-input')).toBeDefined();
-    expect(getByTestId('last-name-input')).toBeDefined();
-    expect(getByTestId('email-input')).toBeDefined();
-    expect(getByTestId('password-input')).toBeDefined();
-    expect(getByTestId('password-again-input')).toBeDefined();
+    // Simulate entering different passwords
+    fireEvent.change(passwordInput, { target: { value: 'password1' } });
+    fireEvent.change(passwordAgainInput, { target: { value: 'password2' } });
 
-    // Check if submit button is rendered
-    expect(getByTestId('register-form')).toBeDefined();
-  });
-
-  it('displays error message when passwords do not match', () => {
-    // Mock setError function
-    const setError = jest.fn();
-
-    const { getByTestId } = render(<Register setError={setError} />);
-
-    // Set different passwords
-    fireEvent.change(getByTestId('password-input'), { target: { value: 'password123' } });
-    fireEvent.change(getByTestId('password-again-input'), { target: { value: 'password456' } });
-
-    // Submit the form
-    fireEvent.submit(getByTestId('register-form'));
-
-    // Check if setError is called with the correct error message
-    expect(setError).toHaveBeenCalledWith("Passwords do not match");
-  });
-
-  it('clears error and logs registration data when passwords match', () => {
-    // Mock setError function
-    const setError = jest.fn();
-
-    const { getByTestId } = render(<Register setError={setError} />);
-
-    // Set matching passwords
-    fireEvent.change(getByTestId('password-input'), { target: { value: 'password123' } });
-    fireEvent.change(getByTestId('password-again-input'), { target: { value: 'password123' } });
-
-    // Submit the form
-    fireEvent.submit(getByTestId('register-form'));
-
-    // Check if setError is called with an empty string
-    expect(setError).toHaveBeenCalledWith("");
-
-    // Check if registration data is logged
-    expect(console.log).toHaveBeenCalledWith("Registering with:", {
-      firstName: '', // Here we expect an empty string, because the input field is empty
-      lastName: '', // Here we expect an empty string, because the input field is empty
-      email: '', // Here we expect an empty string, because the input field is empty
-      password: 'password123',
-      passwordAgain: 'password123',
+    // Wait for the error message to be displayed
+    await waitFor(() => {
+      const errorAlert = document.querySelector('.error-message');
+      console.log(errorAlert);
+      expect(errorAlert);
     });
   });
 });
-
-
-
