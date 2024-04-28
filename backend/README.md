@@ -8,5 +8,4 @@ How to start the backend:
 4. The backend will be running on `http://localhost:5000/`.
 5. For running test check the `test_requirements.txt`
 
-
-(NOTE) If you are on linux, remove mysql from requirements.txt before running pip install.
+(NOTE) If you are on Linux, remove `mysqlclient` from requirements.txt before running pip install, and run the following command `sudo apt-get install python3-mysqldb`
