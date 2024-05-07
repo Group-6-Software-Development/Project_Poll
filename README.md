@@ -1,4 +1,4 @@
-# Project_Poll
+# MetPoll
 Sofware Engineering Project repo
 
 ## Project Goal
